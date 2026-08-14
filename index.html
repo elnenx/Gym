@@ -63,7 +63,6 @@
         }
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* Wizard Radio Selection Style */
         .wizard-radio:checked + div {
             border-color: #002df3;
             background-color: #eef2ff;
@@ -76,7 +75,6 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Animation classes for Menu */
         .hide-nav-item {
             width: 0 !important;
             opacity: 0 !important;
@@ -84,8 +82,11 @@
             margin: 0 !important;
             border-width: 0 !important;
             pointer-events: none;
-            overflow: hidden;
         }
+        
+        /* Iframe scrollbar styling for mockup */
+        iframe::-webkit-scrollbar { width: 4px; }
+        iframe::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 4px; }
     </style>
 </head>
 <body class="min-h-screen text-dark dark:text-slate-100 relative bg-white dark:bg-slate-900 overflow-x-hidden transition-colors duration-300">
@@ -94,37 +95,33 @@
     <!-- MAIN PAGE CONTAINER -->
     <!-- ========================================== -->
     <div id="main-page">
-        <!-- Top Glow -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[250px] bg-primary/15 rounded-full blur-[80px] pointer-events-none z-0"></div>
 
-        <!-- Header / Navbar -->
-        <header class="fixed top-4 w-full z-50 px-4 left-0 right-0 max-w-3xl mx-auto flex gap-2 items-start transition-all duration-300" id="main-header">
+        <header class="fixed top-4 w-full z-50 px-4 left-0 right-0 max-w-3xl mx-auto flex gap-2 items-start transition-all duration-300">
             
             <!-- Right Action (Menu Container) -->
             <div id="nav-menu-container" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-[26px] shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-white/50 dark:border-slate-700/50 transition-all duration-500 ease-in-out w-[52px] flex flex-col overflow-hidden shrink-0">
-                <button id="menu-toggle-btn" onclick="toggleMenu()" class="h-[52px] w-full flex items-center justify-between px-[14px] text-slate-700 dark:text-slate-200 transition-colors hover:bg-slate-100/50 dark:hover:bg-slate-700/50" dir="ltr">
+                <button id="menu-toggle-btn" onclick="toggleMenu()" class="h-[52px] w-full flex items-center justify-between px-[14px] text-slate-700 dark:text-slate-200 transition-transform hover:scale-105" dir="ltr">
                     <i class="ph ph-list text-[24px] transition-transform duration-300" id="menu-icon"></i>
-                    <span id="menu-title" class="font-bold text-dark dark:text-white opacity-0 hidden transition-opacity duration-300" data-ar="القائمة الرئيسية" data-en="Main Menu">القائمة الرئيسية</span>
+                    <span id="menu-title" class="font-bold text-dark dark:text-white opacity-0 hidden transition-opacity duration-300 w-full text-right ltr:text-left pr-3 ltr:pr-0 ltr:pl-3" data-ar="القائمة الرئيسية" data-en="Main Menu">القائمة الرئيسية</span>
                 </button>
                 
-                <!-- فاصل طويل تحت القائمة -->
-                <div id="menu-divider" class="w-[85%] h-[1px] bg-slate-200 dark:bg-slate-700 mx-auto hidden opacity-0 transition-opacity duration-300 mb-2"></div>
-
-                <nav id="menu-dropdown" class="hidden flex-col items-center justify-center gap-1.5 px-3 pb-5 opacity-0 transition-opacity duration-300 w-full">
-                    <a href="#contact-section" onclick="toggleMenu()" class="text-center w-full p-2 text-slate-700 dark:text-slate-200 font-bold hover:text-primary dark:hover:text-primary transition-colors" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
-                    <div class="w-12 h-[1px] bg-slate-100 dark:bg-slate-700/50 rounded-full my-1"></div>
-                    <a href="#start-project" onclick="toggleMenu()" class="text-center w-full p-2 text-primary dark:text-blue-400 font-bold hover:text-blue-800 transition-colors" data-ar="ابدأ مشروعك" data-en="Start a Project">ابدأ مشروعك</a>
-                    <div class="w-12 h-[1px] bg-slate-100 dark:bg-slate-700/50 rounded-full my-1"></div>
-                    <a href="#portfolio" onclick="toggleMenu()" class="text-center w-full p-2 text-slate-700 dark:text-slate-200 font-bold hover:text-primary dark:hover:text-primary transition-colors" data-ar="أعمالنا" data-en="Our Work">أعمالنا</a>
-                    <div class="w-12 h-[1px] bg-slate-100 dark:bg-slate-700/50 rounded-full my-1"></div>
-                    <a href="#services" onclick="toggleMenu()" class="text-center w-full p-2 text-slate-700 dark:text-slate-200 font-bold hover:text-primary dark:hover:text-primary transition-colors" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
-                    <div class="w-12 h-[1px] bg-slate-100 dark:bg-slate-700/50 rounded-full my-1"></div>
-                    <a href="#methodology" onclick="toggleMenu()" class="text-center w-full p-2 text-slate-700 dark:text-slate-200 font-bold hover:text-primary dark:hover:text-primary transition-colors" data-ar="منهجيتنا" data-en="Methodology">منهجيتنا</a>
+                <nav id="menu-dropdown" class="hidden flex-col px-3 pb-3 opacity-0 transition-opacity duration-300">
+                    <div class="w-full h-[1px] bg-slate-200 dark:bg-slate-700 mb-2"></div>
+                    <a href="#contact" onclick="toggleMenu()" class="text-center p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
+                    <div class="w-20 mx-auto h-[1px] bg-slate-100 dark:bg-slate-700/50 my-0.5"></div>
+                    <a href="#start-project" onclick="toggleMenu()" class="text-center p-3 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 font-bold transition-colors" data-ar="ابدأ مشروعك" data-en="Start a Project">ابدأ مشروعك</a>
+                    <div class="w-20 mx-auto h-[1px] bg-slate-100 dark:bg-slate-700/50 my-0.5"></div>
+                    <a href="#portfolio" onclick="toggleMenu()" class="text-center p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors" data-ar="أعمالنا" data-en="Our Work">أعمالنا</a>
+                    <div class="w-20 mx-auto h-[1px] bg-slate-100 dark:bg-slate-700/50 my-0.5"></div>
+                    <a href="#services" onclick="toggleMenu()" class="text-center p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
+                    <div class="w-20 mx-auto h-[1px] bg-slate-100 dark:bg-slate-700/50 my-0.5"></div>
+                    <a href="#methodology" onclick="toggleMenu()" class="text-center p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors" data-ar="منهجيتنا" data-en="Methodology">منهجيتنا</a>
                 </nav>
             </div>
 
             <!-- Center (Brand & Logo) -->
-            <div id="nav-brand" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md text-dark dark:text-white h-[52px] rounded-[26px] flex-1 flex items-center justify-center px-2 shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-white/50 dark:border-slate-700/50 overflow-hidden transition-all duration-500 ease-in-out" dir="ltr">
+            <div id="nav-brand" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md text-dark dark:text-white h-[52px] rounded-[26px] flex-1 flex items-center justify-center shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-white/50 dark:border-slate-700/50 overflow-hidden transition-all duration-500 ease-in-out" dir="ltr">
                 <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786664730/1000163758-removebg-preview_bwnpp6.png" alt="VORTX DEV Logo" class="w-[38px] h-[38px] object-contain shrink-0">
                 <div class="font-black text-[1.1rem] tracking-wide ml-1.5 translate-y-[1px] whitespace-nowrap">VORTX DEV</div>
             </div>
@@ -137,9 +134,9 @@
             </div>
         </header>
 
-        <!-- Main Hero Section -->
-        <main class="px-5 pt-28 pb-16 relative z-10">
-            <!-- VS Code Editor -->
+        <main class="px-5 pt-36 pb-16 relative z-10 flex flex-col items-center">
+            
+            <!-- VS Code Editor (Fixed height for 2 lines) -->
             <div class="mb-8 mx-auto max-w-lg w-full bg-white/80 dark:bg-slate-800/90 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden border border-primary/20 dark:border-slate-700/50 flex flex-col transition-colors" dir="ltr">
                 <div class="bg-primary dark:bg-slate-900 px-4 py-2.5 flex items-center justify-between border-b border-black/10 transition-colors">
                     <div class="flex gap-1.5">
@@ -150,20 +147,21 @@
                     <div class="text-white text-[12px] font-sans tracking-wide font-bold opacity-90">build_product.js</div>
                     <div class="w-[44px]"></div>
                 </div>
-                <!-- تم تقليل الارتفاع وتعديل الخط ليظهر في سطرين بدون التفاف -->
-                <div class="px-5 py-3 h-[72px] relative overflow-hidden font-mono text-[13px] sm:text-[14px] text-slate-600 dark:text-slate-300 bg-transparent transition-colors" id="code-editor-body"></div>
+                <!-- h-[74px] ensures exactly 2 lines show up (24px line-height * 2 + paddings) -->
+                <div class="px-4 sm:px-5 py-3 h-[74px] relative overflow-hidden font-mono text-[13px] sm:text-[14px] text-slate-600 dark:text-slate-300 bg-transparent transition-colors" id="code-editor-body"></div>
             </div>
 
-            <h1 class="text-[2.2rem] leading-[1.3] font-black text-right rtl:text-right ltr:text-left text-dark dark:text-white transition-colors" data-ar="نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class='text-primary tracking-wide'>تصنع أثرًا.</span>" data-en="We Turn Ideas<br>Into Digital<br>Products <span class='text-primary tracking-wide'>That Impact.</span>">
+            <h1 class="text-[2.2rem] sm:text-[2.4rem] leading-[1.3] font-black text-center text-dark dark:text-white transition-colors" data-ar="نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class='text-primary tracking-wide'>تصنع أثرًا.</span>" data-en="We Turn Ideas<br>Into Digital<br>Products <span class='text-primary tracking-wide'>That Impact.</span>">
                 نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class="text-primary tracking-wide">تصنع أثرًا.</span>
             </h1>
-            <p class="text-right rtl:text-right ltr:text-left text-slate-500 dark:text-slate-400 mt-6 text-base leading-relaxed font-medium transition-colors" data-ar="تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق." data-en="VORTX DEV helps companies turn ideas into successful digital products, from vision to launch.">
+            <p class="text-center text-slate-500 dark:text-slate-400 mt-5 text-base leading-relaxed font-medium transition-colors max-w-lg mx-auto" data-ar="تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق." data-en="VORTX DEV helps companies turn ideas into successful digital products, from vision to launch.">
                 تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق.
             </p>
 
             <div class="flex flex-col gap-4 mt-8 w-full max-w-md mx-auto">
                 <a href="#start-project" class="bg-primary text-white w-full py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-blue-800 transition-colors shadow-lg shadow-blue-500/30">
                     <span data-ar="ابدأ مشروعك" data-en="Start a Project">ابدأ مشروعك</span>
+                    <i class="ph ph-arrow-left font-bold text-lg rtl:rotate-0 ltr:rotate-180"></i>
                 </a>
                 <a href="#portfolio" class="bg-surface dark:bg-slate-800 border border-transparent dark:border-slate-700 text-dark dark:text-white w-full py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors">
                     <span data-ar="استكشف أعمالنا" data-en="Explore Our Work">استكشف أعمالنا</span>
@@ -171,7 +169,7 @@
                 </a>
             </div>
 
-            <div class="mt-12 flex flex-wrap justify-center gap-x-6 gap-y-4 px-2 font-bold text-base text-slate-700 dark:text-slate-300 transition-colors">
+            <div class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-4 px-2 font-bold text-[14px] sm:text-base text-slate-700 dark:text-slate-300 transition-colors">
                 <div class="flex items-center gap-2"><span class="w-2 h-2 bg-dot rounded-full"></span><span data-ar="استراتيجية المنتجات" data-en="Product Strategy">استراتيجية المنتجات</span></div>
                 <div class="flex items-center gap-2"><span class="w-2 h-2 bg-dot rounded-full"></span><span data-ar="تصميم التجارب" data-en="UX/UI Design">تصميم التجارب</span></div>
                 <div class="flex items-center gap-2"><span class="w-2 h-2 bg-dot rounded-full"></span><span data-ar="هندسة البرمجيات" data-en="Software Engineering">هندسة البرمجيات</span></div>
@@ -186,7 +184,6 @@
             </div>
         </main>
 
-        <!-- What We Offer Section -->
         <section id="services" class="px-5 pt-16 pb-16 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 relative z-10 transition-colors">
             <div class="mb-10 text-right rtl:text-right ltr:text-left max-w-md mx-auto">
                 <h2 class="text-[2.2rem] font-black text-dark dark:text-white mb-4 tracking-tight" data-ar="ما نقدمه" data-en="What We Offer">ما نقدمه</h2>
@@ -200,7 +197,7 @@
                         <span class="text-slate-600 dark:text-slate-400 font-bold text-sm mt-1 tracking-wider">01</span>
                     </div>
                     <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-3" data-ar="تطبيقات الويب" data-en="Web Applications">تطبيقات الويب</h3>
-                    <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-6 font-medium" data-ar="تطبيقات ويب سريعة ومتجاوبة مهندسة بـ React و Next.js." data-en="Fast, responsive web apps engineered with React and Next.js.">تطبيقات ويب سريعة ومتجاوبة مهندسة بـ React و Next.js.</p>
+                    <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="تطبيقات ويب سريعة ومتجاوبة مهندسة بـ React و Next.js." data-en="Fast, responsive web apps engineered with React and Next.js.">تطبيقات ويب سريعة ومتجاوبة مهندسة بـ React و Next.js.</p>
                 </div>
                 <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none relative overflow-hidden rtl:text-right ltr:text-left transition-colors">
                     <div class="flex justify-between items-start mb-10 rtl:flex-row ltr:flex-row-reverse">
@@ -208,7 +205,7 @@
                         <span class="text-slate-600 dark:text-slate-400 font-bold text-sm mt-1 tracking-wider">02</span>
                     </div>
                     <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-3" data-ar="تطبيقات الهاتف" data-en="Mobile Apps">تطبيقات الهاتف</h3>
-                    <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-6 font-medium" data-ar="تجارب هاتف عالية الجودة مبنية بـ React Native و Flutter." data-en="High-quality mobile experiences built with React Native and Flutter.">تجارب هاتف عالية الجودة مبنية بـ React Native و Flutter.</p>
+                    <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="تجارب هاتف عالية الجودة مبنية بـ React Native و Flutter." data-en="High-quality mobile experiences built with React Native and Flutter.">تجارب هاتف عالية الجودة مبنية بـ React Native و Flutter.</p>
                 </div>
                 <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none relative overflow-hidden rtl:text-right ltr:text-left transition-colors">
                     <div class="flex justify-between items-start mb-10 rtl:flex-row ltr:flex-row-reverse">
@@ -216,12 +213,11 @@
                         <span class="text-slate-600 dark:text-slate-400 font-bold text-sm mt-1 tracking-wider">03</span>
                     </div>
                     <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-3" data-ar="الذكاء الاصطناعي" data-en="Artificial Intelligence">الذكاء الاصطناعي</h3>
-                    <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-6 font-medium" data-ar="نماذج لغوية وتنبؤية مهندسة مباشرة داخل منتجك." data-en="Predictive and language models engineered directly into your product.">نماذج لغوية وتنبؤية مهندسة مباشرة داخل منتجك.</p>
+                    <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="نماذج لغوية وتنبؤية مهندسة مباشرة داخل منتجك." data-en="Predictive and language models engineered directly into your product.">نماذج لغوية وتنبؤية مهندسة مباشرة داخل منتجك.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Methodology Section -->
         <section id="methodology" class="px-5 pt-16 pb-16 bg-sectionBg dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 relative z-10 transition-colors">
             <div class="mb-14 text-right rtl:text-right ltr:text-left max-w-md mx-auto">
                 <h2 class="text-[2.2rem] font-black text-dark dark:text-white mb-4 tracking-tight" data-ar="منهجيتنا من ست خطوات" data-en="Our 6-Step Methodology">منهجيتنا من ست خطوات</h2>
@@ -231,6 +227,7 @@
             <div class="relative w-full max-w-md mx-auto">
                 <div class="absolute right-[19px] ltr:left-[19px] rtl:right-[19px] top-6 bottom-16 w-[2px] bg-slate-200 dark:bg-slate-700 z-0"></div>
                 
+                <!-- Steps 1 to 6 -->
                 <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0">
                     <div class="absolute right-0 ltr:left-0 rtl:right-0 top-6 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm z-10 shadow-md ring-[6px] ring-sectionBg dark:ring-slate-900">01</div>
                     <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none w-full text-right rtl:text-right ltr:text-left transition-colors">
@@ -294,16 +291,16 @@
             </div>
         </section>
 
-        <!-- Our Work (10 Projects) -->
         <section id="portfolio" class="px-5 pt-16 pb-16 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 relative z-10 transition-colors">
             <div class="mb-14 text-right rtl:text-right ltr:text-left max-w-md mx-auto">
                 <h2 class="text-[2.2rem] font-black text-dark dark:text-white mb-4 tracking-tight" data-ar="أعمالنا" data-en="Our Work">أعمالنا</h2>
                 <p class="text-slate-600 dark:text-slate-400 text-[1.1rem] leading-relaxed font-medium" data-ar="نماذج من منتجات رقمية ساعدنا في بنائها وإطلاقها بنجاح." data-en="Digital products we successfully built and launched.">نماذج من منتجات رقمية ساعدنا في بنائها وإطلاقها بنجاح.</p>
             </div>
 
+            <!-- Projects Container -->
             <div class="flex flex-col gap-6 w-full max-w-md mx-auto" id="projects-list">
                 
-                <!-- Project 1 -->
+                <!-- Project 1 (سكنك) -->
                 <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col group rtl:text-right ltr:text-left transition-colors">
                     <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
                         <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786725994/20260814_194539_0000_n14f8u.png" alt="سكنك" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
@@ -315,45 +312,45 @@
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="منصة عقارية" data-en="Real Estate">منصة عقارية</span>
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="ويب" data-en="Web">ويب</span>
                         </div>
-                        <button onclick="openProjectPreview('https://skank-x.github.io/-/', 'سكنك')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                        <button onclick="openProjectPreview('https://skank-x.github.io/-/', 'سكنك – منصة عقارية')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
                             <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
                             <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Project 2 -->
+                <!-- Project 2 (Dental Clinic) -->
                 <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col group rtl:text-right ltr:text-left transition-colors">
                     <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
-                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786669153/2_20260814_033230_0000_vkxbhw.png" alt="Dental Clinic" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786729694/20260814_202735_0000_oejijd.png" alt="Dental Clinic" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="Dental Clinic – عيادة أسنان" data-en="Dental Clinic">Dental Clinic – عيادة أسنان</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="موقع احترافي لعيادة أسنان بتصميم طبي عصري، يعرض الخدمات ويسهّل التواصل وحجز المواعيد." data-en="Professional dental clinic website with modern medical design.">موقع احترافي لعيادة أسنان بتصميم طبي عصري، يعرض الخدمات ويسهّل التواصل.</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="موقع احترافي لعيادة أسنان بتصميم طبي عصري، يعرض الخدمات ويسهّل التواصل." data-en="Professional dental clinic website with modern medical design.">موقع احترافي لعيادة أسنان بتصميم طبي عصري.</p>
                         <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="تصميم طبي" data-en="Medical Design">تصميم طبي</span>
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="عيادات" data-en="Clinics">عيادات</span>
                         </div>
-                        <button onclick="openProjectPreview('https://elnenx.github.io/Dental-clinic-/', 'عيادة أسنان')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                        <button onclick="openProjectPreview('https://elnenx.github.io/Dental-clinic-/', 'Dental Clinic – عيادة أسنان')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
                             <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
                             <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Project 3 -->
+                <!-- Project 3 (WDNY Courier) -->
                 <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col group rtl:text-right ltr:text-left transition-colors">
                     <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
-                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786669665/VOGUENEON_20260814_040713_0000_rdbzq2.png" alt="WDNY Courier" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786729691/20260814_203028_0000_cw09aj.png" alt="WDNY Courier" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="WDNY Courier – شركة شحن" data-en="WDNY Courier">WDNY Courier – شركة شحن</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="موقع احترافي لشركة متخصصة في خدمات الشحن والتوصيل والحلول اللوجستية." data-en="Professional site for shipping, delivery, and logistics solutions.">موقع احترافي لشركة متخصصة في خدمات الشحن والتوصيل والحلول اللوجستية.</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="موقع احترافي لشركة متخصصة في خدمات الشحن والتوصيل والحلول اللوجستية." data-en="Professional site for shipping, delivery, and logistics solutions.">موقع احترافي لشركة متخصصة في خدمات الشحن والتوصيل.</p>
                         <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="لوجستيات" data-en="Logistics">لوجستيات</span>
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="توصيل" data-en="Delivery">توصيل</span>
                         </div>
-                        <button onclick="openProjectPreview('https://wdenycourier.com/', 'شركة شحن')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                        <button onclick="openProjectPreview('https://wdenycourier.com/', 'WDNY Courier – شركة شحن')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
                             <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
                             <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
                         </button>
@@ -361,101 +358,101 @@
                 </div>
 
                 <!-- Hidden Projects (4 to 10) -->
-                <!-- Project 4 -->
+                <!-- Project 4 (Hectar Modern) -->
                 <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
                     <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
-                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786669152/4_20260814_033230_0002_a8ivjk.png" alt="Hectar Modern" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786729699/20260814_203231_0000_phwzlo.png" alt="Hectar Modern" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="Hectar Modern – شركة مقاولات" data-en="Hectar Modern">Hectar Modern – شركة مقاولات</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="موقع لشركة مقاولات يعرض خدمات البناء والمشاريع بطريقة احترافية." data-en="Construction company website showcasing building services and projects.">موقع لشركة مقاولات يعرض خدمات البناء والمشاريع.</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="موقع لشركة مقاولات يعرض خدمات البناء والمشاريع التي تقدمها بطريقة احترافية." data-en="Construction company website showcasing building services and projects.">موقع لشركة مقاولات يعرض خدمات البناء والمشاريع.</p>
                         <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="مقاولات" data-en="Construction">مقاولات</span>
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="ويب" data-en="Web">ويب</span>
                         </div>
-                        <button onclick="openProjectPreview('https://www.hectarmodern.com/ar', 'شركة مقاولات')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                        <button onclick="openProjectPreview('https://www.hectarmodern.com/ar', 'Hectar Modern – شركة مقاولات')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
                             <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
                             <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Project 5 -->
+                <!-- Project 5 (AD FAZ) -->
                 <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
-                    <div class="h-48 bg-primaryLight dark:bg-slate-700 flex items-center justify-center border-b border-slate-100 dark:border-slate-600 relative">
-                        <i class="ph ph-storefront text-[64px] text-primary dark:text-blue-400 opacity-40 transition-transform duration-500 group-hover:scale-110"></i>
+                    <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
+                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786729690/2_20260814_202453_0001_svxwfi.png" alt="AD FAZ" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="AD FAZ – خدمات تجارة" data-en="AD FAZ - E-commerce">AD FAZ – تجارة إلكترونية</h3>
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="AD FAZ – تجارة إلكترونية" data-en="AD FAZ - E-commerce">AD FAZ – تجارة إلكترونية</h3>
                         <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="منصة رقمية تقدم حلولًا وخدمات لتطوير وإدارة الأعمال الإلكترونية." data-en="Digital platform offering solutions for managing e-commerce businesses.">منصة رقمية تقدم حلولًا لإدارة الأعمال الإلكترونية.</p>
                         <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="تجارة إلكترونية" data-en="E-commerce">تجارة إلكترونية</span>
                         </div>
-                        <button onclick="openProjectPreview('https://adfaz.sa/', 'AD FAZ')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                        <button onclick="openProjectPreview('https://adfaz.sa/', 'AD FAZ – تجارة إلكترونية')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
                             <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
                             <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Project 6 -->
+                <!-- Project 6 (Brand) -->
                 <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
-                    <div class="h-48 bg-primaryLight dark:bg-slate-700 flex items-center justify-center border-b border-slate-100 dark:border-slate-600 relative">
-                        <i class="ph ph-t-shirt text-[64px] text-primary dark:text-blue-400 opacity-40 transition-transform duration-500 group-hover:scale-110"></i>
+                    <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
+                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786729694/Untitled_design_20260814_202500_0000_jmirqi.png" alt="Brand" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="Brand – متجر ملابس" data-en="Brand - Store">Brand – متجر ملابس</h3>
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="Brand – متجر ملابس" data-en="Brand - Clothing Store">Brand – متجر ملابس</h3>
                         <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="متجر إلكتروني لبراند ملابس، يركز على عرض المنتجات بتجربة تسوق سهلة." data-en="E-commerce store for a clothing brand with seamless shopping experience.">متجر إلكتروني لبراند ملابس، يركز على تجربة تسوق سهلة.</p>
                         <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="متجر إلكتروني" data-en="E-Store">متجر إلكتروني</span>
                         </div>
-                        <button onclick="openProjectPreview('https://elnenx.github.io/Brand-/', 'متجر ملابس')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                        <button onclick="openProjectPreview('https://elnenx.github.io/Brand-/', 'Brand – متجر ملابس')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
                             <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
                             <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Project 7 -->
+                <!-- Project 7 (Hustler Brand) -->
                 <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
-                    <div class="h-48 bg-primaryLight dark:bg-slate-700 flex items-center justify-center border-b border-slate-100 dark:border-slate-600 relative">
-                        <i class="ph ph-shopping-bag text-[64px] text-primary dark:text-blue-400 opacity-40 transition-transform duration-500 group-hover:scale-110"></i>
+                    <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
+                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786729700/Untitled_design_20260814_203717_0000_slsrve.png" alt="Hustler Brand" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="Hustler Brand – متجر" data-en="Hustler Brand">Hustler Brand – متجر</h3>
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="Hustler Brand – متجر" data-en="Hustler Brand - Store">Hustler Brand – متجر</h3>
                         <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="متجر إلكتروني لبراند ملابس مصري، لطلب المنتجات أونلاين بسهولة." data-en="Egyptian clothing brand online store for easy ordering.">متجر إلكتروني لبراند ملابس مصري، لطلب المنتجات بسهولة.</p>
                         <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="متجر مصري" data-en="Egyptian Store">متجر مصري</span>
                         </div>
-                        <button onclick="openProjectPreview('https://hustlerbrand-egy.myshopify.com/', 'Hustler Brand')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                        <button onclick="openProjectPreview('https://hustlerbrand-egy.myshopify.com/', 'Hustler Brand – متجر')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
                             <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
                             <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Project 8 -->
+                <!-- Project 8 (El Dahan) -->
                 <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
-                    <div class="h-48 bg-primaryLight dark:bg-slate-700 flex items-center justify-center border-b border-slate-100 dark:border-slate-600 relative">
-                        <i class="ph ph-hamburger text-[64px] text-primary dark:text-blue-400 opacity-40 transition-transform duration-500 group-hover:scale-110"></i>
+                    <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
+                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786729695/20260814_204020_0000_gkihtm.png" alt="El Dahan" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="El Dahan – مطعم" data-en="El Dahan">El Dahan – مطعم</h3>
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="El Dahan – مطعم" data-en="El Dahan - Restaurant">El Dahan – مطعم</h3>
                         <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="موقع إلكتروني لمطعم الدهان لعرض المنيو والفروع لتجربة طلب سهلة." data-en="Website for El Dahan restaurant showcasing menu and branches.">موقع إلكتروني لمطعم الدهان لعرض المنيو وتجربة طلب سهلة.</p>
                         <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="مطعم" data-en="Restaurant">مطعم</span>
                         </div>
-                        <button onclick="openProjectPreview('https://www.eldahan.com/', 'مطعم الدهان')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                        <button onclick="openProjectPreview('https://www.eldahan.com/', 'El Dahan – مطعم')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
                             <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
                             <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Project 9 -->
+                <!-- Project 9 (TFT VIP TRADE) -->
                 <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
-                    <div class="h-48 bg-primaryLight dark:bg-slate-700 flex items-center justify-center border-b border-slate-100 dark:border-slate-600 relative">
-                        <i class="ph ph-trend-up text-[64px] text-primary dark:text-blue-400 opacity-40 transition-transform duration-500 group-hover:scale-110"></i>
+                    <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
+                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786729694/20260814_204424_0000_hsjqd2.png" alt="TFT VIP TRADE" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="TFT VIP TRADE – تداول" data-en="TFT VIP TRADE">TFT VIP TRADE – تداول</h3>
@@ -463,17 +460,17 @@
                         <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="تداول" data-en="Trading">تداول</span>
                         </div>
-                        <button onclick="openProjectPreview('https://tftviptrade.com/', 'منصة تداول')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                        <button onclick="openProjectPreview('https://tftviptrade.com/', 'TFT VIP TRADE – تداول')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
                             <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
                             <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Project 10 -->
+                <!-- Project 10 (SUTRA) -->
                 <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
-                    <div class="h-48 bg-primaryLight dark:bg-slate-700 flex items-center justify-center border-b border-slate-100 dark:border-slate-600 relative">
-                        <i class="ph ph-user text-[64px] text-primary dark:text-blue-400 opacity-40 transition-transform duration-500 group-hover:scale-110"></i>
+                    <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
+                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786729697/Untitled_design_20260814_204622_0000_iyacj0.png" alt="SUTRA" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="SUTRA – أزياء رجالي" data-en="SUTRA - Men Fashion">SUTRA – أزياء رجالي</h3>
@@ -481,7 +478,7 @@
                         <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
                             <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="أزياء رجالي" data-en="Men Fashion">أزياء رجالي</span>
                         </div>
-                        <button onclick="openProjectPreview('https://sutrastores.com/', 'أزياء رجالي')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                        <button onclick="openProjectPreview('https://sutrastores.com/', 'SUTRA – أزياء رجالي')" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
                             <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
                             <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
                         </button>
@@ -490,6 +487,7 @@
 
             </div> 
 
+            <!-- Load More Button -->
             <div class="mt-10 flex flex-col items-center justify-center gap-4 max-w-md mx-auto">
                 <button id="load-more-btn" class="bg-surface dark:bg-slate-800 text-dark dark:text-white border border-transparent dark:border-slate-700 w-full py-4 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors">
                     <span data-ar="عرض باقي المشاريع (7)" data-en="Load More Projects (7)">عرض باقي المشاريع (7)</span>
@@ -499,47 +497,40 @@
             </div>
         </section>
 
-        <!-- New Contact Section Before Footer -->
-        <section id="contact-section" class="px-5 pt-16 pb-16 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 relative z-10 transition-colors">
-            <div class="max-w-md mx-auto text-center rtl:text-right ltr:text-left">
-                <h2 class="text-[2.2rem] font-black text-dark dark:text-white mb-4 tracking-tight" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h2>
-                <p class="text-slate-600 dark:text-slate-400 text-[1.1rem] leading-relaxed mb-8 font-medium" data-ar="نحن هنا لمساعدتك في تحويل أفكارك إلى واقع. لا تتردد في التواصل معنا." data-en="We are here to help turn your ideas into reality. Feel free to contact us.">نحن هنا لمساعدتك في تحويل أفكارك إلى واقع. لا تتردد في التواصل معنا.</p>
-                
+        <!-- Contact Us Section before Footer -->
+        <section id="contact" class="px-5 pt-12 pb-6 bg-sectionBg dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 relative z-10 transition-colors">
+            <div class="max-w-md mx-auto text-center">
+                <h2 class="text-[2rem] font-black text-dark dark:text-white mb-6 tracking-tight" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h2>
                 <div class="flex flex-col gap-4">
-                    <a href="mailto:vortx.dev1@gmail.com" class="w-full bg-primary text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-blue-800 transition-colors shadow-lg shadow-blue-500/30">
-                        <span data-ar="راسلنا عبر البريد الإلكتروني" data-en="Email Us">راسلنا عبر البريد الإلكتروني</span>
+                    <a href="mailto:vortx.dev1@gmail.com" class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-colors text-[15px]">
+                        <span data-ar="راسلنا عبر البريد الإلكتروني" data-en="Contact via Email">راسلنا عبر البريد الإلكتروني</span>
                     </a>
-                    <a href="https://wa.me/201129268929" target="_blank" class="w-full bg-transparent border-2 border-primary text-primary dark:text-blue-400 font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-primaryLight dark:hover:bg-primary/10 transition-colors">
-                        <span data-ar="راسلنا عبر الواتساب" data-en="WhatsApp Us">راسلنا عبر الواتساب</span>
+                    <a href="https://wa.me/201129268929" target="_blank" class="w-full bg-transparent border-2 border-primary text-primary dark:border-blue-400 dark:text-blue-400 font-bold py-3.5 rounded-xl hover:bg-primaryLight dark:hover:bg-primary/20 transition-colors text-[15px]">
+                        <span data-ar="راسلنا عبر الواتساب" data-en="Contact via WhatsApp">راسلنا عبر الواتساب</span>
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- FOOTER -->
-        <footer class="relative bg-sectionBg dark:bg-slate-800/50 pt-16 pb-12 px-5 border-t border-slate-200 dark:border-slate-800 overflow-hidden transition-colors">
+        <footer class="relative bg-sectionBg dark:bg-slate-900 pt-6 pb-12 px-5 overflow-hidden transition-colors">
             <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] max-w-[600px] h-[300px] bg-primary/10 rounded-full blur-[80px] pointer-events-none z-0"></div>
 
-            <div class="relative max-w-md mx-auto w-full z-10 flex flex-col items-center">
-                <div class="mb-8 flex flex-col items-center text-center">
-                    <div class="font-black text-[2.2rem] text-[#182747] dark:text-white tracking-tight mb-4 flex items-center justify-center gap-2">VORTX DEV</div>
-                    <p class="text-slate-500 dark:text-slate-400 text-[15px] font-medium leading-[1.8] max-w-[320px]" data-ar="هندسة برمجيات متميزة وحلول رقمية مبتكرة تلبي احتياجات كافة قطاعات الأعمال." data-en="Premium software engineering and innovative digital solutions.">
-                        هندسة برمجيات متميزة وحلول رقمية مبتكرة تلبي احتياجات كافة قطاعات الأعمال.
-                    </p>
+            <div class="relative max-w-md mx-auto w-full z-10">
+                <div class="mb-10 flex flex-col items-center text-center">
+                    <div class="font-black text-[2.2rem] text-[#182747] dark:text-white tracking-tight mb-2 flex items-center justify-center gap-2">VORTX DEV</div>
                 </div>
 
-                <div class="mb-10 w-full flex justify-center text-center">
-                    <div class="text-center">
-                        <h4 class="font-bold text-dark dark:text-white text-lg mb-5" data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
-                        <ul class="flex flex-wrap gap-4 justify-center text-slate-500 dark:text-slate-400 font-medium text-[15px]">
-                            <li><a href="#services" class="hover:text-primary transition-colors" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
-                            <li><a href="#portfolio" class="hover:text-primary transition-colors" data-ar="أعمالنا" data-en="Our Work">أعمالنا</a></li>
-                            <li><a href="#methodology" class="hover:text-primary transition-colors" data-ar="المنهجية" data-en="Methodology">المنهجية</a></li>
-                        </ul>
-                    </div>
+                <div class="flex flex-col items-center text-center mb-10">
+                    <h4 class="font-bold text-dark dark:text-white text-lg mb-4" data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+                    <ul class="flex flex-col items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-[15px]">
+                        <li><a href="#services" class="hover:text-primary transition-colors" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
+                        <li><a href="#portfolio" class="hover:text-primary transition-colors" data-ar="أعمالنا" data-en="Our Work">أعمالنا</a></li>
+                        <li><a href="#methodology" class="hover:text-primary transition-colors" data-ar="المنهجية" data-en="Methodology">المنهجية</a></li>
+                    </ul>
                 </div>
 
-                <hr class="border-slate-200 dark:border-slate-700 mb-6 w-full relative z-10">
+                <hr class="border-slate-200 dark:border-slate-700 mb-6 relative z-10">
                 <div class="text-center text-slate-400 text-[13px] font-medium tracking-wide relative z-10">
                     © 2026 VORTX DEV. <span data-ar="جميع الحقوق محفوظة." data-en="All rights reserved.">جميع الحقوق محفوظة.</span>
                 </div>
@@ -551,24 +542,43 @@
             <!-- Backdrop -->
             <div class="absolute inset-0 bg-slate-900/40 dark:bg-slate-900/60 backdrop-blur-md" onclick="closeProjectPreview()"></div>
             
-            <!-- Close Button -->
-            <button onclick="closeProjectPreview()" class="absolute top-6 right-6 ltr:left-6 ltr:right-auto z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors">
-                <i class="ph ph-x text-2xl"></i>
-            </button>
+            <!-- Modal Actions (Close & Open in Browser) -->
+            <div class="absolute top-6 right-6 ltr:left-6 ltr:right-auto z-20 flex flex-col gap-3">
+                <button onclick="closeProjectPreview()" class="w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors shadow-lg" title="إغلاق">
+                    <i class="ph ph-x text-2xl"></i>
+                </button>
+                <a id="open-browser-btn" href="#" target="_blank" class="w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-colors shadow-lg" title="فتح في المتصفح">
+                    <i class="ph ph-arrow-square-out text-2xl"></i>
+                </a>
+            </div>
 
             <!-- iPhone Mockup Container -->
-            <div id="iphone-mockup" class="relative z-10 w-[320px] h-[650px] bg-black rounded-[45px] border-[8px] border-black shadow-2xl overflow-hidden scale-95 transition-transform duration-300 flex flex-col">
-                <!-- iPhone Notch -->
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[25px] bg-black rounded-b-2xl z-20"></div>
+            <div id="iphone-mockup" class="relative z-10 w-[360px] sm:w-[390px] h-[720px] sm:h-[800px] bg-black rounded-[45px] sm:rounded-[55px] border-[8px] sm:border-[12px] border-black shadow-2xl overflow-hidden scale-95 transition-transform duration-300 flex flex-col">
                 
+                <!-- iPhone UI Overlay (Status Bar) -->
+                <div class="absolute top-0 w-full h-[40px] z-30 flex items-center justify-between px-6 pointer-events-none text-black">
+                    <!-- Clock -->
+                    <div class="text-[14px] font-bold tracking-tight">4:14</div>
+                    
+                    <!-- Notch -->
+                    <div class="absolute left-1/2 -translate-x-1/2 top-0 w-[120px] sm:w-[140px] h-[25px] sm:h-[30px] bg-black rounded-b-2xl sm:rounded-b-3xl"></div>
+                    
+                    <!-- Icons (Signal, Wifi, Battery) -->
+                    <div class="flex items-center gap-1.5 opacity-90">
+                        <i class="ph-fill ph-cell-signal-full text-[14px]"></i>
+                        <i class="ph-fill ph-wifi-high text-[14px]"></i>
+                        <i class="ph-fill ph-battery-full text-[20px] translate-y-[1px]"></i>
+                    </div>
+                </div>
+
                 <!-- Iframe Container -->
-                <div class="w-full h-full bg-white relative overflow-hidden rounded-[37px]">
-                    <!-- Loading Spinner (Shows while iframe loads) -->
+                <div class="w-full h-full bg-white relative overflow-hidden rounded-[37px] sm:rounded-[43px]">
+                    <!-- Loading Spinner -->
                     <div id="iframe-loader" class="absolute inset-0 flex items-center justify-center bg-slate-50 z-0">
                         <i class="ph ph-spinner animate-spin text-4xl text-primary"></i>
                     </div>
-                    <!-- The actual project iframe -->
-                    <iframe id="project-iframe" src="" class="w-full h-full relative z-10" frameborder="0" onload="document.getElementById('iframe-loader').style.display='none'"></iframe>
+                    <!-- Project Iframe -->
+                    <iframe id="project-iframe" src="" class="w-full h-full relative z-10 pt-[40px]" frameborder="0" onload="document.getElementById('iframe-loader').style.display='none'"></iframe>
                 </div>
             </div>
         </div>
@@ -591,7 +601,7 @@
             
             <div class="flex items-center gap-4">
                 <div class="text-right rtl:text-right ltr:text-left">
-                    <p id="wizard-step-name" class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">مرحلة الاستكشاف</p>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium" data-ar="مرحلة الاستكشاف" data-en="Discovery Phase">مرحلة الاستكشاف</p>
                     <p id="wizard-step-text" class="text-[13px] font-bold text-primary dark:text-blue-400">الخطوة 1 من 6</p>
                 </div>
                 <div class="w-[1px] h-6 bg-slate-200 dark:bg-slate-700"></div>
@@ -616,35 +626,26 @@
                     ساعدنا على فهم رؤيتك حتى نتمكن من تقديم حل تقني مخصص. تضمن لك عملية الاستكشاف هذه استشارتك بشكل مركز وعملي.
                 </p>
                 <div class="flex flex-col gap-6 mb-10">
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1">
-                            <i class="ph ph-check font-bold"></i>
-                        </div>
-                        <div class="rtl:text-right ltr:text-left">
+                    <div class="flex items-start justify-end ltr:justify-start rtl:text-right ltr:text-left gap-4">
+                        <div class="order-2 ltr:order-none">
                             <h4 class="font-bold text-dark dark:text-white text-[15px] mb-1" data-ar="ساعدنا على فهم مشروعك" data-en="Help us understand your project">ساعدنا على فهم مشروعك</h4>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm" data-ar="حدد النطاق والمتطلبات التقنية والجدول الزمني." data-en="Define scope, tech requirements, and timeline.">حدد النطاق والمتطلبات التقنية والجدول الزمني.</p>
                         </div>
+                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1 order-1 ltr:order-none"><i class="ph ph-check font-bold"></i></div>
                     </div>
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1">
-                            <i class="ph ph-check font-bold"></i>
-                        </div>
-                        <div class="rtl:text-right ltr:text-left">
+                    <div class="flex items-start justify-end ltr:justify-start rtl:text-right ltr:text-left gap-4">
+                        <div class="order-2 ltr:order-none">
                             <h4 class="font-bold text-dark dark:text-white text-[15px] mb-1" data-ar="احصل على استشارة أكثر تركيزاً" data-en="Get a focused consultation">احصل على استشارة أكثر تركيزاً</h4>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm" data-ar="تخطّ الأساسيات وانطلق مباشرة إلى البنية التقنية." data-en="Skip basics, jump to architecture.">تخطّ الأساسيات وانطلق مباشرة إلى البنية التقنية.</p>
                         </div>
+                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1 order-1 ltr:order-none"><i class="ph ph-check font-bold"></i></div>
                     </div>
-                    <div class="flex items-start gap-4">
-                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1">
-                            <i class="ph ph-check font-bold"></i>
-                        </div>
-                        <div class="rtl:text-right ltr:text-left">
+                    <div class="flex items-start justify-end ltr:justify-start rtl:text-right ltr:text-left gap-4">
+                        <div class="order-2 ltr:order-none">
                             <h4 class="font-bold text-dark dark:text-white text-[15px] mb-1" data-ar="احجز اجتماعاً مع المؤسسين" data-en="Book a meeting with founders">احجز اجتماعاً مع المؤسسين</h4>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm" data-ar="وصول مباشر إلى فريق الهندسة الأساسي." data-en="Direct access to core engineering team.">وصول مباشر إلى فريق الهندسة الأساسي.</p>
                         </div>
+                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1 order-1 ltr:order-none"><i class="ph ph-check font-bold"></i></div>
                     </div>
                 </div>
-                <button onclick="nextWizardStep()" class="w-full bg-primary text-white font-bold py-4 rounded-xl flex justify-center items-center gap-2 hover:bg-blue-800 transition-colors shadow-lg shadow-blue-500/30">
+                <button onclick="nextWizardStep()" class="w-full bg-primary text-white font-bold py-4 rounded-xl flex justify-center items-center gap-2 hover:bg-blue-800 transition-colors">
                     <span data-ar="ابدأ الاستكشاف" data-en="Start Discovery">ابدأ الاستكشاف</span>
                     <i class="ph ph-arrow-left text-lg font-bold rtl:rotate-0 ltr:rotate-180"></i>
                 </button>
@@ -659,7 +660,7 @@
                     <label class="relative block cursor-pointer group">
                         <input type="radio" name="project_type" value="موقع ويب" class="peer sr-only wizard-radio">
                         <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
-                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 rtl:ml-auto ltr:mr-auto">
+                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 ml-auto ltr:ml-0 ltr:mr-auto">
                                 <i class="ph ph-globe text-2xl"></i>
                             </div>
                             <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="موقع ويب" data-en="Website">موقع ويب</h4>
@@ -668,7 +669,7 @@
                     <label class="relative block cursor-pointer group">
                         <input type="radio" name="project_type" value="تطبيق ويب" class="peer sr-only wizard-radio">
                         <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
-                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 rtl:ml-auto ltr:mr-auto">
+                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 ml-auto ltr:ml-0 ltr:mr-auto">
                                 <i class="ph ph-browser text-2xl"></i>
                             </div>
                             <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="تطبيق ويب" data-en="Web App">تطبيق ويب</h4>
@@ -677,7 +678,7 @@
                     <label class="relative block cursor-pointer group">
                         <input type="radio" name="project_type" value="تطبيق جوال" class="peer sr-only wizard-radio">
                         <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
-                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 rtl:ml-auto ltr:mr-auto">
+                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 ml-auto ltr:ml-0 ltr:mr-auto">
                                 <i class="ph ph-device-mobile text-2xl"></i>
                             </div>
                             <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="تطبيق جوال" data-en="Mobile App">تطبيق جوال</h4>
@@ -686,7 +687,7 @@
                     <label class="relative block cursor-pointer group">
                         <input type="radio" name="project_type" value="منصة SaaS" class="peer sr-only wizard-radio">
                         <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
-                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 rtl:ml-auto ltr:mr-auto">
+                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 ml-auto ltr:ml-0 ltr:mr-auto">
                                 <i class="ph ph-cloud text-2xl"></i>
                             </div>
                             <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="منصة SaaS" data-en="SaaS Platform">منصة SaaS</h4>
@@ -695,7 +696,7 @@
                     <label class="relative block cursor-pointer group">
                         <input type="radio" name="project_type" value="التجارة الإلكترونية" class="peer sr-only wizard-radio">
                         <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
-                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 rtl:ml-auto ltr:mr-auto">
+                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 ml-auto ltr:ml-0 ltr:mr-auto">
                                 <i class="ph ph-shopping-cart text-2xl"></i>
                             </div>
                             <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="تجارة إلكترونية" data-en="E-Commerce">تجارة إلكترونية</h4>
@@ -704,7 +705,7 @@
                     <label class="relative block cursor-pointer group">
                         <input type="radio" name="project_type" value="أخرى" class="peer sr-only wizard-radio">
                         <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
-                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 rtl:ml-auto ltr:mr-auto">
+                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 ml-auto ltr:ml-0 ltr:mr-auto">
                                 <i class="ph ph-question text-2xl"></i>
                             </div>
                             <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="أخرى / لست متأكداً بعد" data-en="Other / Not Sure">أخرى / لست متأكداً بعد</h4>
@@ -713,7 +714,7 @@
                 </div>
 
                 <div class="mt-8 flex flex-col gap-3">
-                    <button id="next-btn-2" disabled onclick="nextWizardStep()" class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" data-ar="متابعة" data-en="Continue">متابعة</button>
+                    <button id="next-btn-2" disabled onclick="nextWizardStep()" class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">متابعة</button>
                 </div>
             </div>
 
@@ -725,7 +726,7 @@
                     <p class="text-slate-400 text-[13px] mt-2 text-left ltr:text-right" data-ar="١٠ أحرف كحد أدنى" data-en="Min 10 characters">١٠ أحرف كحد أدنى</p>
                 </div>
                 <div class="mt-8 flex flex-col gap-3">
-                    <button id="next-btn-3" disabled onclick="nextWizardStep()" class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" data-ar="متابعة" data-en="Continue">متابعة</button>
+                    <button id="next-btn-3" disabled onclick="nextWizardStep()" class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">متابعة</button>
                 </div>
             </div>
 
@@ -737,28 +738,24 @@
                     <label class="font-bold text-dark dark:text-white text-[15px] mb-4 block text-right rtl:text-right ltr:text-left" data-ar="نطاق الميزانية" data-en="Budget Range">نطاق الميزانية</label>
                     <div class="flex flex-col gap-3">
                         <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
-                            <input type="radio" name="budget" value="1" class="w-5 h-5 accent-primary border-slate-300">
+                            <input type="radio" name="budget" value="أقل من 5,000 ج.م" class="w-5 h-5 accent-primary border-slate-300">
                             <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="أقل من 5,000 ج.م" data-en="Less than 5,000 EGP">أقل من 5,000 ج.م</span>
                         </label>
                         <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
-                            <input type="radio" name="budget" value="2" class="w-5 h-5 accent-primary border-slate-300">
-                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="5,000 - 10,000 ج.م" data-en="5,000 - 10,000 EGP">5,000 - 10,000 ج.م</span>
+                            <input type="radio" name="budget" value="10,000 ج.م - 5,000 ج.م" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="10,000 ج.م - 5,000 ج.م" data-en="5,000 - 10,000 EGP">10,000 ج.م - 5,000 ج.م</span>
                         </label>
                         <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
-                            <input type="radio" name="budget" value="3" class="w-5 h-5 accent-primary border-slate-300">
-                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="10,000 - 25,000 ج.م" data-en="10,000 - 25,000 EGP">10,000 - 25,000 ج.م</span>
+                            <input type="radio" name="budget" value="30,000 ج.م - 10,000 ج.م" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="30,000 ج.م - 10,000 ج.م" data-en="10,000 - 30,000 EGP">30,000 ج.م - 10,000 ج.م</span>
                         </label>
                         <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
-                            <input type="radio" name="budget" value="4" class="w-5 h-5 accent-primary border-slate-300">
-                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="25,000 - 50,000 ج.م" data-en="25,000 - 50,000 EGP">25,000 - 50,000 ج.م</span>
+                            <input type="radio" name="budget" value="50,000 ج.م - 30,000 ج.م" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="50,000 ج.م - 30,000 ج.م" data-en="30,000 - 50,000 EGP">50,000 ج.م - 30,000 ج.م</span>
                         </label>
                         <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
-                            <input type="radio" name="budget" value="5" class="w-5 h-5 accent-primary border-slate-300">
-                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="+ 50,000 ج.م" data-en="+ 50,000 EGP">+ 50,000 ج.م</span>
-                        </label>
-                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
-                            <input type="radio" name="budget" value="6" class="w-5 h-5 accent-primary border-slate-300">
-                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="لست متأكداً بعد" data-en="Not sure yet">لست متأكداً بعد</span>
+                            <input type="radio" name="budget" value="أكثر من 50,000 ج.م" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="أكثر من 50,000 ج.م" data-en="More than 50,000 EGP">أكثر من 50,000 ج.م</span>
                         </label>
                     </div>
                 </div>
@@ -767,34 +764,30 @@
                     <label class="font-bold text-dark dark:text-white text-[15px] mb-4 block text-right rtl:text-right ltr:text-left" data-ar="الجدول الزمني" data-en="Timeline">الجدول الزمني</label>
                     <div class="flex flex-col gap-3">
                         <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
-                            <input type="radio" name="timeline" value="1" class="w-5 h-5 accent-primary border-slate-300">
+                            <input type="radio" name="timeline" value="أقل من شهر" class="w-5 h-5 accent-primary border-slate-300">
                             <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="أقل من شهر" data-en="Less than a month">أقل من شهر</span>
                         </label>
                         <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
-                            <input type="radio" name="timeline" value="2" class="w-5 h-5 accent-primary border-slate-300">
+                            <input type="radio" name="timeline" value="١ - ٢ شهر" class="w-5 h-5 accent-primary border-slate-300">
                             <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="١ - ٢ شهر" data-en="1-2 months">١ - ٢ شهر</span>
                         </label>
                         <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
-                            <input type="radio" name="timeline" value="3" class="w-5 h-5 accent-primary border-slate-300">
+                            <input type="radio" name="timeline" value="٢ - ٤ أشهر" class="w-5 h-5 accent-primary border-slate-300">
                             <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="٢ - ٤ أشهر" data-en="2-4 months">٢ - ٤ أشهر</span>
                         </label>
                         <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
-                            <input type="radio" name="timeline" value="4" class="w-5 h-5 accent-primary border-slate-300">
+                            <input type="radio" name="timeline" value="٤ - ٦ أشهر" class="w-5 h-5 accent-primary border-slate-300">
                             <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="٤ - ٦ أشهر" data-en="4-6 months">٤ - ٦ أشهر</span>
                         </label>
                         <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
-                            <input type="radio" name="timeline" value="5" class="w-5 h-5 accent-primary border-slate-300">
-                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="+ ٦ أشهر" data-en="+ 6 months">+ ٦ أشهر</span>
-                        </label>
-                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
-                            <input type="radio" name="timeline" value="6" class="w-5 h-5 accent-primary border-slate-300">
+                            <input type="radio" name="timeline" value="لست متأكداً بعد" class="w-5 h-5 accent-primary border-slate-300">
                             <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="لست متأكداً بعد" data-en="Not sure yet">لست متأكداً بعد</span>
                         </label>
                     </div>
                 </div>
 
                 <div class="mt-8 flex flex-col gap-3">
-                    <button id="next-btn-4" disabled onclick="nextWizardStep()" class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" data-ar="متابعة" data-en="Continue">متابعة</button>
+                    <button id="next-btn-4" disabled onclick="nextWizardStep()" class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">متابعة</button>
                 </div>
             </div>
 
@@ -834,10 +827,9 @@
     <!-- END WIZARD PAGE -->
 
 
-    <!-- JavaScript logic -->
     <script>
         // ==========================================
-        // 1. Language & Theme Toggle Logic
+        // 1. Language & Theme Toggle
         // ==========================================
         let isDark = false;
         let isEn = false;
@@ -865,23 +857,20 @@
         }
 
         // ==========================================
-        // 2. Main Menu Interactive Logic
+        // 2. Interactive Menu
         // ==========================================
         let isMenuOpen = false;
         const navMenuContainer = document.getElementById('nav-menu-container');
         const navBrand = document.getElementById('nav-brand');
         const navActions = document.getElementById('nav-actions');
-        const mainHeader = document.getElementById('main-header');
         const menuIcon = document.getElementById('menu-icon');
         const menuTitle = document.getElementById('menu-title');
         const menuDropdown = document.getElementById('menu-dropdown');
-        const menuDivider = document.getElementById('menu-divider');
 
         function toggleMenu() {
             isMenuOpen = !isMenuOpen;
             
             if (isMenuOpen) {
-                mainHeader.classList.remove('gap-2');
                 navBrand.classList.add('hide-nav-item');
                 navActions.classList.add('hide-nav-item');
                 navMenuContainer.classList.remove('w-[52px]');
@@ -889,47 +878,75 @@
                 
                 menuIcon.className = 'ph ph-x text-[24px] transition-transform duration-300';
                 menuTitle.classList.remove('hidden');
-                menuDivider.classList.remove('hidden');
-                setTimeout(() => {
-                    menuTitle.classList.remove('opacity-0');
-                    menuDivider.classList.remove('opacity-0');
-                }, 100);
+                setTimeout(() => menuTitle.classList.remove('opacity-0'), 100);
 
                 menuDropdown.classList.remove('hidden');
                 setTimeout(() => menuDropdown.classList.remove('opacity-0'), 200);
-
             } else {
                 menuDropdown.classList.add('opacity-0');
                 menuTitle.classList.add('opacity-0');
-                menuDivider.classList.add('opacity-0');
                 
                 setTimeout(() => {
                     menuDropdown.classList.add('hidden');
                     menuTitle.classList.add('hidden');
-                    menuDivider.classList.add('hidden');
                     
                     navMenuContainer.classList.remove('w-full');
                     navMenuContainer.classList.add('w-[52px]');
                     menuIcon.className = 'ph ph-list text-[24px] transition-transform duration-300';
                     
-                    setTimeout(() => {
-                        mainHeader.classList.add('gap-2');
-                        navBrand.classList.remove('hide-nav-item');
-                        navActions.classList.remove('hide-nav-item');
-                    }, 200); 
+                    navBrand.classList.remove('hide-nav-item');
+                    navActions.classList.remove('hide-nav-item');
                 }, 300);
             }
         }
 
         // ==========================================
-        // 3. SPA Routing & Wizard Logic
+        // 3. iPhone Mockup Modal Logic
+        // ==========================================
+        function openProjectPreview(url, title) {
+            const modal = document.getElementById('project-modal');
+            const iframe = document.getElementById('project-iframe');
+            const mockup = document.getElementById('iphone-mockup');
+            const openBrowserBtn = document.getElementById('open-browser-btn');
+            
+            iframe.src = url;
+            openBrowserBtn.href = url; 
+            
+            modal.classList.remove('hidden');
+            modal.style.display = 'flex';
+            
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                mockup.classList.remove('scale-95');
+                mockup.classList.add('scale-100');
+            }, 50);
+        }
+
+        function closeProjectPreview() {
+            const modal = document.getElementById('project-modal');
+            const mockup = document.getElementById('iphone-mockup');
+            const iframe = document.getElementById('project-iframe');
+            
+            modal.classList.add('opacity-0');
+            mockup.classList.remove('scale-100');
+            mockup.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.style.display = 'none';
+                iframe.src = '';
+                document.getElementById('iframe-loader').style.display = 'flex';
+            }, 300);
+        }
+
+        // ==========================================
+        // 4. SPA Routing & Wizard Logic & Formspree
         // ==========================================
         const mainPage = document.getElementById('main-page');
         const wizardPage = document.getElementById('wizard-page');
         const wizardSteps = document.querySelectorAll('.wizard-step');
         const progressBar = document.getElementById('wizard-progress');
         const stepText = document.getElementById('wizard-step-text');
-        const stepNameEl = document.getElementById('wizard-step-name');
         
         let currentStep = 1;
         const totalSteps = 6;
@@ -974,10 +991,10 @@
             
             if(currentStep < 6) {
                 stepText.innerText = isEn ? `Step ${currentStep} of ${totalSteps - 1}` : `الخطوة ${currentStep} من ${totalSteps - 1}`;
-                stepNameEl.innerText = getStepName(currentStep - 1);
+                stepText.previousElementSibling.innerText = getStepName(currentStep - 1);
             } else {
                 stepText.innerText = isEn ? `Completed` : `تم الانتهاء`;
-                stepNameEl.innerText = getStepName(5);
+                stepText.previousElementSibling.innerText = getStepName(5);
             }
             
             window.scrollTo(0, 0);
@@ -1000,112 +1017,48 @@
             }
         }
 
-        // إرسال البيانات عبر Formspree
         async function submitWizard() {
-            const btn = document.getElementById('submit-btn-5');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="ph ph-spinner animate-spin text-2xl"></i> جارِ الإرسال...';
-            btn.disabled = true;
-
-            const projectType = document.querySelector('input[name="project_type"]:checked')?.value || '';
-            const description = document.getElementById('project-desc').value.trim();
-            const budgetVal = document.querySelector('input[name="budget"]:checked')?.value || '';
-            const timelineVal = document.querySelector('input[name="timeline"]:checked')?.value || '';
-            const name = document.getElementById('contact-name').value.trim();
-            const whatsapp = document.getElementById('contact-whatsapp').value.trim();
-            const email = document.getElementById('contact-email').value.trim();
-
-            const budgets = {
-                "1": "أقل من 5,000 ج.م",
-                "2": "5,000 - 10,000 ج.م",
-                "3": "10,000 - 25,000 ج.م",
-                "4": "25,000 - 50,000 ج.م",
-                "5": "+ 50,000 ج.م",
-                "6": "لست متأكداً بعد"
+            const submitBtn = document.getElementById('submit-btn-5');
+            submitBtn.disabled = true;
+            submitBtn.innerText = isEn ? 'Sending...' : 'جاري الإرسال...';
+            
+            // Gather data
+            const data = {
+                name: document.getElementById('contact-name').value,
+                whatsapp: document.getElementById('contact-whatsapp').value,
+                email: document.getElementById('contact-email').value,
+                project_type: document.querySelector('input[name="project_type"]:checked').value,
+                description: document.getElementById('project-desc').value,
+                budget: document.querySelector('input[name="budget"]:checked').value,
+                timeline: document.querySelector('input[name="timeline"]:checked').value
             };
-
-            const timelines = {
-                "1": "أقل من شهر",
-                "2": "١ - ٢ شهر",
-                "3": "٢ - ٤ أشهر",
-                "4": "٤ - ٦ أشهر",
-                "5": "+ ٦ أشهر",
-                "6": "لست متأكداً بعد"
-            };
-
-            const formData = new FormData();
-            formData.append('الاسم', name);
-            formData.append('الواتساب', whatsapp);
-            formData.append('البريد الإلكتروني', email);
-            formData.append('نوع المشروع', projectType);
-            formData.append('تفاصيل المشروع', description);
-            formData.append('الميزانية', budgets[budgetVal] || budgetVal);
-            formData.append('المدة الزمنية', timelines[timelineVal] || timelineVal);
 
             try {
-                // إرسال الطلب إلى Formspree
+                // Send to Formspree
                 const response = await fetch('https://formspree.io/f/mykarnrq', {
                     method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
                 });
                 
                 if (response.ok) {
                     currentStep = 6; 
                     updateWizardUI();
                 } else {
-                    alert('عذراً، حدث خطأ أثناء إرسال طلبك. يرجى المحاولة لاحقاً.');
+                    throw new Error('Network response was not ok');
                 }
             } catch (error) {
-                alert('تعذر الاتصال، تأكد من جودة الإنترنت.');
+                alert(isEn ? 'An error occurred, please try again later.' : 'حدث خطأ، يرجى المحاولة لاحقاً.');
             } finally {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
+                submitBtn.disabled = false;
+                submitBtn.innerText = isEn ? 'Submit Request' : 'إرسال الطلب';
             }
         }
 
         function closeWizard() { window.location.hash = ''; }
 
-        // ==========================================
-        // Project iPhone Modal Logic
-        // ==========================================
-        function openProjectPreview(url, title) {
-            const modal = document.getElementById('project-modal');
-            const iframe = document.getElementById('project-iframe');
-            const mockup = document.getElementById('iphone-mockup');
-            
-            iframe.src = url;
-            modal.classList.remove('hidden');
-            modal.style.display = 'flex';
-            
-            // Trigger animation
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                mockup.classList.remove('scale-95');
-                mockup.classList.add('scale-100');
-            }, 10);
-            
-            document.body.classList.add('overflow-hidden');
-        }
-
-        function closeProjectPreview() {
-            const modal = document.getElementById('project-modal');
-            const iframe = document.getElementById('project-iframe');
-            const mockup = document.getElementById('iphone-mockup');
-            
-            modal.classList.add('opacity-0');
-            mockup.classList.remove('scale-100');
-            mockup.classList.add('scale-95');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.style.display = '';
-                iframe.src = '';
-                document.body.classList.remove('overflow-hidden');
-            }, 300);
-        }
-
-        // Wizard Form Validation Logic
         function validateStep() {
             if (currentStep === 2) {
                 const checked = document.querySelector('input[name="project_type"]:checked');
@@ -1131,7 +1084,7 @@
         });
 
         // ==========================================
-        // Load More Projects
+        // 5. Load More Logic (Projects)
         // ==========================================
         const loadMoreBtn = document.getElementById('load-more-btn');
         const hiddenProjects = document.querySelectorAll('.hidden-project');
@@ -1161,7 +1114,7 @@
         }
         
         // ==========================================
-        // VS Code Editor Animation
+        // 6. VS Code Editor Animation
         // ==========================================
         const lines = [
             "const idea = new VORTX_DEV_Project('Digital Product');",
@@ -1202,18 +1155,21 @@
             while (true) {
                 container.innerHTML = ''; 
                 
+                // Line 1
                 let line1 = document.createElement('div');
-                line1.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden whitespace-nowrap text-left w-full";
+                line1.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden whitespace-nowrap";
                 container.appendChild(line1);
                 await typeCode(line1, lines[0]);
                 await new Promise(r => setTimeout(r, 1200));
                 
+                // Line 2
                 let line2 = document.createElement('div');
-                line2.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden whitespace-nowrap text-left w-full";
+                line2.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden whitespace-nowrap";
                 container.appendChild(line2);
                 await typeCode(line2, lines[1]);
                 await new Promise(r => setTimeout(r, 1200));
                 
+                // Loop remaining
                 let currentVisibleLines = [line1, line2];
                 for(let i = 2; i < lines.length; i++) {
                     let topElement = currentVisibleLines.shift(); 
@@ -1223,7 +1179,7 @@
                     topElement.remove(); 
                     
                     let newLine = document.createElement('div');
-                    newLine.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden whitespace-nowrap text-left w-full";
+                    newLine.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden whitespace-nowrap";
                     container.appendChild(newLine);
                     currentVisibleLines.push(newLine);
                     await typeCode(newLine, lines[i]);
