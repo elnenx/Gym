@@ -83,6 +83,17 @@
             border-width: 0 !important;
             pointer-events: none;
         }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
         
         iframe::-webkit-scrollbar { width: 4px; }
         iframe::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 4px; }
@@ -105,17 +116,22 @@
                     <span id="menu-title" class="font-bold text-dark dark:text-white opacity-0 hidden transition-opacity duration-300 w-full text-right ltr:text-left pr-3 ltr:pr-0 ltr:pl-3" data-ar="القائمة الرئيسية" data-en="Main Menu">القائمة الرئيسية</span>
                 </button>
                 
-                <nav id="menu-dropdown" class="hidden flex-col px-3 pb-3 opacity-0 transition-opacity duration-300">
+                <nav id="menu-dropdown" class="hidden flex-col px-3 pb-4 opacity-0 transition-opacity duration-300">
                     <div class="w-full h-[1px] bg-slate-200 dark:bg-slate-700 mb-2"></div>
-                    <a href="#contact" onclick="toggleMenu()" class="text-center p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
-                    <div class="w-20 mx-auto h-[1px] bg-slate-100 dark:bg-slate-700/50 my-0.5"></div>
-                    <a href="#start-project" onclick="toggleMenu()" class="text-center p-3 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 font-bold transition-colors" data-ar="ابدأ مشروعك" data-en="Start a Project">ابدأ مشروعك</a>
-                    <div class="w-20 mx-auto h-[1px] bg-slate-100 dark:bg-slate-700/50 my-0.5"></div>
-                    <a href="#portfolio" onclick="toggleMenu()" class="text-center p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors" data-ar="أعمالنا" data-en="Our Work">أعمالنا</a>
-                    <div class="w-20 mx-auto h-[1px] bg-slate-100 dark:bg-slate-700/50 my-0.5"></div>
-                    <a href="#services" onclick="toggleMenu()" class="text-center p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
-                    <div class="w-20 mx-auto h-[1px] bg-slate-100 dark:bg-slate-700/50 my-0.5"></div>
-                    <a href="#methodology" onclick="toggleMenu()" class="text-center p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors" data-ar="منهجيتنا" data-en="Methodology">منهجيتنا</a>
+                    
+                    <a href="#contact" onclick="toggleMenu()" class="text-center py-4 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
+                    <div class="w-[80%] mx-auto h-[1px] bg-slate-100 dark:bg-slate-700/50 my-1"></div>
+                    
+                    <a href="#start-project" onclick="toggleMenu()" class="text-center py-4 px-3 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 font-bold transition-colors" data-ar="ابدأ مشروعك" data-en="Start a Project">ابدأ مشروعك</a>
+                    <div class="w-[80%] mx-auto h-[1px] bg-slate-100 dark:bg-slate-700/50 my-1"></div>
+                    
+                    <a href="#portfolio" onclick="toggleMenu()" class="text-center py-4 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors" data-ar="أعمالنا" data-en="Our Work">أعمالنا</a>
+                    <div class="w-[80%] mx-auto h-[1px] bg-slate-100 dark:bg-slate-700/50 my-1"></div>
+                    
+                    <a href="#services" onclick="toggleMenu()" class="text-center py-4 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
+                    <div class="w-[80%] mx-auto h-[1px] bg-slate-100 dark:bg-slate-700/50 my-1"></div>
+                    
+                    <a href="#methodology" onclick="toggleMenu()" class="text-center py-4 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors" data-ar="منهجيتنا" data-en="Methodology">منهجيتنا</a>
                 </nav>
             </div>
 
@@ -133,10 +149,10 @@
             </div>
         </header>
 
-        <main class="px-5 pt-32 pb-16 relative z-10 flex flex-col items-start w-full max-w-3xl mx-auto">
+        <main class="px-5 pt-32 pb-16 relative z-10 flex flex-col items-center w-full max-w-3xl mx-auto">
             
             <!-- VS Code Editor (Fixed height for exactly 2 lines) -->
-            <div class="mb-8 w-full bg-white/80 dark:bg-slate-800/90 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden border border-primary/20 dark:border-slate-700/50 flex flex-col transition-colors" dir="ltr">
+            <div class="mb-8 w-full max-w-lg bg-white/80 dark:bg-slate-800/90 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden border border-primary/20 dark:border-slate-700/50 flex flex-col transition-colors reveal" dir="ltr">
                 <div class="bg-primary dark:bg-slate-900 px-4 py-2.5 flex items-center justify-between border-b border-black/10 transition-colors">
                     <div class="flex gap-1.5">
                         <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
@@ -150,32 +166,33 @@
                 <div class="px-4 sm:px-5 py-3 h-[74px] relative overflow-hidden font-mono text-[13px] sm:text-[14px] text-slate-600 dark:text-slate-300 bg-transparent transition-colors" id="code-editor-body"></div>
             </div>
 
-            <!-- Title & Description (Right aligned in AR, Left in EN) -->
-            <h1 class="text-[2.2rem] sm:text-[2.6rem] leading-[1.3] font-black text-right rtl:text-right ltr:text-left text-dark dark:text-white transition-colors w-full" data-ar="نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class='text-primary tracking-wide'>تصنع أثرًا.</span>" data-en="We Turn Ideas<br>Into Digital<br>Products <span class='text-primary tracking-wide'>That Impact.</span>">
-                نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class="text-primary tracking-wide">تصنع أثرًا.</span>
-            </h1>
-            <p class="text-right rtl:text-right ltr:text-left text-slate-500 dark:text-slate-400 mt-5 text-base leading-relaxed font-medium transition-colors max-w-[90%]" data-ar="تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق." data-en="VORTX DEV helps companies turn ideas into successful digital products, from vision to launch.">
-                تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق.
-            </p>
+            <div class="w-full max-w-lg">
+                <h1 class="text-[2.4rem] sm:text-[2.6rem] leading-[1.3] font-black text-right rtl:text-right ltr:text-left text-dark dark:text-white transition-colors reveal" data-ar="نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class='text-primary tracking-wide'>تصنع أثرًا.</span>" data-en="We Turn Ideas<br>Into Digital<br>Products <span class='text-primary tracking-wide'>That Impact.</span>">
+                    نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class="text-primary tracking-wide">تصنع أثرًا.</span>
+                </h1>
+                <p class="text-right rtl:text-right ltr:text-left text-slate-500 dark:text-slate-400 mt-5 text-base leading-relaxed font-medium transition-colors reveal" data-ar="تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق." data-en="VORTX DEV helps companies turn ideas into successful digital products, from vision to launch.">
+                    تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق.
+                </p>
 
-            <div class="flex flex-col gap-4 mt-8 w-full max-w-sm ml-auto rtl:ml-auto rtl:mr-0 ltr:mr-auto ltr:ml-0">
-                <a href="#start-project" class="bg-primary text-white w-full py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-blue-800 transition-colors shadow-lg shadow-blue-500/30">
-                    <span data-ar="ابدأ مشروعك" data-en="Start a Project">ابدأ مشروعك</span>
-                    <i class="ph ph-arrow-left font-bold text-lg rtl:rotate-0 ltr:rotate-180"></i>
-                </a>
-                <a href="#portfolio" class="bg-surface dark:bg-slate-800 border border-transparent dark:border-slate-700 text-dark dark:text-white w-full py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors">
-                    <span data-ar="استكشف أعمالنا" data-en="Explore Our Work">استكشف أعمالنا</span>
-                    <i class="ph ph-arrow-left font-bold text-lg rtl:rotate-0 ltr:rotate-180"></i>
-                </a>
+                <div class="flex flex-col gap-4 mt-8 w-full reveal">
+                    <a href="#start-project" class="bg-primary text-white w-full py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-blue-800 transition-colors shadow-lg shadow-blue-500/30">
+                        <span data-ar="ابدأ مشروعك" data-en="Start a Project">ابدأ مشروعك</span>
+                        <i class="ph ph-arrow-left font-bold text-lg rtl:rotate-0 ltr:rotate-180"></i>
+                    </a>
+                    <a href="#portfolio" class="bg-surface dark:bg-slate-800 border border-transparent dark:border-slate-700 text-dark dark:text-white w-full py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors">
+                        <span data-ar="استكشف أعمالنا" data-en="Explore Our Work">استكشف أعمالنا</span>
+                        <i class="ph ph-arrow-left font-bold text-lg rtl:rotate-0 ltr:rotate-180"></i>
+                    </a>
+                </div>
             </div>
 
-            <div class="mt-10 flex flex-wrap justify-start gap-x-6 gap-y-4 px-2 font-bold text-[14px] sm:text-base text-slate-700 dark:text-slate-300 transition-colors w-full">
+            <div class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-4 px-2 font-bold text-[14px] sm:text-base text-slate-700 dark:text-slate-300 transition-colors w-full reveal">
                 <div class="flex items-center gap-2"><span class="w-2 h-2 bg-dot rounded-full"></span><span data-ar="استراتيجية المنتجات" data-en="Product Strategy">استراتيجية المنتجات</span></div>
                 <div class="flex items-center gap-2"><span class="w-2 h-2 bg-dot rounded-full"></span><span data-ar="تصميم التجارب" data-en="UX/UI Design">تصميم التجارب</span></div>
                 <div class="flex items-center gap-2"><span class="w-2 h-2 bg-dot rounded-full"></span><span data-ar="هندسة البرمجيات" data-en="Software Engineering">هندسة البرمجيات</span></div>
             </div>
 
-            <div class="mt-10 w-full flex justify-center">
+            <div class="mt-10 w-full flex justify-center reveal">
                 <div class="relative w-full max-w-[800px] rounded-[2rem] shadow-[0_30px_60px_-15px_rgba(0,45,243,0.3)] transform transition-transform duration-500 hover:-translate-y-2">
                     <div class="absolute inset-0 rounded-[2rem] border border-white/90 dark:border-white/10 shadow-[inset_0_2px_5px_rgba(255,255,255,1),inset_0_-2px_6px_rgba(0,30,100,0.15)] dark:shadow-none pointer-events-none z-10"></div>
                     <div class="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/30 dark:from-white/5 via-transparent to-transparent pointer-events-none z-10"></div>
@@ -185,13 +202,13 @@
         </main>
 
         <section id="services" class="px-5 pt-16 pb-16 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 relative z-10 transition-colors">
-            <div class="mb-10 text-right rtl:text-right ltr:text-left max-w-md mx-auto">
+            <div class="mb-10 text-right rtl:text-right ltr:text-left max-w-md mx-auto reveal">
                 <h2 class="text-[2.2rem] font-black text-dark dark:text-white mb-4 tracking-tight" data-ar="ما نقدمه" data-en="What We Offer">ما نقدمه</h2>
                 <p class="text-slate-600 dark:text-slate-400 text-[1.1rem] leading-relaxed mb-6 font-medium" data-ar="هندسة برمجيات شاملة، مصممة وفق أهداف عملك." data-en="Comprehensive software engineering tailored to your goals.">هندسة برمجيات شاملة، مصممة وفق أهداف عملك.</p>
             </div>
 
             <div class="flex flex-col gap-6 w-full max-w-md mx-auto">
-                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none relative overflow-hidden rtl:text-right ltr:text-left transition-colors">
+                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none relative overflow-hidden rtl:text-right ltr:text-left transition-colors reveal">
                     <div class="flex justify-between items-start mb-10 rtl:flex-row ltr:flex-row-reverse">
                         <div class="w-14 h-14 rounded-2xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center"><i class="ph ph-globe text-[28px]"></i></div>
                         <span class="text-slate-600 dark:text-slate-400 font-bold text-sm mt-1 tracking-wider">01</span>
@@ -199,7 +216,7 @@
                     <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-3" data-ar="تطبيقات الويب" data-en="Web Applications">تطبيقات الويب</h3>
                     <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="تطبيقات ويب سريعة ومتجاوبة مهندسة بـ React و Next.js." data-en="Fast, responsive web apps engineered with React and Next.js.">تطبيقات ويب سريعة ومتجاوبة مهندسة بـ React و Next.js.</p>
                 </div>
-                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none relative overflow-hidden rtl:text-right ltr:text-left transition-colors">
+                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none relative overflow-hidden rtl:text-right ltr:text-left transition-colors reveal">
                     <div class="flex justify-between items-start mb-10 rtl:flex-row ltr:flex-row-reverse">
                         <div class="w-14 h-14 rounded-2xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center"><i class="ph ph-device-mobile text-[28px]"></i></div>
                         <span class="text-slate-600 dark:text-slate-400 font-bold text-sm mt-1 tracking-wider">02</span>
@@ -207,7 +224,7 @@
                     <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-3" data-ar="تطبيقات الهاتف" data-en="Mobile Apps">تطبيقات الهاتف</h3>
                     <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="تجارب هاتف عالية الجودة مبنية بـ React Native و Flutter." data-en="High-quality mobile experiences built with React Native and Flutter.">تجارب هاتف عالية الجودة مبنية بـ React Native و Flutter.</p>
                 </div>
-                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none relative overflow-hidden rtl:text-right ltr:text-left transition-colors">
+                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none relative overflow-hidden rtl:text-right ltr:text-left transition-colors reveal">
                     <div class="flex justify-between items-start mb-10 rtl:flex-row ltr:flex-row-reverse">
                         <div class="w-14 h-14 rounded-2xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center"><i class="ph ph-spinner-gap text-[28px]"></i></div>
                         <span class="text-slate-600 dark:text-slate-400 font-bold text-sm mt-1 tracking-wider">03</span>
@@ -219,7 +236,7 @@
         </section>
 
         <section id="methodology" class="px-5 pt-16 pb-16 bg-sectionBg dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 relative z-10 transition-colors">
-            <div class="mb-14 text-right rtl:text-right ltr:text-left max-w-md mx-auto">
+            <div class="mb-14 text-right rtl:text-right ltr:text-left max-w-md mx-auto reveal">
                 <h2 class="text-[2.2rem] font-black text-dark dark:text-white mb-4 tracking-tight" data-ar="منهجيتنا من ست خطوات" data-en="Our 6-Step Methodology">منهجيتنا من ست خطوات</h2>
                 <p class="text-slate-600 dark:text-slate-400 text-[1.1rem] leading-relaxed font-medium" data-ar="منهجية منظمة تقلل الغموض وتحقق نتائج واضحة." data-en="A structured methodology ensuring clear results.">منهجية منظمة تقلل الغموض وتحقق نتائج واضحة.</p>
             </div>
@@ -228,7 +245,7 @@
                 <div class="absolute right-[19px] ltr:left-[19px] rtl:right-[19px] top-6 bottom-16 w-[2px] bg-slate-200 dark:bg-slate-700 z-0"></div>
                 
                 <!-- Steps 1 to 6 -->
-                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0">
+                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0 reveal">
                     <div class="absolute right-0 ltr:left-0 rtl:right-0 top-6 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm z-10 shadow-md ring-[6px] ring-sectionBg dark:ring-slate-900">01</div>
                     <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none w-full text-right rtl:text-right ltr:text-left transition-colors">
                         <div class="flex justify-end ltr:justify-start rtl:justify-end mb-5">
@@ -238,7 +255,7 @@
                         <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="نغوص عميقًا في أهداف عملك والمستخدمين." data-en="We dive deep into your business goals and users.">نغوص عميقًا في أهداف عملك والمستخدمين.</p>
                     </div>
                 </div>
-                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0">
+                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0 reveal">
                     <div class="absolute right-0 ltr:left-0 rtl:right-0 top-6 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm z-10 shadow-md ring-[6px] ring-sectionBg dark:ring-slate-900">02</div>
                     <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none w-full text-right rtl:text-right ltr:text-left transition-colors">
                         <div class="flex justify-end ltr:justify-start rtl:justify-end mb-5">
@@ -248,7 +265,7 @@
                         <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="البنية التقنية وتصميمات واجهة المستخدم." data-en="Technical architecture and UI/UX design.">البنية التقنية وتصميمات واجهة المستخدم.</p>
                     </div>
                 </div>
-                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0">
+                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0 reveal">
                     <div class="absolute right-0 ltr:left-0 rtl:right-0 top-6 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm z-10 shadow-md ring-[6px] ring-sectionBg dark:ring-slate-900">03</div>
                     <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none w-full text-right rtl:text-right ltr:text-left transition-colors">
                         <div class="flex justify-end ltr:justify-start rtl:justify-end mb-5">
@@ -258,7 +275,7 @@
                         <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="تنفيذ المشروع مع مشاركة نسخ للمراجعة." data-en="Executing the project with reviewable iterations.">تنفيذ المشروع مع مشاركة نسخ للمراجعة.</p>
                     </div>
                 </div>
-                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0">
+                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0 reveal">
                     <div class="absolute right-0 ltr:left-0 rtl:right-0 top-6 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm z-10 shadow-md ring-[6px] ring-sectionBg dark:ring-slate-900">04</div>
                     <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none w-full text-right rtl:text-right ltr:text-left transition-colors">
                         <div class="flex justify-end ltr:justify-start rtl:justify-end mb-5">
@@ -268,7 +285,7 @@
                         <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="اختبارات آلية وتدقيق أداء لضمان الجودة." data-en="Automated testing and performance audits.">اختبارات آلية وتدقيق أداء لضمان الجودة.</p>
                     </div>
                 </div>
-                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0">
+                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0 reveal">
                     <div class="absolute right-0 ltr:left-0 rtl:right-0 top-6 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm z-10 shadow-md ring-[6px] ring-sectionBg dark:ring-slate-900">05</div>
                     <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none w-full text-right rtl:text-right ltr:text-left transition-colors">
                         <div class="flex justify-end ltr:justify-start rtl:justify-end mb-5">
@@ -278,7 +295,7 @@
                         <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="نشر سلس وتوفير البنية التحتية." data-en="Seamless deployment and infrastructure setup.">نشر سلس وتوفير البنية التحتية.</p>
                     </div>
                 </div>
-                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0">
+                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0 reveal">
                     <div class="absolute right-0 ltr:left-0 rtl:right-0 top-6 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm z-10 shadow-md ring-[6px] ring-sectionBg dark:ring-slate-900">06</div>
                     <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none w-full text-right rtl:text-right ltr:text-left transition-colors">
                         <div class="flex justify-end ltr:justify-start rtl:justify-end mb-5">
@@ -292,7 +309,7 @@
         </section>
 
         <section id="portfolio" class="px-5 pt-16 pb-16 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 relative z-10 transition-colors">
-            <div class="mb-14 text-right rtl:text-right ltr:text-left max-w-md mx-auto">
+            <div class="mb-14 text-right rtl:text-right ltr:text-left max-w-md mx-auto reveal">
                 <h2 class="text-[2.2rem] font-black text-dark dark:text-white mb-4 tracking-tight" data-ar="أعمالنا" data-en="Our Work">أعمالنا</h2>
                 <p class="text-slate-600 dark:text-slate-400 text-[1.1rem] leading-relaxed font-medium" data-ar="نماذج من منتجات رقمية ساعدنا في بنائها وإطلاقها بنجاح." data-en="Digital products we successfully built and launched.">نماذج من منتجات رقمية ساعدنا في بنائها وإطلاقها بنجاح.</p>
             </div>
@@ -301,7 +318,7 @@
             <div class="flex flex-col gap-6 w-full max-w-md mx-auto" id="projects-list">
                 
                 <!-- Project 1 (سكنك) -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col group rtl:text-right ltr:text-left transition-colors">
+                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col group rtl:text-right ltr:text-left transition-colors reveal">
                     <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
                         <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786725994/20260814_194539_0000_n14f8u.png" alt="سكنك" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
@@ -320,7 +337,7 @@
                 </div>
 
                 <!-- Project 2 (Dental Clinic) -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col group rtl:text-right ltr:text-left transition-colors">
+                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col group rtl:text-right ltr:text-left transition-colors reveal">
                     <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
                         <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786729694/20260814_202735_0000_oejijd.png" alt="Dental Clinic" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
@@ -339,7 +356,7 @@
                 </div>
 
                 <!-- Project 3 (WDNY Courier) -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col group rtl:text-right ltr:text-left transition-colors">
+                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col group rtl:text-right ltr:text-left transition-colors reveal">
                     <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
                         <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786729691/20260814_203028_0000_cw09aj.png" alt="WDNY Courier" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
@@ -488,7 +505,7 @@
             </div> 
 
             <!-- Load More Button -->
-            <div class="mt-10 flex flex-col items-center justify-center gap-4 max-w-md mx-auto">
+            <div class="mt-10 flex flex-col items-center justify-center gap-4 max-w-md mx-auto reveal">
                 <button id="load-more-btn" class="bg-surface dark:bg-slate-800 text-dark dark:text-white border border-transparent dark:border-slate-700 w-full py-4 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors">
                     <span data-ar="عرض باقي المشاريع (7)" data-en="Load More Projects (7)">عرض باقي المشاريع (7)</span>
                     <i class="ph ph-caret-down font-bold text-lg"></i>
@@ -497,7 +514,7 @@
             </div>
         </section>
 
-        <section id="contact" class="px-5 pt-12 pb-6 bg-sectionBg dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 relative z-10 transition-colors">
+        <section id="contact" class="px-5 pt-12 pb-6 bg-sectionBg dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 relative z-10 transition-colors reveal">
             <div class="max-w-md mx-auto text-center">
                 <h2 class="text-[2rem] font-black text-dark dark:text-white mb-6 tracking-tight" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h2>
                 <div class="flex flex-col gap-4">
@@ -515,11 +532,11 @@
             <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] max-w-[600px] h-[300px] bg-primary/10 rounded-full blur-[80px] pointer-events-none z-0"></div>
 
             <div class="relative max-w-md mx-auto w-full z-10">
-                <div class="mb-10 flex flex-col items-center text-center">
+                <div class="mb-10 flex flex-col items-center text-center reveal">
                     <div class="font-black text-[2.2rem] text-[#182747] dark:text-white tracking-tight mb-2 flex items-center justify-center gap-2">VORTX DEV</div>
                 </div>
 
-                <div class="flex flex-col items-center text-center mb-10">
+                <div class="flex flex-col items-center text-center mb-10 reveal">
                     <h4 class="font-bold text-dark dark:text-white text-lg mb-4" data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
                     <ul class="flex flex-col items-center gap-3 text-slate-500 dark:text-slate-400 font-medium text-[15px]">
                         <li><a href="#services" class="hover:text-primary transition-colors" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
@@ -817,7 +834,23 @@
     <!-- END WIZARD PAGE -->
 
 
+    <!-- JavaScript logic -->
     <script>
+        // ==========================================
+        // Scroll Reveal Animations
+        // ==========================================
+        function initReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
         // ==========================================
         // 1. Language & Theme Toggle Logic
         // ==========================================
@@ -856,7 +889,6 @@
         const menuIcon = document.getElementById('menu-icon');
         const menuTitle = document.getElementById('menu-title');
         const menuDropdown = document.getElementById('menu-dropdown');
-        const menuSpacer = document.getElementById('menu-spacer');
 
         function toggleMenu() {
             isMenuOpen = !isMenuOpen;
@@ -870,7 +902,6 @@
                 
                 menuIcon.className = 'ph ph-x text-[24px] transition-transform duration-300';
                 menuTitle.classList.remove('hidden');
-                menuSpacer.classList.remove('hidden');
                 setTimeout(() => menuTitle.classList.remove('opacity-0'), 100);
 
                 menuDropdown.classList.remove('hidden');
@@ -883,7 +914,6 @@
                 setTimeout(() => {
                     menuDropdown.classList.add('hidden');
                     menuTitle.classList.add('hidden');
-                    menuSpacer.classList.add('hidden');
                     
                     navMenuContainer.classList.remove('w-full');
                     navMenuContainer.classList.add('w-[52px]');
@@ -905,7 +935,7 @@
             const openBrowserBtn = document.getElementById('open-browser-btn');
             
             iframe.src = url;
-            openBrowserBtn.href = url; // Link for "Open in Browser"
+            openBrowserBtn.href = url;
             
             modal.classList.remove('hidden');
             modal.style.display = 'flex';
@@ -973,7 +1003,10 @@
         }
 
         window.addEventListener('hashchange', handleRouting);
-        window.addEventListener('load', handleRouting);
+        window.addEventListener('load', () => {
+            handleRouting();
+            initReveal(); // Start animations on load
+        });
 
         function updateWizardUI() {
             wizardSteps.forEach((step, index) => {
@@ -1017,7 +1050,6 @@
             submitBtn.disabled = true;
             submitBtn.innerText = isEn ? 'Sending...' : 'جاري الإرسال...';
             
-            // Gather form data
             const data = {
                 name: document.getElementById('contact-name').value,
                 whatsapp: document.getElementById('contact-whatsapp').value,
@@ -1031,20 +1063,18 @@
             try {
                 const response = await fetch('https://formspree.io/f/mykarnrq', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
                 
                 if (response.ok) {
-                    currentStep = 6; // Success
+                    currentStep = 6;
                     updateWizardUI();
                 } else {
-                    throw new Error('Network response was not ok');
+                    throw new Error('Network error');
                 }
             } catch (error) {
-                alert(isEn ? 'An error occurred, please try again later.' : 'حدث خطأ، يرجى المحاولة لاحقاً.');
+                alert(isEn ? 'An error occurred, please try again.' : 'حدث خطأ، يرجى المحاولة لاحقاً.');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerText = isEn ? 'Submit Request' : 'إرسال الطلب';
@@ -1149,21 +1179,18 @@
             while (true) {
                 container.innerHTML = ''; 
                 
-                // Line 1
                 let line1 = document.createElement('div');
                 line1.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden whitespace-nowrap";
                 container.appendChild(line1);
                 await typeCode(line1, lines[0]);
                 await new Promise(r => setTimeout(r, 1200));
                 
-                // Line 2
                 let line2 = document.createElement('div');
                 line2.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden whitespace-nowrap";
                 container.appendChild(line2);
                 await typeCode(line2, lines[1]);
                 await new Promise(r => setTimeout(r, 1200));
                 
-                // Loop remaining
                 let currentVisibleLines = [line1, line2];
                 for(let i = 2; i < lines.length; i++) {
                     let topElement = currentVisibleLines.shift(); 
@@ -1187,4 +1214,4 @@
     </script>
 
 </body>
-                                </html>
+                            </html>
