@@ -103,7 +103,10 @@
             <!-- Menu Container (Expandable) -->
             <div id="nav-menu-container" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-[26px] shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-white/50 dark:border-slate-700/50 transition-all duration-500 ease-in-out w-[52px] flex flex-col overflow-hidden shrink-0">
                 <button id="menu-toggle-btn" onclick="toggleMenu()" class="h-[52px] w-full flex items-center justify-center text-slate-700 dark:text-slate-200 transition-transform hover:scale-105" dir="ltr">
+                    <!-- Icon starts center, moves to left (in RTL) when open -->
                     <i class="ph ph-list text-[24px] transition-transform duration-300" id="menu-icon"></i>
+                    <!-- Title starts hidden, appears on right when open -->
+                    <span id="menu-title" class="font-bold text-dark dark:text-white opacity-0 hidden transition-opacity duration-300" data-ar="القائمة الرئيسية" data-en="Main Menu">القائمة الرئيسية</span>
                 </button>
                 
                 <!-- Expanded Menu Dropdown Links -->
@@ -123,7 +126,7 @@
             <!-- Center (Brand & Logo) -->
             <div id="nav-brand" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md text-dark dark:text-white h-[52px] rounded-[26px] flex-1 flex items-center justify-center px-2 shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-white/50 dark:border-slate-700/50 overflow-hidden transition-all duration-500 ease-in-out" dir="ltr">
                 <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786664730/1000163758-removebg-preview_bwnpp6.png" alt="VORTX DEV Logo" class="w-[38px] h-[38px] object-contain shrink-0">
-                <div class="font-black text-[1.1rem] tracking-wide ml-1.5 mt-0.5 whitespace-nowrap">VORTX DEV</div>
+                <div class="font-black text-[1.1rem] tracking-wide ml-1.5 translate-y-[1px] whitespace-nowrap">VORTX DEV</div>
             </div>
 
             <!-- Left Actions (Lang/Theme) -->
@@ -504,12 +507,12 @@
                 
                 <div class="flex flex-col gap-4">
                     <a href="mailto:vortx.dev1@gmail.com" class="w-full bg-primary text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-blue-800 transition-colors shadow-lg shadow-blue-500/30">
-                        <i class="ph ph-envelope-simple text-2xl"></i>
-                        <span dir="ltr">vortx.dev1@gmail.com</span>
+                        <i class="ph ph-paper-plane-tilt text-2xl"></i>
+                        <span data-ar="راسلنا عبر البريد الإلكتروني" data-en="Email Us">راسلنا عبر البريد الإلكتروني</span>
                     </a>
                     <a href="https://wa.me/201129268929" target="_blank" class="w-full bg-transparent border-2 border-primary text-primary dark:text-blue-400 font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-primaryLight dark:hover:bg-primary/10 transition-colors">
                         <i class="ph ph-whatsapp-logo text-2xl"></i>
-                        <span dir="ltr">+20 112 926 8929</span>
+                        <span data-ar="راسلنا عبر الواتساب" data-en="WhatsApp Us">راسلنا عبر الواتساب</span>
                     </a>
                 </div>
             </div>
@@ -587,23 +590,32 @@
                     ساعدنا على فهم رؤيتك حتى نتمكن من تقديم حل تقني مخصص. تضمن لك عملية الاستكشاف هذه استشارتك بشكل مركز وعملي.
                 </p>
                 <div class="flex flex-col gap-6 mb-10">
-                    <div class="flex items-start justify-end ltr:justify-start rtl:text-right ltr:text-left gap-4">
-                        <div class="order-2 ltr:order-none">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1">
+                            <i class="ph ph-check font-bold"></i>
+                        </div>
+                        <div class="rtl:text-right ltr:text-left">
                             <h4 class="font-bold text-dark dark:text-white text-[15px] mb-1" data-ar="ساعدنا على فهم مشروعك" data-en="Help us understand your project">ساعدنا على فهم مشروعك</h4>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm" data-ar="حدد النطاق والمتطلبات التقنية والجدول الزمني." data-en="Define scope, tech requirements, and timeline.">حدد النطاق والمتطلبات التقنية والجدول الزمني.</p>
                         </div>
-                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1 order-1 ltr:order-none"><i class="ph ph-check font-bold"></i></div>
                     </div>
-                    <div class="flex items-start justify-end ltr:justify-start rtl:text-right ltr:text-left gap-4">
-                        <div class="order-2 ltr:order-none">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1">
+                            <i class="ph ph-check font-bold"></i>
+                        </div>
+                        <div class="rtl:text-right ltr:text-left">
                             <h4 class="font-bold text-dark dark:text-white text-[15px] mb-1" data-ar="احصل على استشارة أكثر تركيزاً" data-en="Get a focused consultation">احصل على استشارة أكثر تركيزاً</h4>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm" data-ar="تخطّ الأساسيات وانطلق مباشرة إلى البنية التقنية." data-en="Skip basics, jump to architecture.">تخطّ الأساسيات وانطلق مباشرة إلى البنية التقنية.</p>
                         </div>
-                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1 order-1 ltr:order-none"><i class="ph ph-check font-bold"></i></div>
                     </div>
-                    <div class="flex items-start justify-end ltr:justify-start rtl:text-right ltr:text-left gap-4">
-                        <div class="order-2 ltr:order-none">
-                            <h4 class="font-bold text-dark dark:text-white text-[15px] mb-1" data-ar="احجز اجتماعاً مع المؤسسين" data-en="Book a meeting with founders">احجز اجتماعاً مع المؤسسين</h4>
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1">
+                            <i class="ph ph-check font-bold"></i>
                         </div>
-                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1 order-1 ltr:order-none"><i class="ph ph-check font-bold"></i></div>
+                        <div class="rtl:text-right ltr:text-left">
+                            <h4 class="font-bold text-dark dark:text-white text-[15px] mb-1" data-ar="احجز اجتماعاً مع المؤسسين" data-en="Book a meeting with founders">احجز اجتماعاً مع المؤسسين</h4>
+                            <p class="text-slate-500 dark:text-slate-400 text-sm" data-ar="وصول مباشر إلى فريق الهندسة الأساسي." data-en="Direct access to core engineering team.">وصول مباشر إلى فريق الهندسة الأساسي.</p>
+                        </div>
                     </div>
                 </div>
                 <button onclick="nextWizardStep()" class="w-full bg-primary text-white font-bold py-4 rounded-xl flex justify-center items-center gap-2 hover:bg-blue-800 transition-colors">
@@ -619,40 +631,57 @@
                 
                 <div class="flex flex-col gap-4">
                     <label class="relative block cursor-pointer group">
-                        <!-- لا يوجد اختيار افتراضي -->
                         <input type="radio" name="project_type" value="موقع ويب" class="peer sr-only wizard-radio">
                         <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
+                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 rtl:ml-auto ltr:mr-auto">
+                                <i class="ph ph-globe text-2xl"></i>
+                            </div>
                             <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="موقع ويب" data-en="Website">موقع ويب</h4>
                         </div>
                     </label>
                     <label class="relative block cursor-pointer group">
                         <input type="radio" name="project_type" value="تطبيق ويب" class="peer sr-only wizard-radio">
                         <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
+                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 rtl:ml-auto ltr:mr-auto">
+                                <i class="ph ph-browser text-2xl"></i>
+                            </div>
                             <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="تطبيق ويب" data-en="Web App">تطبيق ويب</h4>
                         </div>
                     </label>
                     <label class="relative block cursor-pointer group">
                         <input type="radio" name="project_type" value="تطبيق جوال" class="peer sr-only wizard-radio">
                         <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
+                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 rtl:ml-auto ltr:mr-auto">
+                                <i class="ph ph-device-mobile text-2xl"></i>
+                            </div>
                             <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="تطبيق جوال" data-en="Mobile App">تطبيق جوال</h4>
                         </div>
                     </label>
                     <label class="relative block cursor-pointer group">
                         <input type="radio" name="project_type" value="منصة SaaS" class="peer sr-only wizard-radio">
                         <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
+                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 rtl:ml-auto ltr:mr-auto">
+                                <i class="ph ph-cloud text-2xl"></i>
+                            </div>
                             <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="منصة SaaS" data-en="SaaS Platform">منصة SaaS</h4>
                         </div>
                     </label>
                     <label class="relative block cursor-pointer group">
                         <input type="radio" name="project_type" value="التجارة الإلكترونية" class="peer sr-only wizard-radio">
                         <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
-                            <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="التجارة الإلكترونية" data-en="E-Commerce">التجارة الإلكترونية</h4>
+                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 rtl:ml-auto ltr:mr-auto">
+                                <i class="ph ph-shopping-cart text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="تجارة إلكترونية" data-en="E-Commerce">تجارة إلكترونية</h4>
                         </div>
                     </label>
                     <label class="relative block cursor-pointer group">
                         <input type="radio" name="project_type" value="أخرى" class="peer sr-only wizard-radio">
                         <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
-                            <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="أخرى / لست متأكداً بعد" data-en="Other / Not Sure Yet">أخرى / لست متأكداً بعد</h4>
+                            <div class="w-12 h-12 rounded-xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center mb-4 rtl:ml-auto ltr:mr-auto">
+                                <i class="ph ph-question text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="أخرى / لست متأكداً بعد" data-en="Other / Not Sure">أخرى / لست متأكداً بعد</h4>
                         </div>
                     </label>
                 </div>
@@ -782,7 +811,7 @@
     <!-- JavaScript logic -->
     <script>
         // ==========================================
-        // 1. Language & Theme Toggle
+        // 1. Language & Theme Toggle Logic
         // ==========================================
         let isDark = false;
         let isEn = false;
@@ -806,19 +835,20 @@
                 }
             });
 
-            // Adjust texts in Javascript steps
             updateWizardUI();
         }
 
         // ==========================================
-        // 2. Interactive Menu
+        // 2. Main Menu Interactive Logic
         // ==========================================
         let isMenuOpen = false;
         const navMenuContainer = document.getElementById('nav-menu-container');
         const navBrand = document.getElementById('nav-brand');
         const navActions = document.getElementById('nav-actions');
         const menuIcon = document.getElementById('menu-icon');
+        const menuTitle = document.getElementById('menu-title');
         const menuDropdown = document.getElementById('menu-dropdown');
+        const menuSpacer = document.getElementById('menu-spacer');
 
         function toggleMenu() {
             isMenuOpen = !isMenuOpen;
@@ -830,14 +860,21 @@
                 navMenuContainer.classList.add('w-full');
                 
                 menuIcon.className = 'ph ph-x text-[24px] transition-transform duration-300';
+                menuTitle.classList.remove('hidden');
+                menuSpacer.classList.remove('hidden');
+                setTimeout(() => menuTitle.classList.remove('opacity-0'), 100);
 
                 menuDropdown.classList.remove('hidden');
                 setTimeout(() => menuDropdown.classList.remove('opacity-0'), 200);
+
             } else {
                 menuDropdown.classList.add('opacity-0');
+                menuTitle.classList.add('opacity-0');
                 
                 setTimeout(() => {
                     menuDropdown.classList.add('hidden');
+                    menuTitle.classList.add('hidden');
+                    menuSpacer.classList.add('hidden');
                     
                     navMenuContainer.classList.remove('w-full');
                     navMenuContainer.classList.add('w-[52px]');
