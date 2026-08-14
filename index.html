@@ -2,1180 +2,1063 @@
 <html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FITCORE PRO | منصة اللياقة المتكاملة</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VORTX DEV - هندسة برمجيات</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Tajawal) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+                    },
+                    colors: {
+                        primary: '#002df3', 
+                        primaryLight: '#eef2ff', 
+                        dark: '#1a243a',    
+                        surface: '#f3f6fc', 
+                        dot: '#175a64',     
+                        sectionBg: '#f8fafc',
+                        wizardBg: '#f9fafd'
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* ==========================================================================
-           PREMIUM THEME VARIABLES (REFINED)
-           ========================================================================== */
-        :root {
-            /* Light Theme */
-            --bg-main: #f8fafc;
-            --bg-surface: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --accent: #e11d48;
-            --accent-hover: #be123c;
-            --border: #e2e8f0;
-            --shadow-subtle: 0 10px 30px rgba(0, 0, 0, 0.04);
-            --shadow-hover: 0 15px 35px rgba(225, 29, 72, 0.12);
-            --font-ar: 'Cairo', sans-serif;
-            --font-en: 'Inter', sans-serif;
-        }
-
-        [data-theme="dark"] {
-            --bg-main: #09090b;
-            --bg-surface: #18181b;
-            --text-main: #f8fafc;
-            --text-muted: #a1a1aa;
-            --border: #27272a;
-            --shadow-subtle: 0 10px 30px rgba(0, 0, 0, 0.5);
-            --shadow-hover: 0 15px 35px rgba(225, 29, 72, 0.2);
-        }
-
         body {
-            background-color: var(--bg-main); color: var(--text-main);
-            font-family: var(--font-ar); transition: background-color 0.4s ease, color 0.4s ease;
-            overflow-x: hidden; margin: 0; padding-top: 130px;
+            background: linear-gradient(180deg, #edf4ff 0%, #ffffff 20%);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            transition: background-color 0.3s ease;
+        }
+        .dark body { background: #0f172a !important; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        .dark ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .typing-cursor::after {
+            content: '▋';
+            color: #002df3; 
+            animation: blink 1s step-start infinite;
+            margin-left: 2px;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Wizard Radio Selection Style */
+        .wizard-radio:checked + div {
+            border-color: #002df3;
+            background-color: #eef2ff;
+        }
+        .dark .wizard-radio:checked + div {
+            background-color: rgba(0, 45, 243, 0.15);
+            border-color: #002df3;
         }
         
-        html[lang="en"] body { font-family: var(--font-en); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* ==========================================================================
-           TOP GLASS BAR
-           ========================================================================== */
-        .top-bar {
-            position: fixed; top: 0; left: 0; width: 100%; height: 44px;
-            background-color: rgba(9, 9, 11, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff; z-index: 1002;
-            display: flex; justify-content: space-between; align-items: center; padding: 0 4%;
-            font-size: 0.8rem; font-weight: 600;
-        }
-        
-        .top-bar-controls { display: flex; gap: 16px; align-items: center; }
-        .top-btn { 
-            background: transparent; border: none; color: #a1a1aa; cursor: pointer; 
-            display: flex; align-items: center; gap: 6px; transition: all 0.3s ease;
-        }
-        .top-btn:hover { color: #ffffff; transform: scale(1.05); }
-        .top-btn i { font-size: 1.1rem; transition: transform 0.5s ease; }
-        .top-btn.rotate i { transform: rotate(360deg); } 
-
-        .top-cta { 
-            background: var(--accent); color: #fff; padding: 6px 18px; border-radius: 20px; 
-            transition: all 0.3s; font-size: 0.75rem; letter-spacing: 0.5px;
-        }
-        .top-cta:hover { background: var(--accent-hover); box-shadow: 0 0 15px rgba(225, 29, 72, 0.4); }
-
-        /* ==========================================================================
-           DUMBBELL NAV BAR
-           ========================================================================== */
-        .dumbell-wrapper {
-            position: fixed; top: 60px; left: 50%; transform: translateX(-50%);
-            width: 95%; max-width: 850px; 
-            display: flex; align-items: center; justify-content: center;
-            z-index: 1001; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.25));
-        }
-
-        .weight-stack { display: flex; align-items: center; flex-shrink: 0; }
-
-        .d-lock { width: 10px; height: 28px; background: linear-gradient(90deg, #444, #222, #444); border-radius: 2px; margin: 0 2px; }
-        .d-plate { background: linear-gradient(180deg, #27272a, #000000, #27272a); border: 1px solid #333; margin: 0 1px; border-radius: 4px; box-shadow: inset -1px 0 3px rgba(255,255,255,0.1); }
-        .plate-l { width: 16px; height: 70px; border-radius: 6px; }
-        .plate-m { width: 12px; height: 55px; border-radius: 4px; }
-        .plate-s { width: 8px; height: 40px; }
-
-        .dumbell-bar {
-            flex-grow: 1; height: 42px; 
-            background: linear-gradient(180deg, rgba(203,213,225,0.85) 0%, rgba(226,232,240,0.85) 50%, rgba(148,163,184,0.85) 100%);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            display: flex; justify-content: space-evenly; align-items: center;
-            box-shadow: inset 0 2px 4px rgba(255,255,255,0.4), inset 0 -2px 4px rgba(0,0,0,0.4);
-            border-top: 1px solid rgba(255,255,255,0.5); border-bottom: 1px solid rgba(0,0,0,0.4); 
-            padding: 0 8px;
-            background-image: linear-gradient(45deg, transparent 45%, rgba(0,0,0,0.04) 50%, transparent 55%), linear-gradient(-45deg, transparent 45%, rgba(0,0,0,0.04) 50%, transparent 55%);
-            background-size: 3px 3px;
-        }
-        [data-theme="dark"] .dumbell-bar {
-            background: linear-gradient(180deg, rgba(39,39,42,0.85) 0%, rgba(63,63,70,0.85) 50%, rgba(24,24,27,0.85) 100%);
-            border-top: 1px solid rgba(113,113,122,0.5); border-bottom: 1px solid rgba(0,0,0,0.6);
-        }
-
-        .nav-item {
-            color: #1e293b; text-decoration: none; font-weight: 700; font-size: 0.75rem; text-transform: uppercase;
-            display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; transition: all 0.3s;
-            white-space: nowrap; text-shadow: 0 1px 2px rgba(255,255,255,0.5);
-        }
-        [data-theme="dark"] .nav-item { color: #f8fafc; text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
-        .nav-item:hover, .nav-item.active { background: var(--accent); color: #fff; text-shadow: none; box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4); }
-
-        @media (max-width: 768px) {
-            .dumbell-wrapper { width: 98%; top: 52px; }
-            .nav-item span { display: none; }
-            .nav-item { padding: 8px 10px; }
-            .nav-item i { font-size: 1rem; margin: 0; }
-            .plate-l { height: 50px; width: 12px; }
-            .plate-m { height: 40px; width: 8px; }
-            .plate-s { height: 30px; width: 6px; }
-            .d-lock { height: 20px; width: 6px; }
-        }
-
-        /* ==========================================================================
-           CLEAN UI COMPONENTS
-           ========================================================================== */
-        .clean-card {
-            background: var(--bg-surface); border: 1px solid var(--border); border-radius: 24px;
-            padding: 24px; box-shadow: var(--shadow-subtle); transition: all 0.4s ease;
-        }
-        .clean-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--shadow-hover); }
-
-        .btn-primary {
-            background: var(--accent); color: white; font-weight: 700; padding: 12px 28px; border-radius: 12px;
-            display: inline-flex; justify-content: center; align-items: center; gap: 8px; transition: all 0.3s; border: none; cursor: pointer; font-size: 0.9rem;
-        }
-        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
-
-        .btn-outline {
-            background: transparent; color: var(--text-main); font-weight: 700; padding: 12px 28px; border-radius: 12px;
-            border: 1px solid var(--border); transition: all 0.3s; cursor: pointer; font-size: 0.9rem;
-        }
-        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
-        .input-clean {
-            width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border);
-            background: var(--bg-main); color: var(--text-main); outline: none; transition: all 0.3s; font-size: 0.9rem;
-        }
-        .input-clean:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.1); }
-        .label-clean { display: block; font-weight: 700; font-size: 0.8rem; margin-bottom: 6px; color: var(--text-muted); }
-
-        h1, h2, h3, h4 { letter-spacing: -0.02em; }
-        p { line-height: 1.6; }
-
-        .spa-view { display: none; min-height: 80vh; animation: fadeUp 0.4s ease forwards; opacity: 0; }
-        .spa-view.active-view { display: block; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .section-py { padding-top: 80px; padding-bottom: 60px; }
-
-        /* Profile picture */
-        .avatar-upload {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+        /* Animation classes for Menu */
+        .hide-nav-item {
+            width: 0 !important;
+            opacity: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border-width: 0 !important;
+            pointer-events: none;
             overflow: hidden;
-            border: 3px solid var(--border);
-            background: var(--bg-main);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .avatar-upload:hover { border-color: var(--accent); transform: scale(1.03); }
-        .avatar-upload img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .avatar-upload .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0,0,0,0.5);
-            color: white;
-            text-align: center;
-            font-size: 0.7rem;
-            padding: 4px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .avatar-upload:hover .overlay { opacity: 1; }
-        .avatar-upload input[type="file"] {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        /* Attendance list */
-        .attendance-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 12px;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.85rem;
-        }
-        .attendance-item:last-child { border-bottom: none; }
-        .attendance-item .date { font-weight: 600; }
-        .attendance-item .badge {
-            background: var(--accent);
-            color: white;
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-        }
-        .metric-box {
-            background: var(--bg-main);
-            border-radius: 16px;
-            padding: 16px;
-            text-align: center;
-            border: 1px solid var(--border);
-        }
-        .metric-box .value {
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--accent);
-        }
-        .metric-box .label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            margin-top: 4px;
-        }
-
-        /* Mobile bottom nav */
-        @media (max-width: 768px) {
-            .mobile-bottom-nav {
-                display: flex !important;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                background: var(--bg-surface);
-                backdrop-filter: blur(16px);
-                -webkit-backdrop-filter: blur(16px);
-                border-top: 1px solid var(--border);
-                padding: 6px 0 env(safe-area-inset-bottom, 8px) 0;
-                z-index: 1000;
-                justify-content: space-around;
-                align-items: center;
-                box-shadow: 0 -4px 30px rgba(0,0,0,0.08);
-            }
-            .mobile-bottom-nav .nav-item {
-                flex-direction: column;
-                gap: 2px;
-                padding: 6px 12px;
-                font-size: 0.6rem;
-                border-radius: 12px;
-            }
-            .mobile-bottom-nav .nav-item i { font-size: 1.2rem; }
-            .mobile-bottom-nav .nav-item span {
-                display: block !important;
-                font-size: 0.55rem;
-            }
-            .mobile-bottom-nav .nav-item.active {
-                background: transparent;
-                color: var(--accent);
-                box-shadow: none;
-            }
-            .mobile-bottom-nav .nav-item.active i { transform: scale(1.1); }
-            body { padding-bottom: 80px; }
-        }
-        .mobile-bottom-nav { display: none; }
-
-        /* Toast notifications */
-        .toast-container {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            width: 90%;
-            max-width: 450px;
-            pointer-events: none;
-        }
-        .toast {
-            background: var(--bg-surface);
-            color: var(--text-main);
-            padding: 14px 24px;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px var(--border);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transform: translateY(20px) scale(0.95);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            pointer-events: auto;
-            width: 100%;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .toast.show { transform: translateY(0) scale(1); opacity: 1; }
-        .toast.success { border-right: 4px solid #22c55e; }
-        .toast.error { border-right: 4px solid #ef4444; }
-        .toast.info { border-right: 4px solid #3b82f6; }
-        .toast-icon { font-size: 1.3rem; flex-shrink: 0; }
-        .toast-close {
-            margin-right: auto;
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 4px;
-            transition: color 0.2s;
-        }
-        .toast-close:hover { color: var(--text-main); }
-
-        /* Ripple */
-        .ripple-btn { position: relative; overflow: hidden; }
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(0);
-            animation: ripple-anim 0.6s ease-out forwards;
-            pointer-events: none;
-        }
-        [data-theme="dark"] .ripple { background: rgba(255, 255, 255, 0.15); }
-        @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
-
-        /* Scroll progress */
-        .scroll-progress {
-            position: fixed;
-            top: 44px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: transparent;
-            z-index: 1001;
-        }
-        .scroll-progress-bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--accent), #f43f5e);
-            border-radius: 0 2px 2px 0;
-            transition: width 0.1s linear;
-            box-shadow: 0 0 20px rgba(225, 29, 72, 0.3);
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen text-dark dark:text-slate-100 relative bg-white dark:bg-slate-900 overflow-x-hidden transition-colors duration-300">
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="top-bar-controls">
-            <button id="langToggle" class="top-btn" title="تغيير اللغة">
-                <i class="fa-solid fa-globe"></i> <span id="langText">EN</span>
-            </button>
-            <button id="themeToggle" class="top-btn" title="الوضع الليلي">
-                <i id="themeIcon" class="fa-regular fa-moon"></i>
-            </button>
-        </div>
-        <div>
-            <a href="#home" onclick="setTimeout(()=> document.getElementById('contact-lead').scrollIntoView(), 100)" class="top-cta">
-                <i class="fa-solid fa-headset mr-1 ml-1"></i> <span data-i18n="top_cta">تواصل للإدارة</span>
-            </a>
+    <!-- ========================================== -->
+    <!-- MAIN PAGE CONTAINER -->
+    <!-- ========================================== -->
+    <div id="main-page">
+        <!-- Top Glow -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[250px] bg-primary/15 rounded-full blur-[80px] pointer-events-none z-0"></div>
+
+        <!-- Header / Navbar -->
+        <header class="fixed top-4 w-full z-50 px-4 left-0 right-0 max-w-3xl mx-auto flex gap-2 items-start transition-all duration-300" id="main-header">
+            
+            <!-- Menu Container (Expandable) -->
+            <div id="nav-menu-container" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-[26px] shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-white/50 dark:border-slate-700/50 transition-all duration-500 ease-in-out w-[52px] flex flex-col overflow-hidden shrink-0">
+                <button id="menu-toggle-btn" onclick="toggleMenu()" class="h-[52px] w-full flex items-center justify-center text-slate-700 dark:text-slate-200 transition-transform hover:scale-105" dir="ltr">
+                    <i class="ph ph-list text-[24px] transition-transform duration-300" id="menu-icon"></i>
+                </button>
+                
+                <!-- Expanded Menu Dropdown Links -->
+                <nav id="menu-dropdown" class="hidden flex-col items-center justify-center gap-1.5 px-3 pb-5 opacity-0 transition-opacity duration-300 w-full">
+                    <a href="#contact-section" onclick="toggleMenu()" class="text-center w-full p-2 text-slate-700 dark:text-slate-200 font-bold hover:text-primary dark:hover:text-primary transition-colors" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
+                    <div class="w-12 h-[1px] bg-slate-200 dark:bg-slate-700 rounded-full my-1"></div>
+                    <a href="#start-project" onclick="toggleMenu()" class="text-center w-full p-2 text-primary dark:text-blue-400 font-bold hover:text-blue-800 transition-colors" data-ar="ابدأ مشروعك" data-en="Start a Project">ابدأ مشروعك</a>
+                    <div class="w-12 h-[1px] bg-slate-200 dark:bg-slate-700 rounded-full my-1"></div>
+                    <a href="#portfolio" onclick="toggleMenu()" class="text-center w-full p-2 text-slate-700 dark:text-slate-200 font-bold hover:text-primary dark:hover:text-primary transition-colors" data-ar="أعمالنا" data-en="Our Work">أعمالنا</a>
+                    <div class="w-12 h-[1px] bg-slate-200 dark:bg-slate-700 rounded-full my-1"></div>
+                    <a href="#services" onclick="toggleMenu()" class="text-center w-full p-2 text-slate-700 dark:text-slate-200 font-bold hover:text-primary dark:hover:text-primary transition-colors" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
+                    <div class="w-12 h-[1px] bg-slate-200 dark:bg-slate-700 rounded-full my-1"></div>
+                    <a href="#methodology" onclick="toggleMenu()" class="text-center w-full p-2 text-slate-700 dark:text-slate-200 font-bold hover:text-primary dark:hover:text-primary transition-colors" data-ar="منهجيتنا" data-en="Methodology">منهجيتنا</a>
+                </nav>
+            </div>
+
+            <!-- Center (Brand & Logo) -->
+            <div id="nav-brand" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md text-dark dark:text-white h-[52px] rounded-[26px] flex-1 flex items-center justify-center px-2 shadow-[0_4px_15px_rgba(0,0,0,0.08)] border border-white/50 dark:border-slate-700/50 overflow-hidden transition-all duration-500 ease-in-out" dir="ltr">
+                <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786664730/1000163758-removebg-preview_bwnpp6.png" alt="VORTX DEV Logo" class="w-[38px] h-[38px] object-contain shrink-0">
+                <div class="font-black text-[1.1rem] tracking-wide ml-1.5 mt-0.5 whitespace-nowrap">VORTX DEV</div>
+            </div>
+
+            <!-- Left Actions (Lang/Theme) -->
+            <div id="nav-actions" class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md text-slate-600 dark:text-slate-300 h-[52px] rounded-[26px] flex items-center gap-3 px-4 shadow-[0_4px_15px_rgba(0,0,0,0.08)] shrink-0 border border-white/50 dark:border-slate-700/50 transition-all duration-500 ease-in-out overflow-hidden whitespace-nowrap">
+                <button onclick="toggleLang()" class="hover:text-primary transition-colors flex items-center"><i class="ph ph-globe text-[22px]"></i></button>
+                <div class="w-[1px] h-5 bg-slate-200 dark:bg-slate-600"></div>
+                <button onclick="toggleTheme()" class="hover:text-primary transition-colors flex items-center"><i id="theme-icon" class="ph ph-moon text-[22px]"></i></button>
+            </div>
+        </header>
+
+        <!-- Main Hero Section -->
+        <main class="px-5 pt-32 pb-16 relative z-10">
+            <!-- VS Code Editor -->
+            <div class="mb-10 mx-auto max-w-lg w-full bg-white/80 dark:bg-slate-800/90 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden border border-primary/20 dark:border-slate-700/50 flex flex-col transition-colors" dir="ltr">
+                <div class="bg-primary dark:bg-slate-900 px-4 py-2.5 flex items-center justify-between border-b border-black/10 transition-colors">
+                    <div class="flex gap-1.5">
+                        <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                        <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                        <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                    </div>
+                    <div class="text-white text-[12px] font-sans tracking-wide font-bold opacity-90">build_product.js</div>
+                    <div class="w-[44px]"></div>
+                </div>
+                <div class="px-5 py-4 h-[80px] relative overflow-hidden font-mono text-[14px] text-slate-600 dark:text-slate-300 bg-transparent transition-colors" id="code-editor-body"></div>
+            </div>
+
+            <h1 class="text-[2.4rem] leading-[1.3] font-black text-right rtl:text-right ltr:text-left text-dark dark:text-white transition-colors" data-ar="نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class='text-primary tracking-wide'>تصنع أثرًا.</span>" data-en="We Turn Ideas<br>Into Digital<br>Products <span class='text-primary tracking-wide'>That Impact.</span>">
+                نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class="text-primary tracking-wide">تصنع أثرًا.</span>
+            </h1>
+            <p class="text-right rtl:text-right ltr:text-left text-slate-500 dark:text-slate-400 mt-6 text-base leading-relaxed font-medium transition-colors" data-ar="تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق." data-en="VORTX DEV helps companies turn ideas into successful digital products, from vision to launch.">
+                تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق.
+            </p>
+
+            <div class="flex flex-col gap-4 mt-10 w-full max-w-md mx-auto">
+                <a href="#start-project" class="bg-primary text-white w-full py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-blue-800 transition-colors shadow-lg shadow-blue-500/30">
+                    <span data-ar="ابدأ مشروعك" data-en="Start a Project">ابدأ مشروعك</span>
+                    <i class="ph ph-arrow-left font-bold text-lg rtl:rotate-0 ltr:rotate-180"></i>
+                </a>
+                <a href="#portfolio" class="bg-surface dark:bg-slate-800 border border-transparent dark:border-slate-700 text-dark dark:text-white w-full py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors">
+                    <span data-ar="استكشف أعمالنا" data-en="Explore Our Work">استكشف أعمالنا</span>
+                    <i class="ph ph-arrow-left font-bold text-lg rtl:rotate-0 ltr:rotate-180"></i>
+                </a>
+            </div>
+
+            <div class="mt-12 flex flex-wrap justify-center gap-x-6 gap-y-4 px-2 font-bold text-base text-slate-700 dark:text-slate-300 transition-colors">
+                <div class="flex items-center gap-2"><span class="w-2 h-2 bg-dot rounded-full"></span><span data-ar="استراتيجية المنتجات" data-en="Product Strategy">استراتيجية المنتجات</span></div>
+                <div class="flex items-center gap-2"><span class="w-2 h-2 bg-dot rounded-full"></span><span data-ar="تصميم التجارب" data-en="UX/UI Design">تصميم التجارب</span></div>
+                <div class="flex items-center gap-2"><span class="w-2 h-2 bg-dot rounded-full"></span><span data-ar="هندسة البرمجيات" data-en="Software Engineering">هندسة البرمجيات</span></div>
+            </div>
+
+            <div class="mt-10 w-full flex justify-center">
+                <div class="relative w-full max-w-[800px] rounded-[2rem] shadow-[0_30px_60px_-15px_rgba(0,45,243,0.3)] transform transition-transform duration-500 hover:-translate-y-2">
+                    <div class="absolute inset-0 rounded-[2rem] border border-white/90 dark:border-white/10 shadow-[inset_0_2px_5px_rgba(255,255,255,1),inset_0_-2px_6px_rgba(0,30,100,0.15)] dark:shadow-none pointer-events-none z-10"></div>
+                    <div class="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/30 dark:from-white/5 via-transparent to-transparent pointer-events-none z-10"></div>
+                    <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786661498/upscalemedia-transformed_lnitk0.png" alt="واجهة التطبيق" class="w-full h-auto rounded-[2rem] block object-cover" />
+                </div>
+            </div>
+        </main>
+
+        <!-- What We Offer Section -->
+        <section id="services" class="px-5 pt-16 pb-16 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 relative z-10 transition-colors">
+            <div class="mb-10 text-right rtl:text-right ltr:text-left max-w-md mx-auto">
+                <h2 class="text-[2.2rem] font-black text-dark dark:text-white mb-4 tracking-tight" data-ar="ما نقدمه" data-en="What We Offer">ما نقدمه</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-[1.1rem] leading-relaxed mb-6 font-medium" data-ar="هندسة برمجيات شاملة، مصممة وفق أهداف عملك." data-en="Comprehensive software engineering tailored to your goals.">هندسة برمجيات شاملة، مصممة وفق أهداف عملك.</p>
+            </div>
+
+            <div class="flex flex-col gap-6 w-full max-w-md mx-auto">
+                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none relative overflow-hidden rtl:text-right ltr:text-left transition-colors">
+                    <div class="flex justify-between items-start mb-10 rtl:flex-row ltr:flex-row-reverse">
+                        <div class="w-14 h-14 rounded-2xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center"><i class="ph ph-globe text-[28px]"></i></div>
+                        <span class="text-slate-600 dark:text-slate-400 font-bold text-sm mt-1 tracking-wider">01</span>
+                    </div>
+                    <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-3" data-ar="تطبيقات الويب" data-en="Web Applications">تطبيقات الويب</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-6 font-medium" data-ar="تطبيقات ويب سريعة ومتجاوبة مهندسة بـ React و Next.js." data-en="Fast, responsive web apps engineered with React and Next.js.">تطبيقات ويب سريعة ومتجاوبة مهندسة بـ React و Next.js.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none relative overflow-hidden rtl:text-right ltr:text-left transition-colors">
+                    <div class="flex justify-between items-start mb-10 rtl:flex-row ltr:flex-row-reverse">
+                        <div class="w-14 h-14 rounded-2xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center"><i class="ph ph-device-mobile text-[28px]"></i></div>
+                        <span class="text-slate-600 dark:text-slate-400 font-bold text-sm mt-1 tracking-wider">02</span>
+                    </div>
+                    <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-3" data-ar="تطبيقات الهاتف" data-en="Mobile Apps">تطبيقات الهاتف</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-6 font-medium" data-ar="تجارب هاتف عالية الجودة مبنية بـ React Native و Flutter." data-en="High-quality mobile experiences built with React Native and Flutter.">تجارب هاتف عالية الجودة مبنية بـ React Native و Flutter.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none relative overflow-hidden rtl:text-right ltr:text-left transition-colors">
+                    <div class="flex justify-between items-start mb-10 rtl:flex-row ltr:flex-row-reverse">
+                        <div class="w-14 h-14 rounded-2xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center"><i class="ph ph-spinner-gap text-[28px]"></i></div>
+                        <span class="text-slate-600 dark:text-slate-400 font-bold text-sm mt-1 tracking-wider">03</span>
+                    </div>
+                    <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-3" data-ar="الذكاء الاصطناعي" data-en="Artificial Intelligence">الذكاء الاصطناعي</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-6 font-medium" data-ar="نماذج لغوية وتنبؤية مهندسة مباشرة داخل منتجك." data-en="Predictive and language models engineered directly into your product.">نماذج لغوية وتنبؤية مهندسة مباشرة داخل منتجك.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Methodology Section -->
+        <section id="methodology" class="px-5 pt-16 pb-16 bg-sectionBg dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800 relative z-10 transition-colors">
+            <div class="mb-14 text-right rtl:text-right ltr:text-left max-w-md mx-auto">
+                <h2 class="text-[2.2rem] font-black text-dark dark:text-white mb-4 tracking-tight" data-ar="منهجيتنا من ست خطوات" data-en="Our 6-Step Methodology">منهجيتنا من ست خطوات</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-[1.1rem] leading-relaxed font-medium" data-ar="منهجية منظمة تقلل الغموض وتحقق نتائج واضحة." data-en="A structured methodology ensuring clear results.">منهجية منظمة تقلل الغموض وتحقق نتائج واضحة.</p>
+            </div>
+
+            <div class="relative w-full max-w-md mx-auto">
+                <div class="absolute right-[19px] ltr:left-[19px] rtl:right-[19px] top-6 bottom-16 w-[2px] bg-slate-200 dark:bg-slate-700 z-0"></div>
+                
+                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0">
+                    <div class="absolute right-0 ltr:left-0 rtl:right-0 top-6 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm z-10 shadow-md ring-[6px] ring-sectionBg dark:ring-slate-900">01</div>
+                    <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none w-full text-right rtl:text-right ltr:text-left transition-colors">
+                        <div class="flex justify-end ltr:justify-start rtl:justify-end mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center"><i class="ph ph-alarm text-[24px]"></i></div>
+                        </div>
+                        <h3 class="text-[1.3rem] font-black text-dark dark:text-white mb-3" data-ar="الاستكشاف والاستراتيجية" data-en="Discovery & Strategy">الاستكشاف والاستراتيجية</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="نغوص عميقًا في أهداف عملك والمستخدمين." data-en="We dive deep into your business goals and users.">نغوص عميقًا في أهداف عملك والمستخدمين.</p>
+                    </div>
+                </div>
+                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0">
+                    <div class="absolute right-0 ltr:left-0 rtl:right-0 top-6 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm z-10 shadow-md ring-[6px] ring-sectionBg dark:ring-slate-900">02</div>
+                    <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none w-full text-right rtl:text-right ltr:text-left transition-colors">
+                        <div class="flex justify-end ltr:justify-start rtl:justify-end mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center"><i class="ph ph-tree-structure text-[24px]"></i></div>
+                        </div>
+                        <h3 class="text-[1.3rem] font-black text-dark dark:text-white mb-3" data-ar="البنية والتصميم" data-en="Architecture & Design">البنية والتصميم</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="البنية التقنية وتصميمات واجهة المستخدم." data-en="Technical architecture and UI/UX design.">البنية التقنية وتصميمات واجهة المستخدم.</p>
+                    </div>
+                </div>
+                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0">
+                    <div class="absolute right-0 ltr:left-0 rtl:right-0 top-6 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm z-10 shadow-md ring-[6px] ring-sectionBg dark:ring-slate-900">03</div>
+                    <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none w-full text-right rtl:text-right ltr:text-left transition-colors">
+                        <div class="flex justify-end ltr:justify-start rtl:justify-end mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center"><i class="ph ph-code text-[24px]"></i></div>
+                        </div>
+                        <h3 class="text-[1.3rem] font-black text-dark dark:text-white mb-3" data-ar="التنفيذ على مراحل" data-en="Phased Execution">التنفيذ على مراحل</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="تنفيذ المشروع مع مشاركة نسخ للمراجعة." data-en="Executing the project with reviewable iterations.">تنفيذ المشروع مع مشاركة نسخ للمراجعة.</p>
+                    </div>
+                </div>
+                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0">
+                    <div class="absolute right-0 ltr:left-0 rtl:right-0 top-6 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm z-10 shadow-md ring-[6px] ring-sectionBg dark:ring-slate-900">04</div>
+                    <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none w-full text-right rtl:text-right ltr:text-left transition-colors">
+                        <div class="flex justify-end ltr:justify-start rtl:justify-end mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center"><i class="ph ph-shield-check text-[24px]"></i></div>
+                        </div>
+                        <h3 class="text-[1.3rem] font-black text-dark dark:text-white mb-3" data-ar="ضمان الجودة" data-en="Quality Assurance">ضمان الجودة</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="اختبارات آلية وتدقيق أداء لضمان الجودة." data-en="Automated testing and performance audits.">اختبارات آلية وتدقيق أداء لضمان الجودة.</p>
+                    </div>
+                </div>
+                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0">
+                    <div class="absolute right-0 ltr:left-0 rtl:right-0 top-6 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm z-10 shadow-md ring-[6px] ring-sectionBg dark:ring-slate-900">05</div>
+                    <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none w-full text-right rtl:text-right ltr:text-left transition-colors">
+                        <div class="flex justify-end ltr:justify-start rtl:justify-end mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center"><i class="ph ph-rocket text-[24px]"></i></div>
+                        </div>
+                        <h3 class="text-[1.3rem] font-black text-dark dark:text-white mb-3" data-ar="الإطلاق والتشغيل" data-en="Launch & Deployment">الإطلاق والتشغيل</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="نشر سلس وتوفير البنية التحتية." data-en="Seamless deployment and infrastructure setup.">نشر سلس وتوفير البنية التحتية.</p>
+                    </div>
+                </div>
+                <div class="relative flex justify-end ltr:justify-start rtl:justify-end mb-6 w-full pr-14 ltr:pr-0 ltr:pl-14 rtl:pr-14 rtl:pl-0">
+                    <div class="absolute right-0 ltr:left-0 rtl:right-0 top-6 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-sm z-10 shadow-md ring-[6px] ring-sectionBg dark:ring-slate-900">06</div>
+                    <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] p-7 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none w-full text-right rtl:text-right ltr:text-left transition-colors">
+                        <div class="flex justify-end ltr:justify-start rtl:justify-end mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center"><i class="ph ph-clock-counter-clockwise text-[24px]"></i></div>
+                        </div>
+                        <h3 class="text-[1.3rem] font-black text-dark dark:text-white mb-3" data-ar="الدعم والتطوير" data-en="Support & Evolution">الدعم والتطوير</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] font-medium" data-ar="دعم مستمر وتحسينات لدعم نمو منتجك." data-en="Continuous support and updates to scale.">دعم مستمر وتحسينات لدعم نمو منتجك.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Work (10 Projects) -->
+        <section id="portfolio" class="px-5 pt-16 pb-16 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 relative z-10 transition-colors">
+            <div class="mb-14 text-right rtl:text-right ltr:text-left max-w-md mx-auto">
+                <h2 class="text-[2.2rem] font-black text-dark dark:text-white mb-4 tracking-tight" data-ar="أعمالنا" data-en="Our Work">أعمالنا</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-[1.1rem] leading-relaxed font-medium" data-ar="نماذج من منتجات رقمية ساعدنا في بنائها وإطلاقها بنجاح." data-en="Digital products we successfully built and launched.">نماذج من منتجات رقمية ساعدنا في بنائها وإطلاقها بنجاح.</p>
+            </div>
+
+            <div class="flex flex-col gap-6 w-full max-w-md mx-auto" id="projects-list">
+                
+                <!-- Project 1 -->
+                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col group rtl:text-right ltr:text-left transition-colors">
+                    <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
+                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786669152/20260814_030939_0000_zq870h.png" alt="سكنك" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="سكنك – منصة عقارية" data-en="Skank - Real Estate">سكنك – منصة عقارية</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="منصة عقارية لعرض الوحدات والعقارات بشكل منظم، مع تفاصيل وصور ومعلومات كل عقار." data-en="Real estate platform to display properties with details, images, and full info.">منصة عقارية لعرض الوحدات والعقارات بشكل منظم.</p>
+                        <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="منصة عقارية" data-en="Real Estate">منصة عقارية</span>
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="ويب" data-en="Web">ويب</span>
+                        </div>
+                        <a href="https://skank-x.github.io/-/" target="_blank" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                            <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
+                            <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col group rtl:text-right ltr:text-left transition-colors">
+                    <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
+                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786669153/2_20260814_033230_0000_vkxbhw.png" alt="Dental Clinic" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="Dental Clinic – عيادة أسنان" data-en="Dental Clinic">Dental Clinic – عيادة أسنان</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="موقع احترافي لعيادة أسنان بتصميم طبي عصري، يعرض الخدمات ويسهّل التواصل وحجز المواعيد." data-en="Professional dental clinic website with modern medical design.">موقع احترافي لعيادة أسنان بتصميم طبي عصري، يعرض الخدمات ويسهّل التواصل.</p>
+                        <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="تصميم طبي" data-en="Medical Design">تصميم طبي</span>
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="عيادات" data-en="Clinics">عيادات</span>
+                        </div>
+                        <a href="https://elnenx.github.io/Dental-clinic-/" target="_blank" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                            <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
+                            <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col group rtl:text-right ltr:text-left transition-colors">
+                    <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
+                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786669665/VOGUENEON_20260814_040713_0000_rdbzq2.png" alt="WDNY Courier" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="WDNY Courier – شركة شحن" data-en="WDNY Courier">WDNY Courier – شركة شحن</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="موقع احترافي لشركة متخصصة في خدمات الشحن والتوصيل والحلول اللوجستية." data-en="Professional site for shipping, delivery, and logistics solutions.">موقع احترافي لشركة متخصصة في خدمات الشحن والتوصيل والحلول اللوجستية.</p>
+                        <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="لوجستيات" data-en="Logistics">لوجستيات</span>
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="توصيل" data-en="Delivery">توصيل</span>
+                        </div>
+                        <a href="https://wdenycourier.com/" target="_blank" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                            <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
+                            <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hidden Projects (4 to 10) -->
+                <!-- Project 4 -->
+                <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
+                    <div class="h-48 w-full relative overflow-hidden border-b border-slate-100 dark:border-slate-700">
+                        <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786669152/4_20260814_033230_0002_a8ivjk.png" alt="Hectar Modern" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="Hectar Modern – شركة مقاولات" data-en="Hectar Modern">Hectar Modern – شركة مقاولات</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="موقع لشركة مقاولات يعرض خدمات البناء والمشاريع بطريقة احترافية." data-en="Construction company website showcasing building services and projects.">موقع لشركة مقاولات يعرض خدمات البناء والمشاريع.</p>
+                        <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="مقاولات" data-en="Construction">مقاولات</span>
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="ويب" data-en="Web">ويب</span>
+                        </div>
+                        <a href="https://www.hectarmodern.com/ar" target="_blank" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                            <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
+                            <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
+                    <div class="h-48 bg-primaryLight dark:bg-slate-700 flex items-center justify-center border-b border-slate-100 dark:border-slate-600 relative">
+                        <i class="ph ph-storefront text-[64px] text-primary dark:text-blue-400 opacity-40 transition-transform duration-500 group-hover:scale-110"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="AD FAZ – خدمات تجارة" data-en="AD FAZ - E-commerce">AD FAZ – تجارة إلكترونية</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="منصة رقمية تقدم حلولًا وخدمات لتطوير وإدارة الأعمال الإلكترونية." data-en="Digital platform offering solutions for managing e-commerce businesses.">منصة رقمية تقدم حلولًا لإدارة الأعمال الإلكترونية.</p>
+                        <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="تجارة إلكترونية" data-en="E-commerce">تجارة إلكترونية</span>
+                        </div>
+                        <a href="https://adfaz.sa/" target="_blank" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                            <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
+                            <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
+                    <div class="h-48 bg-primaryLight dark:bg-slate-700 flex items-center justify-center border-b border-slate-100 dark:border-slate-600 relative">
+                        <i class="ph ph-t-shirt text-[64px] text-primary dark:text-blue-400 opacity-40 transition-transform duration-500 group-hover:scale-110"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="Brand – متجر ملابس" data-en="Brand - Store">Brand – متجر ملابس</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="متجر إلكتروني لبراند ملابس، يركز على عرض المنتجات بتجربة تسوق سهلة." data-en="E-commerce store for a clothing brand with seamless shopping experience.">متجر إلكتروني لبراند ملابس، يركز على تجربة تسوق سهلة.</p>
+                        <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="متجر إلكتروني" data-en="E-Store">متجر إلكتروني</span>
+                        </div>
+                        <a href="https://elnenx.github.io/Brand-/" target="_blank" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                            <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
+                            <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
+                    <div class="h-48 bg-primaryLight dark:bg-slate-700 flex items-center justify-center border-b border-slate-100 dark:border-slate-600 relative">
+                        <i class="ph ph-shopping-bag text-[64px] text-primary dark:text-blue-400 opacity-40 transition-transform duration-500 group-hover:scale-110"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="Hustler Brand – متجر" data-en="Hustler Brand">Hustler Brand – متجر</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="متجر إلكتروني لبراند ملابس مصري، لطلب المنتجات أونلاين بسهولة." data-en="Egyptian clothing brand online store for easy ordering.">متجر إلكتروني لبراند ملابس مصري، لطلب المنتجات بسهولة.</p>
+                        <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="متجر مصري" data-en="Egyptian Store">متجر مصري</span>
+                        </div>
+                        <a href="https://hustlerbrand-egy.myshopify.com/" target="_blank" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                            <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
+                            <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 8 -->
+                <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
+                    <div class="h-48 bg-primaryLight dark:bg-slate-700 flex items-center justify-center border-b border-slate-100 dark:border-slate-600 relative">
+                        <i class="ph ph-hamburger text-[64px] text-primary dark:text-blue-400 opacity-40 transition-transform duration-500 group-hover:scale-110"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="El Dahan – مطعم" data-en="El Dahan">El Dahan – مطعم</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="موقع إلكتروني لمطعم الدهان لعرض المنيو والفروع لتجربة طلب سهلة." data-en="Website for El Dahan restaurant showcasing menu and branches.">موقع إلكتروني لمطعم الدهان لعرض المنيو وتجربة طلب سهلة.</p>
+                        <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="مطعم" data-en="Restaurant">مطعم</span>
+                        </div>
+                        <a href="https://www.eldahan.com/" target="_blank" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                            <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
+                            <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 9 -->
+                <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
+                    <div class="h-48 bg-primaryLight dark:bg-slate-700 flex items-center justify-center border-b border-slate-100 dark:border-slate-600 relative">
+                        <i class="ph ph-trend-up text-[64px] text-primary dark:text-blue-400 opacity-40 transition-transform duration-500 group-hover:scale-110"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="TFT VIP TRADE – تداول" data-en="TFT VIP TRADE">TFT VIP TRADE – تداول</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="منصة متخصصة في الأسواق المالية، تشمل التعليم والتوصيات والاشتراكات." data-en="Specialized trading platform with education and subscriptions.">منصة متخصصة في الأسواق المالية، تشمل التعليم والاشتراكات.</p>
+                        <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="تداول" data-en="Trading">تداول</span>
+                        </div>
+                        <a href="https://tftviptrade.com/" target="_blank" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                            <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
+                            <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 10 -->
+                <div class="hidden bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none flex flex-col hidden-project group rtl:text-right ltr:text-left transition-colors">
+                    <div class="h-48 bg-primaryLight dark:bg-slate-700 flex items-center justify-center border-b border-slate-100 dark:border-slate-600 relative">
+                        <i class="ph ph-user text-[64px] text-primary dark:text-blue-400 opacity-40 transition-transform duration-500 group-hover:scale-110"></i>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-[1.35rem] font-black text-dark dark:text-white mb-2" data-ar="SUTRA – أزياء رجالي" data-en="SUTRA - Men Fashion">SUTRA – أزياء رجالي</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-[1.8] mb-5 font-medium flex-grow" data-ar="متجر إلكتروني متخصص في الأزياء الرجالية مع تجربة تسوق متكاملة." data-en="Online store specialized in men's fashion with seamless shopping.">متجر إلكتروني متخصص في الأزياء الرجالية مع تجربة تسوق متكاملة.</p>
+                        <div class="flex flex-wrap gap-2 justify-start text-[13px] font-bold text-primary dark:text-blue-400 mb-5">
+                            <span class="bg-primaryLight dark:bg-primary/20 px-3 py-1.5 rounded-lg" data-ar="أزياء رجالي" data-en="Men Fashion">أزياء رجالي</span>
+                        </div>
+                        <a href="https://sutrastores.com/" target="_blank" class="w-full flex items-center justify-center gap-2 bg-surface dark:bg-slate-700 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-colors font-bold py-3.5 rounded-xl text-[15px]">
+                            <span data-ar="استكشف المشروع" data-en="Explore Project">استكشف المشروع</span>
+                            <i class="ph ph-arrow-up-left text-lg rtl:rotate-0 ltr:rotate-90"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div> 
+
+            <div class="mt-10 flex flex-col items-center justify-center gap-4 max-w-md mx-auto">
+                <button id="load-more-btn" class="bg-surface dark:bg-slate-800 text-dark dark:text-white border border-transparent dark:border-slate-700 w-full py-4 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors">
+                    <span data-ar="عرض باقي المشاريع (7)" data-en="Load More Projects (7)">عرض باقي المشاريع (7)</span>
+                    <i class="ph ph-caret-down font-bold text-lg"></i>
+                </button>
+                <span id="projects-counter" class="text-slate-400 text-sm font-medium" data-ar="يتم عرض 3 من أصل 10 مشاريع" data-en="Showing 3 of 10 projects">يتم عرض 3 من أصل 10 مشاريع</span>
+            </div>
+        </section>
+
+        <!-- New Contact Section Before Footer -->
+        <section id="contact-section" class="px-5 pt-16 pb-16 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 relative z-10 transition-colors">
+            <div class="max-w-md mx-auto text-center rtl:text-right ltr:text-left">
+                <h2 class="text-[2.2rem] font-black text-dark dark:text-white mb-4 tracking-tight" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-[1.1rem] leading-relaxed mb-8 font-medium" data-ar="نحن هنا لمساعدتك في تحويل أفكارك إلى واقع. لا تتردد في التواصل معنا." data-en="We are here to help turn your ideas into reality. Feel free to contact us.">نحن هنا لمساعدتك في تحويل أفكارك إلى واقع. لا تتردد في التواصل معنا.</p>
+                
+                <div class="flex flex-col gap-4">
+                    <a href="mailto:vortx.dev1@gmail.com" class="w-full bg-primary text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-blue-800 transition-colors shadow-lg shadow-blue-500/30">
+                        <i class="ph ph-envelope-simple text-2xl"></i>
+                        <span dir="ltr">vortx.dev1@gmail.com</span>
+                    </a>
+                    <a href="https://wa.me/201129268929" target="_blank" class="w-full bg-transparent border-2 border-primary text-primary dark:text-blue-400 font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-primaryLight dark:hover:bg-primary/10 transition-colors">
+                        <i class="ph ph-whatsapp-logo text-2xl"></i>
+                        <span dir="ltr">+20 112 926 8929</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="relative bg-sectionBg dark:bg-slate-800/50 pt-16 pb-12 px-5 border-t border-slate-200 dark:border-slate-800 overflow-hidden transition-colors">
+            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] max-w-[600px] h-[300px] bg-primary/10 rounded-full blur-[80px] pointer-events-none z-0"></div>
+
+            <div class="relative max-w-md mx-auto w-full z-10 flex flex-col items-center">
+                <div class="mb-8 flex flex-col items-center text-center">
+                    <div class="font-black text-[2.2rem] text-[#182747] dark:text-white tracking-tight mb-4 flex items-center justify-center gap-2">VORTX DEV</div>
+                    <p class="text-slate-500 dark:text-slate-400 text-[15px] font-medium leading-[1.8] max-w-[320px]" data-ar="هندسة برمجيات متميزة وحلول رقمية مبتكرة تلبي احتياجات كافة قطاعات الأعمال." data-en="Premium software engineering and innovative digital solutions.">
+                        هندسة برمجيات متميزة وحلول رقمية مبتكرة تلبي احتياجات كافة قطاعات الأعمال.
+                    </p>
+                </div>
+
+                <div class="mb-10 w-full flex justify-center rtl:justify-start ltr:justify-end">
+                    <div class="text-center rtl:text-right ltr:text-left">
+                        <h4 class="font-bold text-dark dark:text-white text-lg mb-5" data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+                        <ul class="flex flex-wrap gap-4 justify-center rtl:justify-start ltr:justify-end text-slate-500 dark:text-slate-400 font-medium text-[15px]">
+                            <li><a href="#services" class="hover:text-primary transition-colors" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
+                            <li><a href="#portfolio" class="hover:text-primary transition-colors" data-ar="أعمالنا" data-en="Our Work">أعمالنا</a></li>
+                            <li><a href="#methodology" class="hover:text-primary transition-colors" data-ar="المنهجية" data-en="Methodology">المنهجية</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="border-slate-200 dark:border-slate-700 mb-6 w-full relative z-10">
+                <div class="text-center text-slate-400 text-[13px] font-medium tracking-wide relative z-10">
+                    © 2026 VORTX DEV. <span data-ar="جميع الحقوق محفوظة." data-en="All rights reserved.">جميع الحقوق محفوظة.</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- END MAIN PAGE -->
+
+
+    <!-- ========================================== -->
+    <!-- WIZARD PAGE CONTAINER (مساعد الاستكشاف) -->
+    <!-- ========================================== -->
+    <div id="wizard-page" class="hidden min-h-screen bg-wizardBg dark:bg-slate-900 pb-10 transition-colors">
+        
+        <!-- Header for Wizard -->
+        <header class="fixed top-0 w-full bg-white dark:bg-slate-800 z-50 px-4 h-16 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between shadow-sm transition-colors">
+            <div class="flex items-center gap-3">
+                <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/v1786664730/1000163758-removebg-preview_bwnpp6.png" class="w-8 h-8 object-contain">
+                <div class="font-black text-lg text-dark dark:text-white tracking-wide">VORTX DEV</div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="text-right rtl:text-right ltr:text-left">
+                    <p id="wizard-step-name" class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">مرحلة الاستكشاف</p>
+                    <p id="wizard-step-text" class="text-[13px] font-bold text-primary dark:text-blue-400">الخطوة 1 من 6</p>
+                </div>
+                <div class="w-[1px] h-6 bg-slate-200 dark:bg-slate-700"></div>
+                <button onclick="prevWizardStep()" class="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-dark dark:hover:text-white font-medium text-sm">
+                    <span data-ar="رجوع" data-en="Back">رجوع</span>
+                    <i class="ph ph-caret-left rtl:rotate-0 ltr:rotate-180"></i>
+                </button>
+            </div>
+            
+            <div class="absolute bottom-0 left-0 w-full h-[3px] bg-slate-100 dark:bg-slate-700">
+                <div id="wizard-progress" class="h-full bg-primary transition-all duration-300" style="width: 16.66%;"></div>
+            </div>
+        </header>
+
+        <!-- Wizard Content -->
+        <div class="pt-24 px-5 max-w-md mx-auto w-full">
+            
+            <!-- Step 1: Intro -->
+            <div id="step-1" class="wizard-step bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none border border-slate-50 dark:border-slate-700 transition-colors">
+                <h2 class="text-3xl font-black text-dark dark:text-white text-right rtl:text-right ltr:text-left leading-tight mb-4" data-ar="لنبدأ في<br>بناء مشروعك." data-en="Let's Start<br>Building.">لنبدأ في<br>بناء مشروعك.</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-base leading-relaxed text-right rtl:text-right ltr:text-left mb-8" data-ar="ساعدنا على فهم رؤيتك حتى نتمكن من تقديم حل تقني مخصص. تضمن لك عملية الاستكشاف هذه استشارتك بشكل مركز وعملي." data-en="Help us understand your vision so we can provide a custom tech solution.">
+                    ساعدنا على فهم رؤيتك حتى نتمكن من تقديم حل تقني مخصص. تضمن لك عملية الاستكشاف هذه استشارتك بشكل مركز وعملي.
+                </p>
+                <div class="flex flex-col gap-6 mb-10">
+                    <div class="flex items-start justify-end ltr:justify-start rtl:text-right ltr:text-left gap-4">
+                        <div class="order-2 ltr:order-none">
+                            <h4 class="font-bold text-dark dark:text-white text-[15px] mb-1" data-ar="ساعدنا على فهم مشروعك" data-en="Help us understand your project">ساعدنا على فهم مشروعك</h4>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1 order-1 ltr:order-none"><i class="ph ph-check font-bold"></i></div>
+                    </div>
+                    <div class="flex items-start justify-end ltr:justify-start rtl:text-right ltr:text-left gap-4">
+                        <div class="order-2 ltr:order-none">
+                            <h4 class="font-bold text-dark dark:text-white text-[15px] mb-1" data-ar="احصل على استشارة أكثر تركيزاً" data-en="Get a focused consultation">احصل على استشارة أكثر تركيزاً</h4>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1 order-1 ltr:order-none"><i class="ph ph-check font-bold"></i></div>
+                    </div>
+                    <div class="flex items-start justify-end ltr:justify-start rtl:text-right ltr:text-left gap-4">
+                        <div class="order-2 ltr:order-none">
+                            <h4 class="font-bold text-dark dark:text-white text-[15px] mb-1" data-ar="احجز اجتماعاً مع المؤسسين" data-en="Book a meeting with founders">احجز اجتماعاً مع المؤسسين</h4>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-primaryLight dark:bg-primary/20 text-primary dark:text-blue-400 flex items-center justify-center shrink-0 mt-1 order-1 ltr:order-none"><i class="ph ph-check font-bold"></i></div>
+                    </div>
+                </div>
+                <button onclick="nextWizardStep()" class="w-full bg-primary text-white font-bold py-4 rounded-xl flex justify-center items-center gap-2 hover:bg-blue-800 transition-colors">
+                    <span data-ar="ابدأ الاستكشاف" data-en="Start Discovery">ابدأ الاستكشاف</span>
+                    <i class="ph ph-arrow-left text-lg font-bold rtl:rotate-0 ltr:rotate-180"></i>
+                </button>
+            </div>
+
+            <!-- Step 2: What to build -->
+            <div id="step-2" class="wizard-step hidden bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none border border-slate-50 dark:border-slate-700 transition-colors">
+                <h2 class="text-[1.8rem] font-black text-dark dark:text-white text-right rtl:text-right ltr:text-left mb-3" data-ar="ماذا تريد أن تبني؟" data-en="What do you want to build?">ماذا تريد أن تبني؟</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-[15px] leading-relaxed text-right rtl:text-right ltr:text-left mb-8" data-ar="اختر المنصة التي تصف مشروعك بشكل أفضل." data-en="Choose the platform that best describes your project.">اختر المنصة التي تصف مشروعك بشكل أفضل.</p>
+                
+                <div class="flex flex-col gap-4">
+                    <label class="relative block cursor-pointer group">
+                        <!-- لا يوجد اختيار افتراضي -->
+                        <input type="radio" name="project_type" value="موقع ويب" class="peer sr-only wizard-radio">
+                        <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
+                            <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="موقع ويب" data-en="Website">موقع ويب</h4>
+                        </div>
+                    </label>
+                    <label class="relative block cursor-pointer group">
+                        <input type="radio" name="project_type" value="تطبيق ويب" class="peer sr-only wizard-radio">
+                        <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
+                            <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="تطبيق ويب" data-en="Web App">تطبيق ويب</h4>
+                        </div>
+                    </label>
+                    <label class="relative block cursor-pointer group">
+                        <input type="radio" name="project_type" value="تطبيق جوال" class="peer sr-only wizard-radio">
+                        <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
+                            <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="تطبيق جوال" data-en="Mobile App">تطبيق جوال</h4>
+                        </div>
+                    </label>
+                    <label class="relative block cursor-pointer group">
+                        <input type="radio" name="project_type" value="منصة SaaS" class="peer sr-only wizard-radio">
+                        <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
+                            <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="منصة SaaS" data-en="SaaS Platform">منصة SaaS</h4>
+                        </div>
+                    </label>
+                    <label class="relative block cursor-pointer group">
+                        <input type="radio" name="project_type" value="التجارة الإلكترونية" class="peer sr-only wizard-radio">
+                        <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
+                            <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="التجارة الإلكترونية" data-en="E-Commerce">التجارة الإلكترونية</h4>
+                        </div>
+                    </label>
+                    <label class="relative block cursor-pointer group">
+                        <input type="radio" name="project_type" value="أخرى" class="peer sr-only wizard-radio">
+                        <div class="border border-slate-200 dark:border-slate-600 rounded-2xl p-5 text-right rtl:text-right ltr:text-left transition-all group-hover:border-primary/50">
+                            <h4 class="font-bold text-dark dark:text-white text-lg mb-1" data-ar="أخرى / لست متأكداً بعد" data-en="Other / Not Sure Yet">أخرى / لست متأكداً بعد</h4>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="mt-8 flex flex-col gap-3">
+                    <button id="next-btn-2" disabled onclick="nextWizardStep()" class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" data-ar="متابعة" data-en="Continue">متابعة</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Description -->
+            <div id="step-3" class="wizard-step hidden bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none border border-slate-50 dark:border-slate-700 transition-colors">
+                <h2 class="text-[1.8rem] font-black text-dark dark:text-white text-right rtl:text-right ltr:text-left mb-3" data-ar="أخبرنا عن مشروعك." data-en="Tell us about your project.">أخبرنا عن مشروعك.</h2>
+                <div class="flex flex-col text-right rtl:text-right ltr:text-left">
+                    <textarea id="project-desc" rows="6" class="w-full border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-xl p-4 text-right rtl:text-right ltr:text-left focus:outline-none focus:border-primary" placeholder="أخبرنا عن أهداف مشروعك والجمهور المستهدف..."></textarea>
+                    <p class="text-slate-400 text-[13px] mt-2 text-left ltr:text-right" data-ar="١٠ أحرف كحد أدنى" data-en="Min 10 characters">١٠ أحرف كحد أدنى</p>
+                </div>
+                <div class="mt-8 flex flex-col gap-3">
+                    <button id="next-btn-3" disabled onclick="nextWizardStep()" class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" data-ar="متابعة" data-en="Continue">متابعة</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Budget & Timeline -->
+            <div id="step-4" class="wizard-step hidden bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none border border-slate-50 dark:border-slate-700 transition-colors">
+                <h2 class="text-[1.8rem] font-black text-dark dark:text-white text-right rtl:text-right ltr:text-left mb-3" data-ar="الميزانية والوقت" data-en="Budget & Timeline">الميزانية والوقت</h2>
+                
+                <div class="mb-8">
+                    <label class="font-bold text-dark dark:text-white text-[15px] mb-4 block text-right rtl:text-right ltr:text-left" data-ar="نطاق الميزانية" data-en="Budget Range">نطاق الميزانية</label>
+                    <div class="flex flex-col gap-3">
+                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
+                            <input type="radio" name="budget" value="1" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="أقل من 5,000 ج.م" data-en="Less than 5,000 EGP">أقل من 5,000 ج.م</span>
+                        </label>
+                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
+                            <input type="radio" name="budget" value="2" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="5,000 - 10,000 ج.م" data-en="5,000 - 10,000 EGP">5,000 - 10,000 ج.م</span>
+                        </label>
+                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
+                            <input type="radio" name="budget" value="3" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="10,000 - 25,000 ج.م" data-en="10,000 - 25,000 EGP">10,000 - 25,000 ج.م</span>
+                        </label>
+                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
+                            <input type="radio" name="budget" value="4" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="25,000 - 50,000 ج.م" data-en="25,000 - 50,000 EGP">25,000 - 50,000 ج.م</span>
+                        </label>
+                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
+                            <input type="radio" name="budget" value="5" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="+ 50,000 ج.م" data-en="+ 50,000 EGP">+ 50,000 ج.م</span>
+                        </label>
+                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
+                            <input type="radio" name="budget" value="6" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="لست متأكداً بعد" data-en="Not sure yet">لست متأكداً بعد</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="font-bold text-dark dark:text-white text-[15px] mb-4 block text-right rtl:text-right ltr:text-left" data-ar="الجدول الزمني" data-en="Timeline">الجدول الزمني</label>
+                    <div class="flex flex-col gap-3">
+                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
+                            <input type="radio" name="timeline" value="1" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="أقل من شهر" data-en="Less than a month">أقل من شهر</span>
+                        </label>
+                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
+                            <input type="radio" name="timeline" value="2" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="١ - ٢ شهر" data-en="1-2 months">١ - ٢ شهر</span>
+                        </label>
+                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
+                            <input type="radio" name="timeline" value="3" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="٢ - ٤ أشهر" data-en="2-4 months">٢ - ٤ أشهر</span>
+                        </label>
+                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
+                            <input type="radio" name="timeline" value="4" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="٤ - ٦ أشهر" data-en="4-6 months">٤ - ٦ أشهر</span>
+                        </label>
+                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
+                            <input type="radio" name="timeline" value="5" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="+ ٦ أشهر" data-en="+ 6 months">+ ٦ أشهر</span>
+                        </label>
+                        <label class="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-600 rounded-xl cursor-pointer hover:border-primary transition-colors has-[:checked]:border-primary has-[:checked]:bg-primaryLight dark:has-[:checked]:bg-primary/20">
+                            <input type="radio" name="timeline" value="6" class="w-5 h-5 accent-primary border-slate-300">
+                            <span class="text-dark dark:text-white font-bold text-[15px] rtl:order-none ltr:order-first" data-ar="لست متأكداً بعد" data-en="Not sure yet">لست متأكداً بعد</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex flex-col gap-3">
+                    <button id="next-btn-4" disabled onclick="nextWizardStep()" class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" data-ar="متابعة" data-en="Continue">متابعة</button>
+                </div>
+            </div>
+
+            <!-- Step 5: Contact -->
+            <div id="step-5" class="wizard-step hidden bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none border border-slate-50 dark:border-slate-700 transition-colors">
+                <h2 class="text-[1.8rem] font-black text-dark dark:text-white text-right rtl:text-right ltr:text-left mb-5" data-ar="معلومات الاتصال" data-en="Contact Info">معلومات الاتصال</h2>
+                <div class="flex flex-col gap-5 text-right rtl:text-right ltr:text-left">
+                    <div>
+                        <label class="font-bold text-dark dark:text-white text-[15px] mb-2 block" data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</label>
+                        <input type="text" id="contact-name" class="w-full border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-xl p-4 text-right rtl:text-right ltr:text-left focus:outline-none focus:border-primary">
+                    </div>
+                    <div>
+                        <label class="font-bold text-dark dark:text-white text-[15px] mb-2 block" data-ar="رقم الواتساب" data-en="WhatsApp Number">رقم الواتساب</label>
+                        <input type="tel" id="contact-whatsapp" class="w-full border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-xl p-4 text-left focus:outline-none focus:border-primary" dir="ltr" placeholder="+20 123 456 7890">
+                    </div>
+                    <div>
+                        <label class="font-bold text-dark dark:text-white text-[15px] mb-2 block" data-ar="البريد الإلكتروني (الشركة أو الشخصي)" data-en="Email (Work or Personal)">البريد الإلكتروني (الشركة أو الشخصي)</label>
+                        <input type="email" id="contact-email" class="w-full border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-xl p-4 text-left focus:outline-none focus:border-primary" dir="ltr" placeholder="name@domain.com">
+                    </div>
+                </div>
+                <div class="mt-8 flex flex-col gap-3">
+                    <button id="submit-btn-5" disabled onclick="submitWizard()" class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" data-ar="إرسال الطلب" data-en="Submit Request">إرسال الطلب</button>
+                </div>
+            </div>
+
+            <!-- Step 6: Success -->
+            <div id="step-6" class="wizard-step hidden bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none border border-slate-50 dark:border-slate-700 text-center py-16 transition-colors">
+                <div class="w-20 h-20 rounded-full bg-green-100 text-green-500 flex items-center justify-center mx-auto mb-6">
+                    <i class="ph ph-check-circle text-[40px]"></i>
+                </div>
+                <h2 class="text-[1.8rem] font-black text-dark dark:text-white mb-3" data-ar="تم استلام طلبك بنجاح!" data-en="Request Received Successfully!">تم استلام طلبك بنجاح!</h2>
+                <button onclick="closeWizard()" class="w-full bg-surface dark:bg-slate-700 text-primary dark:text-white font-bold py-4 rounded-xl mt-8 transition-colors" data-ar="العودة للصفحة الرئيسية" data-en="Return to Home">العودة للصفحة الرئيسية</button>
+            </div>
+
         </div>
     </div>
+    <!-- END WIZARD PAGE -->
 
-    <!-- Scroll Progress -->
-    <div class="scroll-progress"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
 
-    <!-- Navbar (Dumbbell) -->
-    <nav class="dumbell-wrapper" dir="ltr">
-        <div class="weight-stack">
-            <div class="d-lock"></div>
-            <div class="d-plate plate-s"></div>
-            <div class="d-plate plate-m"></div>
-            <div class="d-plate plate-l"></div>
-        </div>
-        <div class="dumbell-bar" id="dumbell-links-container" dir="rtl">
-            <a href="#home" class="nav-item active" data-target="hero">
-                <i class="fa-solid fa-house"></i><span data-i18n="nav_home">الرئيسية</span>
-            </a>
-            <a href="#home" class="nav-item" data-target="classes-sec">
-                <i class="fa-solid fa-calendar-check"></i><span data-i18n="nav_classes">الكلاسات</span>
-            </a>
-            <a href="#home" class="nav-item" data-target="trainers-sec">
-                <i class="fa-solid fa-user-ninja"></i><span data-i18n="nav_trainers">المدربين</span>
-            </a>
-            <a href="#home" class="nav-item" data-target="plans-sec">
-                <i class="fa-solid fa-credit-card"></i><span data-i18n="nav_plans">الاشتراكات</span>
-            </a>
-            <!-- NEW: Dashboard link -->
-            <a href="#dashboard" class="nav-item" data-nav="dashboard">
-                <i class="fa-solid fa-gauge-high"></i><span>لوحتي</span>
-            </a>
-            <a href="#login" class="nav-item" data-nav="auth">
-                <i class="fa-regular fa-user"></i><span data-i18n="nav_account">حسابي</span>
-            </a>
-        </div>
-        <div class="weight-stack">
-            <div class="d-plate plate-l"></div>
-            <div class="d-plate plate-m"></div>
-            <div class="d-plate plate-s"></div>
-            <div class="d-lock"></div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="container mx-auto px-4">
-
-        <!-- ==================== VIEW: HOME ==================== -->
-        <div id="home" class="spa-view active-view">
-            <!-- Hero -->
-            <section id="hero" class="relative w-full h-[70vh] rounded-[32px] overflow-hidden mb-12 shadow-2xl reveal active">
-                <img src="https://res.cloudinary.com/dyhlzplzb/image/upload/f_auto,q_auto/1000146743_qxl8zs" class="absolute inset-0 w-full h-full object-cover" alt="Hero Background">
-                <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/30"></div>
-                <div class="relative z-10 h-full flex flex-col justify-center px-8 lg:px-16 text-white max-w-3xl">
-                    <span class="bg-red-600 px-3 py-1 rounded-full text-[0.65rem] font-bold uppercase tracking-widest w-max mb-4" data-i18n="hero_badge">تحديث 2026 - الأفضل تقييماً</span>
-                    <h1 class="text-4xl md:text-6xl font-black mb-4 leading-tight" data-i18n="hero_title">
-                        أعد اكتشاف <br><span class="text-red-500">قوتك الحقيقية</span>
-                    </h1>
-                    <p class="text-base opacity-80 mb-8 max-w-xl leading-relaxed" data-i18n="hero_sub">
-                        منظومة متكاملة تجمع بين أحدث الأجهزة، نخبة المدربين، وتقنيات الذكاء الاصطناعي لتضمن لك الوصول لهدفك.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <button class="btn-primary" onclick="document.getElementById('plans-sec').scrollIntoView()" data-i18n="start_now">انضم إلينا الآن</button>
-                        <button class="btn-outline !text-white !border-white hover:!bg-white hover:!text-black" onclick="document.getElementById('tools-sec').scrollIntoView()" data-i18n="try_tools">جرب أدواتنا</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Stats -->
-            <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 reveal">
-                <div class="clean-card text-center !p-4">
-                    <h3 class="text-3xl font-black text-red-500 mb-1">50+</h3>
-                    <p class="text-xs font-bold text-muted uppercase" data-i18n="stat_1">جهاز تكنولوجي</p>
-                </div>
-                <div class="clean-card text-center !p-4">
-                    <h3 class="text-3xl font-black text-red-500 mb-1">12</h3>
-                    <p class="text-xs font-bold text-muted uppercase" data-i18n="stat_2">مدرب معتمد</p>
-                </div>
-                <div class="clean-card text-center !p-4">
-                    <h3 class="text-3xl font-black text-red-500 mb-1">30+</h3>
-                    <p class="text-xs font-bold text-muted uppercase" data-i18n="stat_3">كلاس أسبوعياً</p>
-                </div>
-                <div class="clean-card text-center !p-4 bg-[var(--text-main)] text-[var(--bg-main)] border-transparent">
-                    <h3 class="text-3xl font-black text-red-500 mb-1">24/7</h3>
-                    <p class="text-xs font-bold uppercase opacity-80" data-i18n="stat_4">مفتوح دائماً</p>
-                </div>
-            </section>
-
-            <!-- Classes -->
-            <section id="classes-sec" class="section-py reveal">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-black mb-2" data-i18n="sec_classes_title">الكلاسات الجماعية</h2>
-                    <p class="text-muted text-sm max-w-xl mx-auto" data-i18n="sec_classes_sub">برامج تدريبية مصممة لتحدي قدراتك في بيئة حماسية.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="clean-card !p-0 overflow-hidden group">
-                        <div class="h-40 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                            <span class="absolute top-3 right-3 bg-red-600 text-white text-[0.65rem] font-bold px-2 py-1 rounded uppercase">HIIT</span>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-xl font-bold mb-1">CrossFit Elite</h3>
-                            <p class="text-muted text-xs mb-4" data-i18n="class_1_desc">تمارين وظيفية عالية الكثافة لرفع مستويات اللياقة وحرق الدهون.</p>
-                            <div class="flex justify-between items-center pt-3 border-t border-[var(--border)]">
-                                <span class="font-bold text-xs"><i class="fa-regular fa-clock text-red-500 mr-1"></i> 60 Min</span>
-                                <button class="text-red-500 font-bold text-sm hover:text-red-700 transition-colors" onclick="showToast('تم الحجز بنجاح! 🎉', 'success')" data-i18n="book_now">احجز الآن <i class="fa-solid fa-arrow-left flip-icon text-xs"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clean-card !p-0 overflow-hidden group">
-                        <div class="h-40 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f4ff?w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                            <span class="absolute top-3 right-3 bg-blue-600 text-white text-[0.65rem] font-bold px-2 py-1 rounded uppercase">Strength</span>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-xl font-bold mb-1">Powerlifting</h3>
-                            <p class="text-muted text-xs mb-4" data-i18n="class_2_desc">كلاس متخصص في الأوزان الحرة لبناء كتلة عضلية وقوة جبارة.</p>
-                            <div class="flex justify-between items-center pt-3 border-t border-[var(--border)]">
-                                <span class="font-bold text-xs"><i class="fa-regular fa-clock text-red-500 mr-1"></i> 90 Min</span>
-                                <button class="text-red-500 font-bold text-sm hover:text-red-700 transition-colors" onclick="showToast('تم الحجز بنجاح! 🎉', 'success')" data-i18n="book_now">احجز الآن <i class="fa-solid fa-arrow-left flip-icon text-xs"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clean-card !p-0 overflow-hidden group">
-                        <div class="h-40 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                            <span class="absolute top-3 right-3 bg-green-600 text-white text-[0.65rem] font-bold px-2 py-1 rounded uppercase">Combat</span>
-                        </div>
-                        <div class="p-5">
-                            <h3 class="text-xl font-bold mb-1">MMA & Boxing</h3>
-                            <p class="text-muted text-xs mb-4" data-i18n="class_3_desc">تعلم فنون القتال والدفاع عن النفس واطرد التوتر مع أبطال اللعبة.</p>
-                            <div class="flex justify-between items-center pt-3 border-t border-[var(--border)]">
-                                <span class="font-bold text-xs"><i class="fa-regular fa-clock text-red-500 mr-1"></i> 60 Min</span>
-                                <button class="text-red-500 font-bold text-sm hover:text-red-700 transition-colors" onclick="showToast('تم الحجز بنجاح! 🎉', 'success')" data-i18n="book_now">احجز الآن <i class="fa-solid fa-arrow-left flip-icon text-xs"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Trainers -->
-            <section id="trainers-sec" class="section-py reveal">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-black mb-2" data-i18n="sec_trainers_title">نخبة المدربين</h2>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                    <div class="clean-card !p-4"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=200&h=200&fit=crop" class="w-20 h-20 rounded-full mx-auto mb-3 border-2 border-[var(--border)] object-cover" loading="lazy"><h3 class="text-sm font-bold">Ahmed Ali</h3><p class="text-red-500 text-[0.65rem] font-bold uppercase mb-2">Head Coach</p></div>
-                    <div class="clean-card !p-4"><img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=200&h=200&fit=crop" class="w-20 h-20 rounded-full mx-auto mb-3 border-2 border-[var(--border)] object-cover" loading="lazy"><h3 class="text-sm font-bold">Sara Kamal</h3><p class="text-red-500 text-[0.65rem] font-bold uppercase mb-2">Yoga & Mobility</p></div>
-                    <div class="clean-card !p-4"><img src="https://images.unsplash.com/photo-1567598508481-65985588e295?w=200&h=200&fit=crop" class="w-20 h-20 rounded-full mx-auto mb-3 border-2 border-[var(--border)] object-cover" loading="lazy"><h3 class="text-sm font-bold">Omar Tarek</h3><p class="text-red-500 text-[0.65rem] font-bold uppercase mb-2">Strength Spec.</p></div>
-                    <div class="clean-card !p-4"><img src="https://images.unsplash.com/photo-1609899517236-7783bc06d3d3?w=200&h=200&fit=crop" class="w-20 h-20 rounded-full mx-auto mb-3 border-2 border-[var(--border)] object-cover" loading="lazy"><h3 class="text-sm font-bold">Nour Hisham</h3><p class="text-red-500 text-[0.65rem] font-bold uppercase mb-2">Cardio & HIIT</p></div>
-                </div>
-            </section>
-
-            <!-- Plans -->
-            <section id="plans-sec" class="section-py reveal">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-black mb-2" data-i18n="sec_plans_title">خطط الاشتراكات</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center max-w-5xl mx-auto">
-                    <div class="clean-card text-center">
-                        <h3 class="text-base font-bold text-muted mb-1">Basic (الشهر الذهبي)</h3>
-                        <div class="text-3xl font-black my-4">EGP 800<span class="text-xs font-normal text-muted">/شهر</span></div>
-                        <ul class="text-start text-xs space-y-3 mb-6 font-bold opacity-80 border-t border-[var(--border)] pt-4 dir-align">
-                            <li><i class="fa-solid fa-check text-green-500 mx-2"></i>دخول للجيم مفتوح</li>
-                            <li><i class="fa-solid fa-check text-green-500 mx-2"></i>استخدام أجهزة الكارديو</li>
-                            <li class="opacity-50"><i class="fa-solid fa-xmark text-red-500 mx-2"></i>الكلاسات الجماعية</li>
-                        </ul>
-                        <button class="btn-outline w-full text-xs" onclick="showToast('تم اختيار الباقة الأساسية', 'info')" data-i18n="subscribe_btn">اختيار الباقة</button>
-                    </div>
-                    <div class="clean-card text-center border-2 border-red-500 relative transform md:-translate-y-2 shadow-lg">
-                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-500 text-white px-3 py-0.5 rounded-full text-[0.65rem] font-bold uppercase" data-i18n="best_seller">الأكثر مبيعاً</div>
-                        <h3 class="text-base font-bold text-red-500 mb-1">PRO (باقة 3 شهور)</h3>
-                        <div class="text-4xl font-black my-4">EGP 2100<span class="text-xs font-normal text-muted">/المدة</span></div>
-                        <ul class="text-start text-xs space-y-3 mb-6 font-bold opacity-90 border-t border-[var(--border)] pt-4 dir-align">
-                            <li><i class="fa-solid fa-check text-red-500 mx-2"></i>مميزات الباقة الأساسية</li>
-                            <li><i class="fa-solid fa-check text-red-500 mx-2"></i>دخول مجاني للكلاسات</li>
-                            <li><i class="fa-solid fa-check text-red-500 mx-2"></i>جلسة تقييم InBody</li>
-                        </ul>
-                        <button class="btn-primary w-full text-xs" onclick="showToast('تم الاشتراك في الباقة PRO بنجاح! 🎉', 'success')" data-i18n="subscribe_btn_pro">اشترك الآن أونلاين</button>
-                    </div>
-                    <div class="clean-card text-center">
-                        <h3 class="text-base font-bold text-muted mb-1">VIP (السنوية)</h3>
-                        <div class="text-3xl font-black my-4">EGP 7500<span class="text-xs font-normal text-muted">/سنة</span></div>
-                        <ul class="text-start text-xs space-y-3 mb-6 font-bold opacity-80 border-t border-[var(--border)] pt-4 dir-align">
-                            <li><i class="fa-solid fa-check text-green-500 mx-2"></i>دخول لامحدود</li>
-                            <li><i class="fa-solid fa-check text-green-500 mx-2"></i>12 جلسة تدريب شخصي</li>
-                            <li><i class="fa-solid fa-check text-green-500 mx-2"></i>إمكانية التجميد</li>
-                        </ul>
-                        <button class="btn-outline w-full text-xs" onclick="showToast('تم اختيار الباقة VIP', 'info')" data-i18n="subscribe_btn">اختيار الباقة</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Calculator -->
-            <section id="tools-sec" class="section-py reveal">
-                <div class="bg-[var(--text-main)] text-[var(--bg-main)] rounded-[24px] p-6 md:p-10 shadow-xl max-w-5xl mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h2 class="text-3xl font-black mb-3" data-i18n="sec_tools_title">حاسبة الاستقلاب الذكية</h2>
-                            <p class="opacity-80 text-sm mb-6" data-i18n="sec_tools_sub">أداة دقيقة لحساب احتياجك اليومي (TDEE) ومؤشر كتلة الجسم (BMI).</p>
-                            <div class="grid grid-cols-2 gap-3 text-center">
-                                <div class="p-3 bg-[var(--bg-main)] text-[var(--text-main)] rounded-lg">
-                                    <span class="block text-[0.65rem] font-bold uppercase mb-1 text-muted">TDEE (KCAL)</span>
-                                    <span class="text-2xl font-black text-red-500" id="res-tdee">---</span>
-                                </div>
-                                <div class="p-3 bg-[var(--bg-main)] text-[var(--text-main)] rounded-lg">
-                                    <span class="block text-[0.65rem] font-bold uppercase mb-1 text-muted">BMI</span>
-                                    <span class="text-2xl font-black text-red-500" id="res-bmi">---</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-[var(--bg-main)] text-[var(--text-main)] p-5 rounded-xl">
-                            <div class="grid grid-cols-2 gap-3 mb-4">
-                                <div><label class="label-clean">الوزن (KG)</label><input type="number" id="c-weight" class="input-clean !p-2" placeholder="80"></div>
-                                <div><label class="label-clean">الطول (CM)</label><input type="number" id="c-height" class="input-clean !p-2" placeholder="180"></div>
-                                <div><label class="label-clean">العمر</label><input type="number" id="c-age" class="input-clean !p-2" placeholder="25"></div>
-                                <div>
-                                    <label class="label-clean">النوع</label>
-                                    <select id="c-gender" class="input-clean !p-2">
-                                        <option value="m">ذكر</option><option value="f">أنثى</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button class="btn-primary w-full text-sm" onclick="runCalc()" data-i18n="calc_btn">احسب نتائجي الآن</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Contact -->
-            <section id="contact-lead" class="section-py reveal">
-                <div class="max-w-3xl mx-auto clean-card">
-                    <div class="text-center mb-8">
-                        <h2 class="text-3xl font-black mb-2" data-i18n="sec_contact_title">تواصل للإدارة</h2>
-                        <p class="text-muted text-sm font-bold" data-i18n="sec_contact_sub">هل لديك استفسار إداري أو تود الشراكة؟ املأ النموذج وسنتواصل معك.</p>
-                    </div>
-                    <form onsubmit="event.preventDefault(); showToast('تم الإرسال بنجاح! ✅', 'success');">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div><label class="label-clean" data-i18n="form_name">الاسم</label><input type="text" class="input-clean" required></div>
-                            <div><label class="label-clean" data-i18n="form_phone">رقم الهاتف</label><input type="tel" class="input-clean" dir="ltr" required></div>
-                        </div>
-                        <div class="mb-4">
-                            <label class="label-clean" data-i18n="form_type">نوع الاستفسار</label>
-                            <select class="input-clean" required>
-                                <option>شراكة تجارية</option><option>استفسار عام</option><option>شكوى</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <label class="label-clean" data-i18n="form_msg">الرسالة</label>
-                            <textarea class="input-clean h-24 resize-none" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary w-full text-sm"><i class="fa-regular fa-paper-plane mr-2 ml-2"></i> <span data-i18n="form_submit">إرسال الطلب</span></button>
-                    </form>
-                </div>
-            </section>
-        </div>
-
-        <!-- ==================== VIEW: LOGIN ==================== -->
-        <div id="login" class="spa-view pt-10 pb-20">
-            <div class="max-w-sm mx-auto clean-card mt-10">
-                <div class="text-center mb-6">
-                    <i class="fa-regular fa-circle-user text-4xl text-red-500 mb-3"></i>
-                    <h2 class="text-2xl font-black mb-1" data-i18n="login_title">تسجيل الدخول</h2>
-                    <p class="text-muted text-xs font-bold" data-i18n="login_sub">مرحباً بعودتك إلى مساحتك الخاصة</p>
-                </div>
-                <form onsubmit="event.preventDefault(); window.location.hash='#dashboard';">
-                    <div class="mb-4"><label class="label-clean" data-i18n="form_email">البريد الإلكتروني</label><input type="email" class="input-clean" required dir="ltr"></div>
-                    <div class="mb-5">
-                        <label class="label-clean flex justify-between"><span data-i18n="form_pass">كلمة المرور</span><a href="#" class="text-red-500 hover:underline text-[0.7rem]">نسيت؟</a></label>
-                        <input type="password" class="input-clean" required dir="ltr">
-                    </div>
-                    <button type="submit" class="btn-primary w-full text-sm" data-i18n="login_btn_submit">دخول للداشبورد</button>
-                </form>
-                <p class="text-center text-xs font-bold text-muted border-t border-[var(--border)] pt-4 mt-4">ليس لديك حساب؟ <a href="#register" class="text-red-500 hover:underline">سجل الآن</a></p>
-            </div>
-        </div>
-
-        <!-- ==================== VIEW: REGISTER ==================== -->
-        <div id="register" class="spa-view pt-10 pb-20">
-            <div class="max-w-sm mx-auto clean-card mt-10">
-                <div class="text-center mb-6">
-                    <h2 class="text-2xl font-black mb-1" data-i18n="reg_title">إنشاء حساب</h2>
-                    <p class="text-muted text-xs font-bold" data-i18n="reg_sub">خطوتك الأولى نحو بناء بطل</p>
-                </div>
-                <form onsubmit="event.preventDefault(); window.location.hash='#onboarding';">
-                    <div class="mb-4"><label class="label-clean" data-i18n="form_name">الاسم</label><input type="text" class="input-clean" required></div>
-                    <div class="mb-4"><label class="label-clean" data-i18n="form_email">البريد</label><input type="email" class="input-clean" required dir="ltr"></div>
-                    <div class="mb-5"><label class="label-clean" data-i18n="form_pass">المرور</label><input type="password" class="input-clean" required dir="ltr"></div>
-                    <button type="submit" class="btn-primary w-full text-sm" data-i18n="reg_btn_submit">التالي</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- ==================== VIEW: ONBOARDING ==================== -->
-        <div id="onboarding" class="spa-view pt-10 pb-20">
-            <div class="max-w-lg mx-auto clean-card text-center mt-10">
-                <h2 class="text-2xl font-black mb-1" data-i18n="onb_title">أكمل بياناتك الطبية</h2>
-                <p class="text-muted text-xs font-bold mb-6" data-i18n="onb_sub">لتفعيل الذكاء الاصطناعي لك.</p>
-                <form onsubmit="event.preventDefault(); 
-                    // Save initial weight/height to user profile
-                    const w = document.getElementById('onb-weight').value;
-                    const h = document.getElementById('onb-height').value;
-                    if(w && h) {
-                        let profile = JSON.parse(localStorage.getItem('fitcore_user')) || {};
-                        profile.weight = w;
-                        profile.height = h;
-                        localStorage.setItem('fitcore_user', JSON.stringify(profile));
-                        showToast('تم حفظ البيانات! 🎉', 'success');
-                        window.location.hash='#dashboard';
-                    } else {
-                        showToast('يرجى إدخال الوزن والطول', 'error');
-                    }
-                ">
-                    <div class="grid grid-cols-2 gap-3 mb-4 text-start">
-                        <div><label class="label-clean">الوزن (KG)</label><input id="onb-weight" type="number" class="input-clean" required></div>
-                        <div><label class="label-clean">الطول (CM)</label><input id="onb-height" type="number" class="input-clean" required></div>
-                    </div>
-                    <div class="mb-6 text-start">
-                        <label class="label-clean">الهدف الأساسي</label>
-                        <select class="input-clean" required>
-                            <option>خسارة الدهون</option><option>بناء الكتلة</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-primary w-full text-sm" data-i18n="onb_btn">حفظ وإنهاء</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- ==================== NEW VIEW: DASHBOARD ==================== -->
-        <div id="dashboard" class="spa-view pt-10 pb-20">
-            <div class="max-w-5xl mx-auto">
-                <h2 class="text-3xl font-black mb-6 text-center">لوحة التحكم الشخصية</h2>
-                
-                <!-- Profile Card -->
-                <div class="clean-card mb-8">
-                    <div class="flex flex-col md:flex-row items-center gap-8">
-                        <!-- Avatar -->
-                        <div class="flex-shrink-0">
-                            <div class="avatar-upload" id="avatarContainer">
-                                <img id="avatarPreview" src="https://ui-avatars.com/api/?name=User&background=e11d48&color=fff&size=120" alt="Profile">
-                                <div class="overlay"><i class="fa-regular fa-camera"></i> تغيير</div>
-                                <input type="file" id="avatarInput" accept="image/*">
-                            </div>
-                        </div>
-                        <!-- Profile Form -->
-                        <div class="flex-1 w-full">
-                            <form id="profileForm" onsubmit="saveProfile(event)">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="label-clean">الاسم</label>
-                                        <input type="text" id="profileName" class="input-clean" placeholder="أدخل اسمك" required>
-                                    </div>
-                                    <div>
-                                        <label class="label-clean">الوزن (كجم)</label>
-                                        <input type="number" id="profileWeight" class="input-clean" placeholder="مثال: 80" required step="0.1">
-                                    </div>
-                                    <div>
-                                        <label class="label-clean">الطول (سم)</label>
-                                        <input type="number" id="profileHeight" class="input-clean" placeholder="مثال: 180" required step="0.1">
-                                    </div>
-                                    <div class="flex items-end">
-                                        <button type="submit" class="btn-primary w-full text-sm">
-                                            <i class="fa-regular fa-floppy-disk ml-2 mr-2"></i> حفظ التغييرات
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Metrics Grid -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                    <div class="metric-box">
-                        <div class="value" id="metricBmi">--</div>
-                        <div class="label">BMI</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="value" id="metricTdee">--</div>
-                        <div class="label">TDEE (kcal)</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="value" id="metricBmr">--</div>
-                        <div class="label">BMR (kcal)</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="value" id="metricIdeal">--</div>
-                        <div class="label">الوزن المثالي</div>
-                    </div>
-                </div>
-
-                <!-- Attendance System -->
-                <div class="clean-card">
-                    <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
-                        <h3 class="text-xl font-bold"><i class="fa-regular fa-calendar-check text-red-500 ml-2 mr-2"></i> نظام الحضور</h3>
-                        <button onclick="checkIn()" class="btn-primary text-sm !py-2 !px-4">
-                            <i class="fa-regular fa-pen-to-square ml-2 mr-2"></i> تسجيل حضور اليوم
-                        </button>
-                    </div>
-                    <div id="attendanceList" class="max-h-60 overflow-y-auto">
-                        <!-- سيتم ملؤها بواسطة JavaScript -->
-                        <p class="text-muted text-center text-sm">لا توجد تسجيلات حضور بعد</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Mobile Bottom Navigation -->
-    <nav class="mobile-bottom-nav" dir="rtl">
-        <a href="#home" class="nav-item active" data-target="hero">
-            <i class="fa-solid fa-house"></i><span>الرئيسية</span>
-        </a>
-        <a href="#home" class="nav-item" data-target="classes-sec">
-            <i class="fa-solid fa-calendar-check"></i><span>كلاسات</span>
-        </a>
-        <a href="#home" class="nav-item" data-target="plans-sec">
-            <i class="fa-solid fa-credit-card"></i><span>اشتراكات</span>
-        </a>
-        <a href="#dashboard" class="nav-item" data-nav="dashboard">
-            <i class="fa-solid fa-gauge-high"></i><span>لوحتي</span>
-        </a>
-        <a href="#login" class="nav-item" data-nav="auth">
-            <i class="fa-regular fa-user"></i><span>حسابي</span>
-        </a>
-    </nav>
-
-    <!-- Footer -->
-    <footer class="bg-black text-white pt-12 pb-6 mt-10 border-t-2 border-red-600">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-2xl font-black tracking-widest mb-4">FITCORE</h2>
-            <div class="flex justify-center gap-5 mb-8 text-gray-400">
-                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-            </div>
-            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-bold">
-                <p>&copy; 2026 FITCORE. All rights reserved.</p>
-                <p class="mt-2 md:mt-0 tracking-wider">Developed by <span class="text-red-500 font-black text-sm ml-1 mr-1">ELNENX</span></p>
-            </div>
-        </div>
-    </footer>
-
+    <!-- JavaScript logic -->
     <script>
-        // =====================================================================
-        // 1. TOAST SYSTEM
-        // =====================================================================
-        const toastContainer = document.createElement('div');
-        toastContainer.className = 'toast-container';
-        document.body.appendChild(toastContainer);
+        // ==========================================
+        // 1. Language & Theme Toggle
+        // ==========================================
+        let isDark = false;
+        let isEn = false;
 
-        function showToast(message, type = 'info', duration = 3500) {
-            const icons = {
-                success: 'fa-regular fa-circle-check',
-                error: 'fa-regular fa-circle-xmark',
-                info: 'fa-regular fa-circle-info'
-            };
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.innerHTML = `
-                <span class="toast-icon"><i class="${icons[type] || icons.info}"></i></span>
-                <span>${message}</span>
-                <button class="toast-close"><i class="fa-regular fa-xmark"></i></button>
-            `;
-            toastContainer.appendChild(toast);
-            requestAnimationFrame(() => toast.classList.add('show'));
-            const close = () => {
-                toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 400);
-            };
-            toast.querySelector('.toast-close').addEventListener('click', close);
-            if (duration > 0) setTimeout(close, duration);
-            return toast;
+        function toggleTheme() {
+            isDark = !isDark;
+            document.documentElement.classList.toggle('dark', isDark);
+            document.getElementById('theme-icon').className = isDark ? 'ph ph-sun text-[22px]' : 'ph ph-moon text-[22px]';
         }
 
-        // =====================================================================
-        // 2. THEME TOGGLE
-        // =====================================================================
-        const themeBtn = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        themeBtn.addEventListener('click', () => {
-            themeBtn.classList.add('rotate');
-            setTimeout(() => themeBtn.classList.remove('rotate'), 500);
-            if (document.documentElement.getAttribute('data-theme') === 'dark') {
-                document.documentElement.removeAttribute('data-theme');
-                themeIcon.className = 'fa-regular fa-moon';
+        function toggleLang() {
+            isEn = !isEn;
+            document.documentElement.dir = isEn ? 'ltr' : 'rtl';
+            document.documentElement.lang = isEn ? 'en' : 'ar';
+            
+            document.querySelectorAll('[data-ar]').forEach(el => {
+                if(isEn && el.dataset.en) {
+                    el.innerHTML = el.dataset.en;
+                } else {
+                    el.innerHTML = el.dataset.ar;
+                }
+            });
+
+            // Adjust texts in Javascript steps
+            updateWizardUI();
+        }
+
+        // ==========================================
+        // 2. Interactive Menu
+        // ==========================================
+        let isMenuOpen = false;
+        const navMenuContainer = document.getElementById('nav-menu-container');
+        const navBrand = document.getElementById('nav-brand');
+        const navActions = document.getElementById('nav-actions');
+        const menuIcon = document.getElementById('menu-icon');
+        const menuDropdown = document.getElementById('menu-dropdown');
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                navBrand.classList.add('hide-nav-item');
+                navActions.classList.add('hide-nav-item');
+                navMenuContainer.classList.remove('w-[52px]');
+                navMenuContainer.classList.add('w-full');
+                
+                menuIcon.className = 'ph ph-x text-[24px] transition-transform duration-300';
+
+                menuDropdown.classList.remove('hidden');
+                setTimeout(() => menuDropdown.classList.remove('opacity-0'), 200);
             } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeIcon.className = 'fa-regular fa-sun';
+                menuDropdown.classList.add('opacity-0');
+                
+                setTimeout(() => {
+                    menuDropdown.classList.add('hidden');
+                    
+                    navMenuContainer.classList.remove('w-full');
+                    navMenuContainer.classList.add('w-[52px]');
+                    menuIcon.className = 'ph ph-list text-[24px] transition-transform duration-300';
+                    
+                    navBrand.classList.remove('hide-nav-item');
+                    navActions.classList.remove('hide-nav-item');
+                }, 300);
             }
+        }
+
+        // ==========================================
+        // 3. SPA Routing & Wizard Logic
+        // ==========================================
+        const mainPage = document.getElementById('main-page');
+        const wizardPage = document.getElementById('wizard-page');
+        const wizardSteps = document.querySelectorAll('.wizard-step');
+        const progressBar = document.getElementById('wizard-progress');
+        const stepText = document.getElementById('wizard-step-text');
+        const stepNameEl = document.getElementById('wizard-step-name');
+        
+        let currentStep = 1;
+        const totalSteps = 6;
+
+        function getStepName(stepIndex) {
+            const namesAr = ["مرحلة الاستكشاف", "بنية المشروع", "تفاصيل المشروع", "الميزانية والجدول الزمني", "معلومات الاتصال", "مكتمل"];
+            const namesEn = ["Discovery Phase", "Architecture", "Project Details", "Budget & Timeline", "Contact Info", "Completed"];
+            return isEn ? namesEn[stepIndex] : namesAr[stepIndex];
+        }
+
+        function handleRouting() {
+            if (window.location.hash === '#start-project') {
+                mainPage.classList.add('hidden');
+                wizardPage.classList.remove('hidden');
+                window.scrollTo(0, 0);
+                if(currentStep === 6) currentStep = 1; 
+                updateWizardUI();
+                
+                document.querySelectorAll('.wizard-radio').forEach(r => r.checked = false);
+                document.getElementById('project-desc').value = '';
+                document.getElementById('contact-name').value = '';
+                document.getElementById('contact-whatsapp').value = '';
+                document.getElementById('contact-email').value = '';
+                validateStep();
+            } else {
+                mainPage.classList.remove('hidden');
+                wizardPage.classList.add('hidden');
+            }
+        }
+
+        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('load', handleRouting);
+
+        function updateWizardUI() {
+            wizardSteps.forEach((step, index) => {
+                if (index + 1 === currentStep) step.classList.remove('hidden');
+                else step.classList.add('hidden');
+            });
+
+            const progress = (currentStep / totalSteps) * 100;
+            progressBar.style.width = `${progress}%`;
+            
+            if(currentStep < 6) {
+                stepText.innerText = isEn ? `Step ${currentStep} of ${totalSteps - 1}` : `الخطوة ${currentStep} من ${totalSteps - 1}`;
+                stepNameEl.innerText = getStepName(currentStep - 1);
+            } else {
+                stepText.innerText = isEn ? `Completed` : `تم الانتهاء`;
+                stepNameEl.innerText = getStepName(5);
+            }
+            
+            window.scrollTo(0, 0);
+            validateStep(); 
+        }
+
+        function nextWizardStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateWizardUI();
+            }
+        }
+
+        function prevWizardStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateWizardUI();
+            } else {
+                closeWizard();
+            }
+        }
+
+        function submitWizard() { currentStep = 6; updateWizardUI(); }
+        function closeWizard() { window.location.hash = ''; }
+
+        function validateStep() {
+            if (currentStep === 2) {
+                const checked = document.querySelector('input[name="project_type"]:checked');
+                document.getElementById('next-btn-2').disabled = !checked;
+            } else if (currentStep === 3) {
+                const text = document.getElementById('project-desc').value.trim();
+                document.getElementById('next-btn-3').disabled = text.length < 10;
+            } else if (currentStep === 4) {
+                const budgetChecked = document.querySelector('input[name="budget"]:checked');
+                const timelineChecked = document.querySelector('input[name="timeline"]:checked');
+                document.getElementById('next-btn-4').disabled = !(budgetChecked && timelineChecked);
+            } else if (currentStep === 5) {
+                const name = document.getElementById('contact-name').value.trim();
+                const whatsapp = document.getElementById('contact-whatsapp').value.trim();
+                const email = document.getElementById('contact-email').value.trim();
+                document.getElementById('submit-btn-5').disabled = !(name && whatsapp && email);
+            }
+        }
+
+        document.querySelectorAll('#wizard-page input, #wizard-page textarea').forEach(el => {
+            el.addEventListener('input', validateStep);
+            el.addEventListener('change', validateStep);
         });
 
-        // =====================================================================
-        // 3. I18N
-        // =====================================================================
-        const i18n = { /* ... كما هو موجود مسبقاً ... */ };
-        // (تم اختصاره هنا لتوفير المساحة، لكن الكود الكامل يحتفظ بكل الترجمات)
-        // في التطبيق الفعلي، تأكد من نسخ كائن i18n بالكامل من الملف الأصلي.
-        // للاختصار، سأضع نسخة مبسطة هنا:
-        const i18nSimple = {
-            top_cta: { ar: "تواصل للإدارة", en: "Contact Admin" },
-            nav_home: { ar: "الرئيسية", en: "Home" },
-            nav_classes: { ar: "الكلاسات", en: "Classes" },
-            nav_trainers: { ar: "المدربين", en: "Trainers" },
-            nav_plans: { ar: "الاشتراكات", en: "Plans" },
-            nav_account: { ar: "حسابي", en: "Account" },
-            hero_badge: { ar: "تحديث 2026 - الأفضل تقييماً", en: "2026 UPDATE - TOP RATED" },
-            hero_title: { ar: "أعد اكتشاف <br><span class='text-red-500'>قوتك الحقيقية</span>", en: "REDISCOVER <br><span class='text-red-500'>YOUR TRUE STRENGTH</span>" },
-            hero_sub: { ar: "منظومة متكاملة تجمع بين أحدث الأجهزة، نخبة المدربين، وتقنيات الذكاء الاصطناعي لتضمن لك الوصول لهدفك.", en: "An integrated ecosystem combining modern tech, elite trainers, and AI to guarantee your results." },
-            start_now: { ar: "انضم إلينا الآن", en: "Join Us Now" },
-            try_tools: { ar: "جرب أدواتنا", en: "Try Tools" },
-            stat_1: { ar: "جهاز تكنولوجي", en: "Tech Machines" },
-            stat_2: { ar: "مدرب معتمد", en: "Certified Trainers" },
-            stat_3: { ar: "كلاس أسبوعياً", en: "Weekly Classes" },
-            stat_4: { ar: "مفتوح دائماً", en: "Always Open" },
-            sec_classes_title: { ar: "الكلاسات الجماعية", en: "Group Classes" },
-            sec_classes_sub: { ar: "برامج تدريبية مصممة لتحدي قدراتك في بيئة حماسية.", en: "Workout programs designed to challenge you in a hyped environment." },
-            class_1_desc: { ar: "تمارين وظيفية عالية الكثافة لرفع مستويات اللياقة وحرق الدهون.", en: "High intensity functional training to boost fitness and burn fat." },
-            class_2_desc: { ar: "كلاس متخصص في الأوزان الحرة لبناء كتلة عضلية وقوة جبارة.", en: "Free-weights specialized class to build mass and pure power." },
-            class_3_desc: { ar: "تعلم فنون القتال والدفاع عن النفس واطرد التوتر مع أبطال اللعبة.", en: "Learn martial arts, self defense, and release stress." },
-            book_now: { ar: "احجز الآن <i class='fa-solid fa-arrow-left flip-icon text-xs'></i>", en: "Book Now <i class='fa-solid fa-arrow-right flip-icon text-xs'></i>" },
-            sec_trainers_title: { ar: "نخبة المدربين", en: "Elite Trainers" },
-            sec_plans_title: { ar: "خطط الاشتراكات", en: "Membership Plans" },
-            subscribe_btn: { ar: "اختيار الباقة", en: "Select Plan" },
-            subscribe_btn_pro: { ar: "اشترك الآن أونلاين", en: "Subscribe Online" },
-            best_seller: { ar: "الأكثر مبيعاً", en: "Best Seller" },
-            sec_tools_title: { ar: "حاسبة الاستقلاب الذكية", en: "Smart Metabolic Calculator" },
-            sec_tools_sub: { ar: "أداة دقيقة لحساب احتياجك اليومي (TDEE) ومؤشر كتلة الجسم (BMI).", en: "Precise tool to calculate your TDEE and BMI metrics." },
-            calc_btn: { ar: "احسب نتائجي الآن", en: "Calculate Now" },
-            sec_contact_title: { ar: "تواصل للإدارة", en: "Contact Admin" },
-            sec_contact_sub: { ar: "هل لديك استفسار إداري أو تود الشراكة؟ املأ النموذج وسنتواصل معك.", en: "Have an admin inquiry or want to partner? Fill the form." },
-            form_name: { ar: "الاسم", en: "Name" },
-            form_phone: { ar: "رقم الهاتف", en: "Phone" },
-            form_type: { ar: "نوع الاستفسار", en: "Inquiry Type" },
-            form_msg: { ar: "الرسالة", en: "Message" },
-            form_submit: { ar: "إرسال الطلب", en: "Submit Request" },
-            login_title: { ar: "تسجيل الدخول", en: "Sign In" },
-            login_sub: { ar: "مرحباً بعودتك إلى مساحتك الخاصة", en: "Welcome back to your space" },
-            form_email: { ar: "البريد الإلكتروني", en: "Email" },
-            form_pass: { ar: "كلمة المرور", en: "Password" },
-            login_btn_submit: { ar: "دخول للداشبورد", en: "Enter Dashboard" },
-            reg_title: { ar: "إنشاء حساب", en: "Create Account" },
-            reg_sub: { ar: "خطوتك الأولى نحو بناء بطل", en: "First step to build a champion" },
-            reg_btn_submit: { ar: "التالي", en: "Next" },
-            onb_title: { ar: "أكمل بياناتك الطبية", en: "Complete Medical Data" },
-            onb_sub: { ar: "لتفعيل الذكاء الاصطناعي لك.", en: "To activate AI features." },
-            onb_btn: { ar: "حفظ وإنهاء", en: "Save & Finish" }
-        };
-        // دمج الترجمة مع الكائن الافتراضي (في حال وجود مفاتيح إضافية)
-        const fullI18n = { ...i18nSimple };
-        let isAr = true;
-        document.getElementById('langToggle').addEventListener('click', () => {
-            isAr = !isAr;
-            document.getElementById('langText').innerText = isAr ? 'EN' : 'AR';
-            document.documentElement.dir = isAr ? 'rtl' : 'ltr';
-            document.documentElement.lang = isAr ? 'ar' : 'en';
-            document.getElementById('dumbell-links-container').setAttribute('dir', isAr ? 'rtl' : 'ltr');
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (fullI18n[key]) {
-                    el.innerHTML = fullI18n[key][isAr ? 'ar' : 'en'];
+        // ==========================================
+        // 4. Load More Logic (Projects)
+        // ==========================================
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        const hiddenProjects = document.querySelectorAll('.hidden-project');
+        const projectsCounter = document.getElementById('projects-counter');
+
+        if(loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => {
+                hiddenProjects.forEach(project => {
+                    project.classList.remove('hidden');
+                    project.style.opacity = '0';
+                    project.style.transform = 'translateY(10px)';
+                    setTimeout(() => {
+                        project.style.transition = 'all 0.5s ease-out';
+                        project.style.opacity = '1';
+                        project.style.transform = 'translateY(0)';
+                    }, 50);
+                });
+                
+                loadMoreBtn.style.display = 'none';
+                
+                if (isEn) {
+                    projectsCounter.textContent = 'Showing 10 of 10 projects';
+                } else {
+                    projectsCounter.textContent = 'يتم عرض 10 من أصل 10 مشاريع';
                 }
             });
-            document.querySelectorAll('.dir-align').forEach(el => {
-                el.style.textAlign = isAr ? 'right' : 'left';
-            });
-            document.querySelectorAll('.flip-icon').forEach(icon => {
-                icon.style.transform = isAr ? 'rotate(0deg)' : 'rotate(180deg)';
-            });
-        });
+        }
+        
+        // ==========================================
+        // 5. VS Code Editor Animation
+        // ==========================================
+        const lines = [
+            "const idea = new VORTX_DEV_Project('Digital Product');",
+            "await idea.analyzeMarketAndStrategy();",
+            "const architecture = system.buildArchitecture(idea);",
+            "const ui_ux = design.createInterfaces(architecture);",
+            "const codebase = engine.develop(ui_ux, { scalable: true });",
+            "await codebase.deployToProduction();"
+        ];
+        const container = document.getElementById('code-editor-body');
+        
+        function applySyntaxHighlighting(text) {
+            let html = text.replace(/(const|await|new|true)/g, '<span class="text-primary dark:text-[#569cd6] font-bold">$1</span>');
+            html = html.replace(/(analyzeMarketAndStrategy|buildArchitecture|createInterfaces|develop|deployToProduction)/g, '<span class="text-slate-900 dark:text-[#dcdcaa] font-semibold">$1</span>');
+            html = html.replace(/('.*?')/g, '<span class="text-dot dark:text-[#ce9178]">$1</span>');
+            return html.replace(/(VORTX_DEV_Project|system|design|engine)/g, '<span class="text-blue-800 dark:text-[#4ec9b0]">$1</span>');
+        }
 
-        // =====================================================================
-        // 4. SPA NAVIGATION & SCROLL REVEAL
-        // =====================================================================
-        const navItems = document.querySelectorAll('.nav-item');
-        navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                const target = item.getAttribute('data-target');
-                const nav = item.getAttribute('data-nav');
-                navItems.forEach(n => n.classList.remove('active'));
-                item.classList.add('active');
+        function typeCode(element, text) {
+            return new Promise(resolve => {
+                let i = 0;
+                element.innerHTML = '';
+                element.classList.add('typing-cursor');
+                const interval = setInterval(() => {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    if (i >= text.length) {
+                        clearInterval(interval);
+                        element.classList.remove('typing-cursor');
+                        element.innerHTML = applySyntaxHighlighting(element.textContent);
+                        resolve();
+                    }
+                }, 30);
+            });
+        }
 
-                if (nav) {
-                    e.preventDefault();
-                    document.querySelectorAll('.spa-view').forEach(v => v.classList.remove('active-view'));
-                    const view = document.getElementById(nav);
-                    if (view) view.classList.add('active-view');
-                    window.history.pushState(null, null, '#' + nav);
-                    setTimeout(handleScrollReveal, 100);
-                    // Load dashboard data if navigating to it
-                    if (nav === 'dashboard') loadDashboard();
-                } else if (target) {
-                    e.preventDefault();
-                    if (!document.getElementById('home').classList.contains('active-view')) {
-                        document.querySelectorAll('.spa-view').forEach(v => v.classList.remove('active-view'));
-                        document.getElementById('home').classList.add('active-view');
-                        window.history.pushState(null, null, '#home');
-                        setTimeout(handleScrollReveal, 100);
-                    }
-                    const section = document.getElementById(target);
-                    if (section) {
-                        const topPos = section.getBoundingClientRect().top + window.pageYOffset - 110;
-                        window.scrollTo({ top: topPos, behavior: 'smooth' });
-                    }
+        async function startEditorAnimation() {
+            while (true) {
+                container.innerHTML = ''; 
+                let line1 = document.createElement('div');
+                line1.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden";
+                container.appendChild(line1);
+                await typeCode(line1, lines[0]);
+                await new Promise(r => setTimeout(r, 1200));
+                
+                let line2 = document.createElement('div');
+                line2.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden";
+                container.appendChild(line2);
+                await typeCode(line2, lines[1]);
+                await new Promise(r => setTimeout(r, 1200));
+                
+                let currentVisibleLines = [line1, line2];
+                for(let i = 2; i < lines.length; i++) {
+                    let topElement = currentVisibleLines.shift(); 
+                    topElement.style.marginTop = `-${topElement.offsetHeight}px`; 
+                    topElement.style.opacity = '0';
+                    await new Promise(r => setTimeout(r, 500)); 
+                    topElement.remove(); 
+                    
+                    let newLine = document.createElement('div');
+                    newLine.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden";
+                    container.appendChild(newLine);
+                    currentVisibleLines.push(newLine);
+                    await typeCode(newLine, lines[i]);
+                    await new Promise(r => setTimeout(r, 1200));
                 }
-            });
-        });
-
-        window.addEventListener('hashchange', () => {
-            const hash = window.location.hash.replace('#', '') || 'home';
-            const view = document.getElementById(hash);
-            if (view && view.classList.contains('spa-view')) {
-                document.querySelectorAll('.spa-view').forEach(v => v.classList.remove('active-view'));
-                view.classList.add('active-view');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                if (hash === 'dashboard') loadDashboard();
+                await new Promise(r => setTimeout(r, 2500));
             }
-        });
-
-        const handleScrollReveal = () => {
-            document.querySelectorAll('.active-view .reveal').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active');
-            });
-        };
-        window.addEventListener('scroll', handleScrollReveal);
-        window.addEventListener('load', () => setTimeout(handleScrollReveal, 100));
-
-        // =====================================================================
-        // 5. SCROLL PROGRESS
-        // =====================================================================
-        const progressBar = document.getElementById('scrollProgressBar');
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            progressBar.style.width = Math.min(progress, 100) + '%';
-        });
-
-        // =====================================================================
-        // 6. RIPPLE EFFECT
-        // =====================================================================
-        document.querySelectorAll('.btn-primary, .btn-outline, .top-cta').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const rect = this.getBoundingClientRect();
-                const ripple = document.createElement('span');
-                ripple.className = 'ripple';
-                const size = Math.max(rect.width, rect.height);
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
-                ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
-                this.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 600);
-            });
-        });
-
-        // =====================================================================
-        // 7. TDEE CALCULATOR (Public)
-        // =====================================================================
-        window.runCalc = () => {
-            const w = parseFloat(document.getElementById('c-weight').value);
-            const h = parseFloat(document.getElementById('c-height').value);
-            const a = parseFloat(document.getElementById('c-age').value);
-            const g = document.getElementById('c-gender').value;
-            if (!w || !h || !a) { showToast(isAr ? 'برجاء إدخال البيانات.' : 'Please enter data.', 'error'); return; }
-            const bmi = (w / Math.pow(h/100, 2)).toFixed(1);
-            let bmr = (10 * w) + (6.25 * h) - (5 * a);
-            bmr = g === 'm' ? bmr + 5 : bmr - 161;
-            const tdee = Math.round(bmr * 1.55);
-            document.getElementById('res-bmi').innerText = bmi;
-            document.getElementById('res-tdee').innerText = tdee;
-        };
-
-        // =====================================================================
-        // 8. DASHBOARD LOGIC
-        // =====================================================================
-        const STORAGE_KEY = 'fitcore_user';
-
-        // Load profile data and populate form
-        function loadDashboard() {
-            const data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-            // Profile form
-            document.getElementById('profileName').value = data.name || '';
-            document.getElementById('profileWeight').value = data.weight || '';
-            document.getElementById('profileHeight').value = data.height || '';
-            // Avatar
-            if (data.avatar) {
-                document.getElementById('avatarPreview').src = data.avatar;
-            }
-            // Metrics
-            calculateMetrics(data.weight, data.height);
-            // Attendance
-            loadAttendance();
         }
+        startEditorAnimation();
 
-        // Save profile
-        function saveProfile(e) {
-            e.preventDefault();
-            const name = document.getElementById('profileName').value.trim();
-            const weight = parseFloat(document.getElementById('profileWeight').value);
-            const height = parseFloat(document.getElementById('profileHeight').value);
-            if (!name || !weight || !height) {
-                showToast('يرجى ملء جميع الحقول', 'error');
-                return;
-            }
-            let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-            data.name = name;
-            data.weight = weight;
-            data.height = height;
-            // Avatar already saved via file input
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            calculateMetrics(weight, height);
-            showToast('تم حفظ الملف الشخصي بنجاح ✅', 'success');
-        }
-
-        // Calculate and display metrics
-        function calculateMetrics(weight, height) {
-            if (!weight || !height) {
-                ['metricBmi','metricTdee','metricBmr','metricIdeal'].forEach(id => document.getElementById(id).innerText = '--');
-                return;
-            }
-            const h = height / 100;
-            const bmi = (weight / (h * h));
-            const bmr = (10 * weight) + (6.25 * height) - (5 * 30) + 5; // باستخدام عمر 30 افتراضي
-            const tdee = Math.round(bmr * 1.55);
-            const ideal = (22 * h * h).toFixed(1);
-            document.getElementById('metricBmi').innerText = bmi.toFixed(1);
-            document.getElementById('metricTdee').innerText = tdee;
-            document.getElementById('metricBmr').innerText = Math.round(bmr);
-            document.getElementById('metricIdeal').innerText = ideal + ' kg';
-        }
-
-        // Avatar upload
-        document.getElementById('avatarInput').addEventListener('change', function(e) {
-            const file = this.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(ev) {
-                const imgData = ev.target.result;
-                document.getElementById('avatarPreview').src = imgData;
-                // Save to localStorage
-                let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-                data.avatar = imgData;
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-                showToast('تم تحديث الصورة 🖼️', 'success');
-            };
-            reader.readAsDataURL(file);
-        });
-
-        // Attendance
-        function checkIn() {
-            const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
-            let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-            if (!data.attendance) data.attendance = [];
-            // Check if already checked in today
-            if (data.attendance.includes(today)) {
-                showToast('لقد سجلت حضورك اليوم بالفعل ✅', 'info');
-                return;
-            }
-            data.attendance.push(today);
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            loadAttendance();
-            showToast('تم تسجيل الحضور بنجاح 🎉', 'success');
-        }
-
-        function loadAttendance() {
-            const list = document.getElementById('attendanceList');
-            const data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-            const attendance = data.attendance || [];
-            if (attendance.length === 0) {
-                list.innerHTML = '<p class="text-muted text-center text-sm">لا توجد تسجيلات حضور بعد</p>';
-                return;
-            }
-            // عرض الأحدث أولاً
-            const sorted = [...attendance].reverse();
-            list.innerHTML = sorted.map(date => {
-                const dateObj = new Date(date + 'T00:00:00');
-                const formatted = dateObj.toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-                return `<div class="attendance-item"><span class="date">${formatted}</span><span class="badge">✅</span></div>`;
-            }).join('');
-        }
-
-        // Load dashboard if it's the active view on page load
-        window.addEventListener('load', () => {
-            if (window.location.hash === '#dashboard') {
-                setTimeout(loadDashboard, 200);
-            }
-        });
-
-        // Also load when navigating to dashboard via hashchange (already called in hashchange)
-        // But we also need to call when the dashboard view becomes active via nav click (already handled)
-
-        // Manual trigger for initial load if hash is dashboard
-        if (window.location.hash === '#dashboard') {
-            setTimeout(loadDashboard, 300);
-        }
     </script>
+
 </body>
-  </html>
+    </html>
