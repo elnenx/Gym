@@ -138,9 +138,9 @@
         </header>
 
         <!-- Main Hero Section -->
-        <main class="px-5 pt-20 pb-16 relative z-10">
+        <main class="px-5 pt-28 pb-16 relative z-10">
             <!-- VS Code Editor -->
-            <div class="mb-6 mx-auto max-w-lg w-full bg-white/80 dark:bg-slate-800/90 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden border border-primary/20 dark:border-slate-700/50 flex flex-col transition-colors" dir="ltr">
+            <div class="mb-8 mx-auto max-w-lg w-full bg-white/80 dark:bg-slate-800/90 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden border border-primary/20 dark:border-slate-700/50 flex flex-col transition-colors" dir="ltr">
                 <div class="bg-primary dark:bg-slate-900 px-4 py-2.5 flex items-center justify-between border-b border-black/10 transition-colors">
                     <div class="flex gap-1.5">
                         <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
@@ -150,21 +150,20 @@
                     <div class="text-white text-[12px] font-sans tracking-wide font-bold opacity-90">build_product.js</div>
                     <div class="w-[44px]"></div>
                 </div>
-                <!-- تم تقليل الارتفاع ليتسع لسطرين فقط -->
-                <div class="px-5 py-3 h-[74px] relative overflow-hidden font-mono text-[14px] text-slate-600 dark:text-slate-300 bg-transparent transition-colors" id="code-editor-body"></div>
+                <!-- تم تقليل الارتفاع وتعديل الخط ليظهر في سطرين بدون التفاف -->
+                <div class="px-5 py-3 h-[72px] relative overflow-hidden font-mono text-[13px] sm:text-[14px] text-slate-600 dark:text-slate-300 bg-transparent transition-colors" id="code-editor-body"></div>
             </div>
 
             <h1 class="text-[2.2rem] leading-[1.3] font-black text-right rtl:text-right ltr:text-left text-dark dark:text-white transition-colors" data-ar="نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class='text-primary tracking-wide'>تصنع أثرًا.</span>" data-en="We Turn Ideas<br>Into Digital<br>Products <span class='text-primary tracking-wide'>That Impact.</span>">
                 نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class="text-primary tracking-wide">تصنع أثرًا.</span>
             </h1>
-            <p class="text-right rtl:text-right ltr:text-left text-slate-500 dark:text-slate-400 mt-4 text-base leading-relaxed font-medium transition-colors" data-ar="تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق." data-en="VORTX DEV helps companies turn ideas into successful digital products, from vision to launch.">
+            <p class="text-right rtl:text-right ltr:text-left text-slate-500 dark:text-slate-400 mt-6 text-base leading-relaxed font-medium transition-colors" data-ar="تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق." data-en="VORTX DEV helps companies turn ideas into successful digital products, from vision to launch.">
                 تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق.
             </p>
 
             <div class="flex flex-col gap-4 mt-8 w-full max-w-md mx-auto">
                 <a href="#start-project" class="bg-primary text-white w-full py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-blue-800 transition-colors shadow-lg shadow-blue-500/30">
                     <span data-ar="ابدأ مشروعك" data-en="Start a Project">ابدأ مشروعك</span>
-                    <i class="ph ph-arrow-left font-bold text-lg rtl:rotate-0 ltr:rotate-180"></i>
                 </a>
                 <a href="#portfolio" class="bg-surface dark:bg-slate-800 border border-transparent dark:border-slate-700 text-dark dark:text-white w-full py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors">
                     <span data-ar="استكشف أعمالنا" data-en="Explore Our Work">استكشف أعمالنا</span>
@@ -508,11 +507,9 @@
                 
                 <div class="flex flex-col gap-4">
                     <a href="mailto:vortx.dev1@gmail.com" class="w-full bg-primary text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-blue-800 transition-colors shadow-lg shadow-blue-500/30">
-                        <i class="ph ph-paper-plane-tilt text-2xl"></i>
                         <span data-ar="راسلنا عبر البريد الإلكتروني" data-en="Email Us">راسلنا عبر البريد الإلكتروني</span>
                     </a>
                     <a href="https://wa.me/201129268929" target="_blank" class="w-full bg-transparent border-2 border-primary text-primary dark:text-blue-400 font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:bg-primaryLight dark:hover:bg-primary/10 transition-colors">
-                        <i class="ph ph-whatsapp-logo text-2xl"></i>
                         <span data-ar="راسلنا عبر الواتساب" data-en="WhatsApp Us">راسلنا عبر الواتساب</span>
                     </a>
                 </div>
@@ -1074,13 +1071,13 @@
             while (true) {
                 container.innerHTML = ''; 
                 let line1 = document.createElement('div');
-                line1.className = "h-auto min-h-[24px] leading-[24px] transition-all duration-500 overflow-hidden break-words whitespace-normal text-left w-full";
+                line1.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden whitespace-nowrap text-left w-full";
                 container.appendChild(line1);
                 await typeCode(line1, lines[0]);
                 await new Promise(r => setTimeout(r, 1200));
                 
                 let line2 = document.createElement('div');
-                line2.className = "h-auto min-h-[24px] leading-[24px] transition-all duration-500 overflow-hidden break-words whitespace-normal text-left w-full";
+                line2.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden whitespace-nowrap text-left w-full";
                 container.appendChild(line2);
                 await typeCode(line2, lines[1]);
                 await new Promise(r => setTimeout(r, 1200));
@@ -1094,7 +1091,7 @@
                     topElement.remove(); 
                     
                     let newLine = document.createElement('div');
-                    newLine.className = "h-auto min-h-[24px] leading-[24px] transition-all duration-500 overflow-hidden break-words whitespace-normal text-left w-full";
+                    newLine.className = "h-[24px] leading-[24px] transition-all duration-500 overflow-hidden whitespace-nowrap text-left w-full";
                     container.appendChild(newLine);
                     currentVisibleLines.push(newLine);
                     await typeCode(newLine, lines[i]);
@@ -1108,4 +1105,4 @@
     </script>
 
 </body>
-                                </html>
+    </html>
