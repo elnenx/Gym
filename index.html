@@ -107,15 +107,18 @@
                     <span id="menu-title" class="font-bold text-dark dark:text-white opacity-0 hidden transition-opacity duration-300" data-ar="القائمة الرئيسية" data-en="Main Menu">القائمة الرئيسية</span>
                 </button>
                 
+                <!-- فاصل طويل تحت القائمة -->
+                <div id="menu-divider" class="w-[85%] h-[1px] bg-slate-200 dark:bg-slate-700 mx-auto hidden opacity-0 transition-opacity duration-300 mb-2"></div>
+
                 <nav id="menu-dropdown" class="hidden flex-col items-center justify-center gap-1.5 px-3 pb-5 opacity-0 transition-opacity duration-300 w-full">
                     <a href="#contact-section" onclick="toggleMenu()" class="text-center w-full p-2 text-slate-700 dark:text-slate-200 font-bold hover:text-primary dark:hover:text-primary transition-colors" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
-                    <div class="w-12 h-[1px] bg-slate-200 dark:bg-slate-700 rounded-full my-1"></div>
+                    <div class="w-12 h-[1px] bg-slate-100 dark:bg-slate-700/50 rounded-full my-1"></div>
                     <a href="#start-project" onclick="toggleMenu()" class="text-center w-full p-2 text-primary dark:text-blue-400 font-bold hover:text-blue-800 transition-colors" data-ar="ابدأ مشروعك" data-en="Start a Project">ابدأ مشروعك</a>
-                    <div class="w-12 h-[1px] bg-slate-200 dark:bg-slate-700 rounded-full my-1"></div>
+                    <div class="w-12 h-[1px] bg-slate-100 dark:bg-slate-700/50 rounded-full my-1"></div>
                     <a href="#portfolio" onclick="toggleMenu()" class="text-center w-full p-2 text-slate-700 dark:text-slate-200 font-bold hover:text-primary dark:hover:text-primary transition-colors" data-ar="أعمالنا" data-en="Our Work">أعمالنا</a>
-                    <div class="w-12 h-[1px] bg-slate-200 dark:bg-slate-700 rounded-full my-1"></div>
+                    <div class="w-12 h-[1px] bg-slate-100 dark:bg-slate-700/50 rounded-full my-1"></div>
                     <a href="#services" onclick="toggleMenu()" class="text-center w-full p-2 text-slate-700 dark:text-slate-200 font-bold hover:text-primary dark:hover:text-primary transition-colors" data-ar="خدماتنا" data-en="Services">خدماتنا</a>
-                    <div class="w-12 h-[1px] bg-slate-200 dark:bg-slate-700 rounded-full my-1"></div>
+                    <div class="w-12 h-[1px] bg-slate-100 dark:bg-slate-700/50 rounded-full my-1"></div>
                     <a href="#methodology" onclick="toggleMenu()" class="text-center w-full p-2 text-slate-700 dark:text-slate-200 font-bold hover:text-primary dark:hover:text-primary transition-colors" data-ar="منهجيتنا" data-en="Methodology">منهجيتنا</a>
                 </nav>
             </div>
@@ -135,9 +138,9 @@
         </header>
 
         <!-- Main Hero Section -->
-        <main class="px-5 pt-32 pb-16 relative z-10">
+        <main class="px-5 pt-20 pb-16 relative z-10">
             <!-- VS Code Editor -->
-            <div class="mb-10 mx-auto max-w-lg w-full bg-white/80 dark:bg-slate-800/90 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden border border-primary/20 dark:border-slate-700/50 flex flex-col transition-colors" dir="ltr">
+            <div class="mb-6 mx-auto max-w-lg w-full bg-white/80 dark:bg-slate-800/90 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden border border-primary/20 dark:border-slate-700/50 flex flex-col transition-colors" dir="ltr">
                 <div class="bg-primary dark:bg-slate-900 px-4 py-2.5 flex items-center justify-between border-b border-black/10 transition-colors">
                     <div class="flex gap-1.5">
                         <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
@@ -147,18 +150,18 @@
                     <div class="text-white text-[12px] font-sans tracking-wide font-bold opacity-90">build_product.js</div>
                     <div class="w-[44px]"></div>
                 </div>
-                <!-- Increased height to prevent text clipping and allow wrapping -->
-                <div class="px-5 py-4 min-h-[140px] h-[140px] relative overflow-hidden font-mono text-[14px] text-slate-600 dark:text-slate-300 bg-transparent transition-colors" id="code-editor-body"></div>
+                <!-- تم تقليل الارتفاع ليتسع لسطرين فقط -->
+                <div class="px-5 py-3 h-[74px] relative overflow-hidden font-mono text-[14px] text-slate-600 dark:text-slate-300 bg-transparent transition-colors" id="code-editor-body"></div>
             </div>
 
-            <h1 class="text-[2.4rem] leading-[1.3] font-black text-right rtl:text-right ltr:text-left text-dark dark:text-white transition-colors" data-ar="نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class='text-primary tracking-wide'>تصنع أثرًا.</span>" data-en="We Turn Ideas<br>Into Digital<br>Products <span class='text-primary tracking-wide'>That Impact.</span>">
+            <h1 class="text-[2.2rem] leading-[1.3] font-black text-right rtl:text-right ltr:text-left text-dark dark:text-white transition-colors" data-ar="نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class='text-primary tracking-wide'>تصنع أثرًا.</span>" data-en="We Turn Ideas<br>Into Digital<br>Products <span class='text-primary tracking-wide'>That Impact.</span>">
                 نحوّل الأفكار<br>إلى منتجات<br>رقمية <span class="text-primary tracking-wide">تصنع أثرًا.</span>
             </h1>
-            <p class="text-right rtl:text-right ltr:text-left text-slate-500 dark:text-slate-400 mt-6 text-base leading-relaxed font-medium transition-colors" data-ar="تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق." data-en="VORTX DEV helps companies turn ideas into successful digital products, from vision to launch.">
+            <p class="text-right rtl:text-right ltr:text-left text-slate-500 dark:text-slate-400 mt-4 text-base leading-relaxed font-medium transition-colors" data-ar="تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق." data-en="VORTX DEV helps companies turn ideas into successful digital products, from vision to launch.">
                 تساعد VORTX DEV الشركات والفرق على تحويل الأفكار إلى منتجات رقمية ناجحة، من اكتشاف الفرصة وصياغة الرؤية، إلى التصميم والتطوير والإطلاق.
             </p>
 
-            <div class="flex flex-col gap-4 mt-10 w-full max-w-md mx-auto">
+            <div class="flex flex-col gap-4 mt-8 w-full max-w-md mx-auto">
                 <a href="#start-project" class="bg-primary text-white w-full py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 hover:bg-blue-800 transition-colors shadow-lg shadow-blue-500/30">
                     <span data-ar="ابدأ مشروعك" data-en="Start a Project">ابدأ مشروعك</span>
                     <i class="ph ph-arrow-left font-bold text-lg rtl:rotate-0 ltr:rotate-180"></i>
@@ -847,6 +850,7 @@
         const menuIcon = document.getElementById('menu-icon');
         const menuTitle = document.getElementById('menu-title');
         const menuDropdown = document.getElementById('menu-dropdown');
+        const menuDivider = document.getElementById('menu-divider');
 
         function toggleMenu() {
             isMenuOpen = !isMenuOpen;
@@ -860,7 +864,11 @@
                 
                 menuIcon.className = 'ph ph-x text-[24px] transition-transform duration-300';
                 menuTitle.classList.remove('hidden');
-                setTimeout(() => menuTitle.classList.remove('opacity-0'), 100);
+                menuDivider.classList.remove('hidden');
+                setTimeout(() => {
+                    menuTitle.classList.remove('opacity-0');
+                    menuDivider.classList.remove('opacity-0');
+                }, 100);
 
                 menuDropdown.classList.remove('hidden');
                 setTimeout(() => menuDropdown.classList.remove('opacity-0'), 200);
@@ -868,10 +876,12 @@
             } else {
                 menuDropdown.classList.add('opacity-0');
                 menuTitle.classList.add('opacity-0');
+                menuDivider.classList.add('opacity-0');
                 
                 setTimeout(() => {
                     menuDropdown.classList.add('hidden');
                     menuTitle.classList.add('hidden');
+                    menuDivider.classList.add('hidden');
                     
                     navMenuContainer.classList.remove('w-full');
                     navMenuContainer.classList.add('w-[52px]');
@@ -1098,4 +1108,4 @@
     </script>
 
 </body>
-    </html>
+                                </html>
